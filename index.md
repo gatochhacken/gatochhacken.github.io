@@ -209,12 +209,14 @@ Reflected of non-persistent XSS is een techniek waarbij een fout in de input san
 #### PHP voorbeeld Reflected XSS ####
 Het volgende code voorbeeld is kwetsbaar voor XSS 
 
+```php
     <?PHP
     	if (isset($_GET['status']))
     	{
     		echo $_GET['status'];
     	}
     ?>
+```
 
 Als je dit in een php pagina zet, en deze PHP pagina bezoekt met als [querystring](https://nl.wikipedia.org/wiki/Querystring) status=%3Cscript%3Ealert%28%27xss%27%29%3B%3C%2Fscript%3E zie je het volgende:
 

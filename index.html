@@ -424,14 +424,13 @@ Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs t
 <p>Reflected of non-persistent XSS is een techniek waarbij een fout in de input sanitization het weergeven van kwaadaardige code toe staat. Het belangrijkste om te onthouden is dat in dit geval de aanval niet op de website opgeslagen is, en iemand dus alleen slachtoffer kan worden als hij echt jouw link aan klikt met de aanval.</p>
 <h4>PHP voorbeeld Reflected XSS</h4>
 <p>Het volgende code voorbeeld is kwetsbaar voor XSS </p>
-<pre><code>&lt;?PHP
-    if (isset($_GET['status']))
-    {
-        echo $_GET['status'];
-    }
-?&gt;
-</code></pre>
-
+<p><code>php
+    &lt;?PHP
+    	if (isset($_GET['status']))
+    	{
+    		echo $_GET['status'];
+    	}
+    ?&gt;</code></p>
 <p>Als je dit in een php pagina zet, en deze PHP pagina bezoekt met als <a href="https://nl.wikipedia.org/wiki/Querystring">querystring</a> status=%3Cscript%3Ealert%28%27xss%27%29%3B%3C%2Fscript%3E zie je het volgende:</p>
 <p><img src="images/reflective_xss.png" /> </p>
 <p><strong>Let op!</strong> de waarden zijn urlencoded om geen verstoring in de URL te geven. </p>
