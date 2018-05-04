@@ -430,6 +430,7 @@ Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs t
 
 <p>Als je dit in een php pagina zet, en deze PHP pagina bezoekt met als <a href="https://nl.wikipedia.org/wiki/Querystring">querystring</a> status=%3Cscript%3Ealert%28%27xss%27%29%3B%3C%2Fscript%3E zie je het volgende:</p>
 <p><img src="images/reflective_xss.png" /> </p>
+<p><strong>Let op!</strong> de waarden zijn urlencoded om geen verstoring in de URL te geven. </p>
 <h4>Stored XSS</h4>
 <p>Stored of persistent XSS is een techniek waarbij een fout in de input sanitization het opslaan van je aanval mogelijk maakt. Dit soort aanvallen maken meer slachtoffers omdat iedereen die de specifieke pagina bezoekt er mee besmet zal worden.</p>
 <h4>DOM XSS</h4>
@@ -553,6 +554,15 @@ Computer C - 192.168.1.4 - EVILMAC1</p>
 <p>Tooling: Arpspoof, ettercap, bettercap </p>
 <h1>Dankwoord</h1>
 <p>Github bedankt voor het hosten :)</p>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<p><script async src="https://www.googletagmanager.com/gtag/js?id=UA-118698551-1"></script></p>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118698551-1');
+</script>
 
 </body>
 </html>
