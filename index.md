@@ -130,6 +130,10 @@ Msfvenom is de payloadgenerator van het Metasploit Framework. Met deze payloadge
 
 Zoals eerder genoemd is certified secure een mooie omgeving om web attacks te oefenen. Je kan hiervoor ook de Damn Vulnerable Web Application ([DVWA](http://www.dvwa.co.uk/)) gebruiken. De DVWA geeft een kwetsbare website waar je een heleboel van de hieronder genoemde technieken kan beoefenen. Je kan de DVWA in bijvoorbeeld [vmware player](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html) draaien.
 
+De standaard gebruikersnaam en wachtwoord zijn admin en password. Je kan deze gegevens ook proberen te bruteforcen.
+
+**Waarschuwing** Draai DVWA **nooit** op een echte server. Het is echt zo kwetsbaar en je webserver zal snel overgenomen worden.
+
 ## Enumeratie ##
 
 Het is bijna onmogelijk om een onbeperkte lijst te geven van mogelijkheden waarop je binnen websites kan enumereren. Om hier toch een beeld te kunnen geven van welke gegevenssets je allemaal kan verzamelen van websites zullen er toch een niet limitatieve opsomming aan mogelijkheden gegeven worden.
@@ -197,7 +201,9 @@ Indien het een username / password is en de query moet blijven werken:
 ### Fouten in de logica ###
 
 ### Cross site scripting ###
-Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen.
+Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. 
+
+Sommige browsers zoals Chrome en Internet Explorer >8.0 geven een foutmelding op het moment dat je XSS wilt uitvoeren. 
 
 #### Reflected XSS ####
 Reflected of non-persistent XSS is een techniek waarbij een fout in de input sanitization het weergeven van kwaadaardige code toe staat. Het belangrijkste om te onthouden is dat in dit geval de aanval niet op de website opgeslagen is, en iemand dus alleen slachtoffer kan worden als hij echt jouw link aan klikt met de aanval.
@@ -221,6 +227,9 @@ Als je dit in een php pagina zet, en deze PHP pagina bezoekt met als [querystrin
 #### Stored XSS ####
 Stored of persistent XSS is een techniek waarbij een fout in de input sanitization het opslaan van je aanval mogelijk maakt. Dit soort aanvallen maken meer slachtoffers omdat iedereen die de specifieke pagina bezoekt er mee besmet zal worden.
 
+**DVWS voorbeeld**
+![](images/xss_stored_alert(xss).png)
+![](images/xss_stored_alert(xss)_result.png)
 
 
 #### DOM XSS ####
