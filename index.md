@@ -173,20 +173,37 @@ Je kan hier bijvoorbeeld zien dat je de gebruikersnaam goed hebt, immers er is e
 
 Aan dit veld kun je geen conclussies meer verbinden.
 
+## Server-side controle functionaliteiten ##
+### SQL ###
+Voor sommige websites is het niet erg lastig om een SQL injectie uit te voeren. Er word een login formulier ingevuld en de credentials worden rechtstreeks naar een database gestuurd. Een voorbeeld hiervan in PHP kan bijvoorbeeld zo eruit zien:
+
+    <?PHP
+    	if (isset($_POST['submit']))
+		{
+			$result = mysqli_query($db,"SELECT id FROM users WHERE username='".$_POST['username']."' AND password="'.sha256($_POST['password']).'" lIMIT 1");
+			if (mysqli_num_rows($result) == 1)
+			{
+				echo "U bent ingelogd";
+			}else{
+				echo "Uw gebruikersnaam of wachtwoord zijn fout";
+			}
+		}
+    ?> 
+
+Als je in het inlogformulier in een gebruikersnaam nu geldige SQL code schrijft, dan zal deze rechtstreeks in de query ingevoerd worden. Eerst moeten wij uit de quote breken, dus we plaatsen een enkele quote. Dan willen wij graag dat er een geldig resultaat word opgehaald, dus plaatsen wij er een OR 1 achter. Om te voorkomen dat de rest van de query ook nog uitgevoerd zal worden en wij dus een wachtwoord moeten opgeven, gaan wij de rest van de query uitcommenten. Dit doen wij met # -- .
+
+Onze complete injectie ziet er dan als volgt uit:
+
+`' OR 1 # -- ` 
+
+Als je deze injectie invoert in de SQL injectie pagina van DVWA, dan zal je zien dat hij elke gebruiker terug geeft. In het bovenstaande voorbeeld maar 1, de eerste die hij tegen komt.  Op deze manier kan je elke mogelijke (correcte) query invoegen in een onveilig statement.
+
+
 ## Client-side controle functionaliteiten ##
 
 ### Authenticatiefouten ###
 
 ### Sessie managment ###
-
-### SQL ###
-Eenvoudige injectie 
-
-`' # -- ` 
-
-Indien het een username / password is en de query moet blijven werken:
-
-    ' OR 1=1 OR 1='
 
 ### NoSQL ###
 
