@@ -1,5 +1,3 @@
-# Gatochhacken.nl 
-
 # Voorwoord
 In het kader van [https://www.laatjeniethackmaken.nl](https://www.laatjeniethackmaken.nl "laatjeniethackmaken.nl") heb ik besloten om juist het tegenovergestelde te gaan maken. Gatochhacken.nl. Waarom ga toch hacken? Omdat er veel vragen zijn en mensen wel met security willen beginnen maar eigenlijk erg veel moeite hebben met het vinden van de juiste informatie in een voor hen begrijpelijke taal (Nederlands). 
 
@@ -279,6 +277,9 @@ Als het je niet lukte dan kan dit komen omdat je je URL niet correct ge-encode h
 
 In filesystem functies trunct PHP onder linux de paden automatisch naar 4096 tekens. Je kan dit voor elkaar krijgen door voor het path een opstapeling van “./” strings op te nemen totdat je op dit maximum zit.
 
+### LFI naar RCE via Log bestanden ###
+Je kan met logbestanden potentieel RCE verkrijgen. Als je nieuwsgierig bent kan je de logbestanden in /var/log zelf bekijken en zien welke log bestanden je hiervoor zal kunnen misbruiken. Als je iets in een log bestand weet weg te schrijven kan je vervolgens het bestand includen en je code laten uitvoeren.
+
 ### PHP Wrapper ###
 
 PHP kent verschillende wrappers. Met [PHP Wrappers](http://php.net/manual/en/wrappers.php.php) kan je toegang krijgen tot diverse I/O streams van applicaties en op deze wijze kan je bestanden uitlezen of commando’s op servers uitvoeren. Deze wrappers zijn voornamelijk bedoeld om met functies als readfile, file en file_get_contents te werken. 
@@ -318,10 +319,15 @@ Dit zijn specifieker:
 #### /proc/self/cmdline ####
 #### /proc/self/stat ####
 #### /proc/self/fd/[0-35] ####
-In een van de filedescriptors van het huidige proces staat de Apache error log weggeschreven. Je kan zelf php code in de logging wegschrijven en deze later weer opvragen. Als je nieuwsgierig bent kan je de logbestanden in /var/log zelf bekijken en zien welke log bestanden je hiervoor zal kunnen misbruiken.
+In een van de filedescriptors van het huidige proces staat de Apache error log weggeschreven. Je kan zelf php code in de logging wegschrijven en deze later weer opvragen.
+
+![](http://gatochhacken.nl/images/lfi_file_fd_errorlog.png)
 
 #### /proc/self/environ ####
 Als je de environ file kan includen dan heb je de beschikking over de environmental variabelen waaronder de applicatie op dat moment draait. Een van de gebruikersgegevens die in deze environmental variabelen terecht komt is de user agent. Doormiddel van handige Firefox plugin zoals [uaswitcher](https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/) kan je zelf je useragent aanpassen en hier bijvoorbeeld PHP code in plaatsen. 
+
+### Cross Site Request Forgery ###
+Cross Site Request Forgery of CSRF is een methode waarbij je gebruikers een actie kan laten uitvoeren. 
 
 # Netwerk aanvallen
 
