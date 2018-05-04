@@ -209,14 +209,12 @@ Reflected of non-persistent XSS is een techniek waarbij een fout in de input san
 #### PHP voorbeeld Reflected XSS ####
 Het volgende code voorbeeld is kwetsbaar voor XSS 
 
-```php
     <?PHP
     	if (isset($_GET['status']))
     	{
     		echo $_GET['status'];
     	}
     ?>
-```
 
 Als je dit in een php pagina zet, en deze PHP pagina bezoekt met als [querystring](https://nl.wikipedia.org/wiki/Querystring) status=%3Cscript%3Ealert%28%27xss%27%29%3B%3C%2Fscript%3E zie je het volgende:
 
@@ -329,7 +327,13 @@ In een van de filedescriptors van het huidige proces staat de Apache error log w
 Als je de environ file kan includen dan heb je de beschikking over de environmental variabelen waaronder de applicatie op dat moment draait. Een van de gebruikersgegevens die in deze environmental variabelen terecht komt is de user agent. Doormiddel van handige Firefox plugin zoals [uaswitcher](https://addons.mozilla.org/en-US/firefox/addon/uaswitcher/) kan je zelf je useragent aanpassen en hier bijvoorbeeld PHP code in plaatsen. 
 
 ### Cross Site Request Forgery ###
-Cross Site Request Forgery of CSRF is een methode waarbij je gebruikers een actie kan laten uitvoeren. 
+Cross Site Request Forgery of CSRF is een methode waarbij je gebruikers een actie kan laten uitvoeren zonder dat ze dit door hebben. In DVWA kan je dit zelf uitproberen, en ook bij CS zul je mogelijkheden vinden om dit te beoefenen.
+
+Het simpelste voorbeeld uit DVWA is het aanpassen van je wachtwoord. Het formulier is naar de website toegestuurd in de querystring en er is geen mogelijkheid toegevoegd om te verifieren of die wel echt de actie van een ingelogde gebruiker was. Met het volgende code snippet zou je (als je ook XSS toegang hebt) eenvoudig elke langs surfende gebruiker zijn wachtwoord op de website kunnen aanpassen:
+
+`<iframe src="http://<dvwa adres>/vulnerabilities/csrf/?password_new=qwerty&password_conf=qwerty&Change=Change#" style="width:0px;height:0px;>`
+
+Elke gebruiker zal met de onzichtbare [iframe](https://www.w3schools.com/tags/tag_iframe.asp) automatisch de password vervang pagina aanroepen en het nieuwe wachtwoord qwerty instellen. 
 
 # Netwerk aanvallen
 
