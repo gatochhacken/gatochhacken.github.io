@@ -497,6 +497,12 @@ Tooling: Arpspoof, ettercap, bettercap
 
 ## Pash the hash ##
 
+In Windows domeinen kan er gebruikt worden van NTLM (NT Lan Manager) authenticatie. Dit is een authenticatiemethode die gebruikt maakt van het HTTP protocol om een single sign-on mogelijkheid te maken.
+
+Bij pass the hash maak je gebruik van dit protocol om jezelf te authenticeren als een ander. Alhoewel wachtwoorden nooit ongehashed over het netwerk zullen gaan, en je dus niet zomaar als een ander kan inloggen als je naar zijn computer loopt, worden hashes wel over het netwerk verzonden. Aangezien een gebruiker zichzelf bij diensten (shares etc.) aanmeld met deze hash kan je die hergebruiken.
+
+Geavanceerde hacktools om pash the hash mee te doen? PSExec [Windows Sysinternals](https://docs.microsoft.com/en-us/sysinternals/) of de vergelijkbare variant van Metasploit. Let wel op, de ene variant laat eerder een virusscanner af gaan dan de ander.
+
 # Binary exploitation #
 
 # Dankwoord #

