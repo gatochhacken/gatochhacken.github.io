@@ -45,6 +45,13 @@ Start wireshark op je ingerichte lab machine en kijk eens wat er gebeurd als je 
 ## [FTP](https://tools.ietf.org/html/rfc959)
 
 ## [ICMP](https://tools.ietf.org/html/rfc792) ##
+Het Internet Control Message Protocol (ICMP) is een protocol wat men gebruikt om netwerkfunctionaliteiten te testen. I Denk hierbij aan de bereikbaarheid van een server als je PING'ed en een reactie van een router dat het doelnetwerk onbereikbaar is.
+
+Een ICMP pakket bestaat uit 16 bytes, waarbij de eerste byte de type is, de tweede byte de code. De derde en de vierde byte is de checksum van het pakket en in de laatste 4+ bytes staat een restantdeel. Dit is afhankelijk van het type en de code van het pakket.
+
+Binnen ICMP is de type 0, code 0 packet de packet die je het vaakst gebruikt zal hebben. Deze packet verzend je namelijk als je op je commandline het ping commando gebruikt. Dit packet heet officieel de "Echo reply". Deze packet kan je potentieel gebruiken om data te exfiltreren. Alles na de officiele headers is namelijk vrij in te vullen en kan (al dan niet) gelijk geretourneerd worden.
+
+Type 11 code 0 of 1 kan je gebruiken om het aantal hops tussen jou en een ander te bereiken. Denk hierbij aan tracert. Je kan de tracert (in verband met de TCP Time-to-live) ook gebruiken om te ontdekken of er inline firewalls aanwezig zijn.
 
 ## OSI-model ##
 Alhoewel het OSI(Open Systems Interconnection)-model geen protocol is is het wel iets wat handig is om in je achterhoofd te houden als je iets wilt gaan doen met netwerk hacking. Het OSI-model bestaat uit 7 lagen. Hoe hoger de laag, des te dichter je bij de gebruiker aangekomen bent. Hieronder spits ik het toe op een TCP/IP stack, wil je iets anders hierover lezen dan is google een goede start. De lagen zijn als volgt:
@@ -487,6 +494,10 @@ en als wij eerder zijn dan de reactie van computer B dan wordt het bericht naar 
 naar het MAC adres van computer A. Op onze eigen computer zorgen wij ervoor dat wij de binnengekomen pakketten ook opnieuw verzenden naar de goede computer zodat het netwerk blijft draaien, en je hebt een Man in the Middle positie bemachtigd.
 
 Tooling: Arpspoof, ettercap, bettercap 
+
+## Pash the hash ##
+
+# Binary exploitation #
 
 # Dankwoord #
 Github bedankt voor het hosten :)
