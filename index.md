@@ -198,6 +198,62 @@ Onze complete injectie ziet er dan als volgt uit:
 
 Als je deze injectie invoert in de SQL injectie pagina van DVWA, dan zal je zien dat hij elke gebruiker terug geeft. In het bovenstaande voorbeeld maar 1, de eerste die hij tegen komt.  Op deze manier kan je elke mogelijke (correcte) query invoegen in een onveilig statement.
 
+In sommige andere gevallen kan je meer informatie uit een database halen dan dat de websitemaker eigenlijk wilde. Er bestaan websites waarbij er dynamisch pagina's worden opgehaald om deze vervolgens aan de eindgebruiker weer te geven. Een voorbeeld van zo een pagina is als volgt: 
+
+    <?PHP
+		$pagina = 0;
+		if (isset($_GET['pagina']))
+		{
+			$pagina = $_GET['pagina'];
+		}
+		
+		$rPagina = mysqli_query($db, "SELECT titel, inhoud FROM paginas WHERE id=".$_GET['pagina']." LIMIT 1");
+		if (mysqli_num_rows($rPagina) > 0)
+		{
+			$aPagina = mysqli_fetch_assoc($rPagina);
+
+			echo "
+				<h1>".$aPagina['titel']."</h1>
+				".$aPagina['inhoud'];
+		}
+	?>
+
+In deze pagina kan je met een sql injectie meer informatie opvragen. Voor deze query kun je gebruik maken van een **UNION SELECT injectie**.
+
+allereerst gaan wij kijken of deze pagina überhaupt kwetsbaar is voor een SQL injectie. Wij gebruiken hiervoor een simpel testje, namelijk:
+
+
+    1 OR 1=1
+
+Als het goed is zie je weer gewoon de inhoud van de eerste pagina. Als de query niet kwetsbaar was geweest bleef je pagina leeg of zag je een foutmelding.
+
+Bij een union select injectie is het van belang dat er net zo veel kolommen opgevraagd worden uit de database als oorspronkelijk al het geval was in de query. Ook moet je zorgen dat er uit de oorspronkelijke query geen enkel resultaat meer terug gegeven wordt.
+
+De makkelijkste manier om te zorgen dat je geen resultaat terug krijgt bij een query met een numerieke ID als beperkende factor is die met het ID -1 selecteren. Als je als paginanummer -1 invoert zul je zien dat de pagina leeg blijft.
+
+Alhoewel je nu natuurlijk al weet hoeveel kolommen je moet selecteren gaan wij toch proberen te achterhalen hoeveel het er moeten zijn. Na de -1 typen we nu UNION SELECT 1. Je krijgt dan de volgende injectie:
+
+    -1 UNION SELECT 1
+
+Als het goed is zie je of een foutmelding, of je pagina blijft leeg.
+
+Als we dan de volgende selectie opgeven:
+
+    -1 UNION SELECT 1,2
+
+dan zie je als het goed is in de titel het getal 1, en in de inhoud het getal 2. 
+
+Als je nu wilt weten welke tabellen er allemaal op de database server bestaan dan kun je kijken in de MySQL systeem database information_schema en dan in de tabel table. Hierin staan de kolomnamen table_schema en table_name. Probeer de volgende query maar eens in phpmyadmin:
+
+    SELECT table_schema, table_name FROM information_schema.table
+
+Doormidden van group_concat en concat kan je vervolgens deze velden in 1 kolom stoppen.
+
+Als we terug gaan naar onze union select injectie kunnen wij de volgende query ervan maken:
+
+`-1 UNION SELECT 1, SELECT GROUP_CONCAT(concat('table_schema'.'table_name'), '-') FROM information_schema.table # --` 
+
+Zie in de inhoud nu alle tabellen verschijnen.
 
 ## Client-side controle functionaliteiten ##
 
