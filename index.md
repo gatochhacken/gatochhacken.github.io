@@ -540,8 +540,12 @@ Geavanceerde hacktools om pash the hash mee te doen? PSExec [Windows Sysinternal
 ## Geheugenbeheer ##
 
 ### Stack ###
+De stack is een voor een proces gereserveerd stukje geheugen waarin een proces al zijn tijdelijke variabelen opgeslagen worden. Het is een LIFO lijst (Last In First Out). Als een aangeroepen functie, met de daarbij behorende argumenten, beëindigd is popt het systeem deze waarden van de stack af. 
+
+De stack groeit naar beneden, het begint bij hoge geheugenadressen en werkt naar de lage adressen toe. Overigens, voor array's geld dat het geheugenbereik aan elkaar vast moet zitten. De stack groeit bij een array dus precies de andere kant op.  
 
 ### Heap ###
+De heap is niet expliciet voor een proces gereserveerd, maar is een poel geheugen waarbinnen een applicatie een geheugen reservering kan doen. Bij de heap zal je dus ook zelf het beheer van het geheugengebruik moeten doen. Het grote voordeel van de heap is dat je variabelen overal overal in je applicatie, mits de pointer natuurlijk bekend is, gebruikt kunnen worden. 
 
 ## Beveiligingsmechanismen ##
 
