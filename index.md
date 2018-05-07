@@ -9,6 +9,12 @@ Als je aan deze pagina wilt bijdragen, bekijk dan even het dankwoord onderaan.
 
 **LET OP** alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel [138ab](http://wetten.overheid.nl/jci1.3:c:BWBR0001854&boek=Tweede&titeldeel=V&artikel=138ab) wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van [https://www.certifiedsecure.com](https://www.certifiedsecure.com "Certified Secure")
 
+# Bestandstypen #
+
+## Portable Executable ##
+Portable Executables zijn de executables van Windows. Hierbij kan je voornamelijk denken aan bestanden met de extensie EXE, DLL en SYS. In het PE formaat is alle informatie die bewaard is om een executable in het geheugen te laden en op een juiste manier uit te voeren. Een portable executable bestaat uit verschillende onderdelen, waaronder de Signature ([magic number](https://en.wikipedia.org/wiki/Magic_number_(programming))) (MZ). Om een goed begrip te krijgen van de latere teksten over het backdooren van executables is het handig om eerst de inhoud en de werking van het PE formaat te kennen. Hiervoor raad ik je aan, op zijn minst, het volgende te [lezen](https://en.wikipedia.org/wiki/Portable_Executable#Technical_details).
+
+
 # Protocollen
 Het is ontzettend belangrijk dat je protocollen leert kennen, immers het kennen van protocollen zorgt voor een grotere flexibiliteit in aanvallen en een grotere onafhankelijkheid van tooling. Mocht je het protocol al kennen, dan kun je zelf eenvoudiger een tool schrijven die je bij een aanval ondersteund.
 
@@ -321,6 +327,8 @@ Als je dan op de webserver de file shell.php opvraagt met als querystring c=ls d
 Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. 
 
 Sommige browsers zoals Chrome en Internet Explorer >8.0 geven een foutmelding op het moment dat je XSS wilt uitvoeren. 
+
+Als mensen op een plaats HTML gebruiken om inhoud weer te geven, zoals bij sommige messenger applicaties e.d., dan kan het ook zomaar zijn dat er een browser gebruikt is om dit weer te geven. Browsers voeren javascript uit, en derhalve kan je zomaar gebruik maken van XSS in andere applicaties dan browsers. 
 
 #### Reflected XSS ####
 Reflected of non-persistent XSS is een techniek waarbij een fout in de input sanitization het weergeven van kwaadaardige code toe staat. Het belangrijkste om te onthouden is dat in dit geval de aanval niet op de website opgeslagen is, en iemand dus alleen slachtoffer kan worden als hij echt jouw link aan klikt met de aanval.
