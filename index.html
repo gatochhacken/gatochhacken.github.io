@@ -803,8 +803,11 @@ p.waitFor()
 <p>De heap is niet expliciet voor een proces gereserveerd, maar is een poel geheugen waarbinnen een applicatie een geheugen reservering kan doen. Bij de heap zal je dus ook zelf het beheer van het geheugengebruik moeten doen. Het grote voordeel van de heap is dat je variabelen overal overal in je applicatie, mits de pointer natuurlijk bekend is, gebruikt kunnen worden. </p>
 <h2 id="beveiligingsmechanismen">Beveiligingsmechanismen</h2>
 <h3 id="aslr">ASLR</h3>
-<h3 id="no-execute">No-Execute</h3>
+<h3 id="nx-bit">NX-Bit</h3>
 <h3 id="dep">DEP</h3>
+<p>DEP, voluit Data Execution Prevention, (<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa366553(v=vs.85">Windows</a>.aspx) is een methode waarmee Microsoft tracht te voorkomen dat een kwaadwillende code kan uitvoeren in een geheugenbereik die als non-executable gemarkeerd is. Aangezien DEP pas geïntroduceerd is in <a href="https://en.wikipedia.org/wiki/Windows_XP">Windows XP</a> <a href="https://en.wikipedia.org/wiki/Windows_XP#Service_Pack_2">SP2</a>, is dit OS met <a href="https://en.wikipedia.org/wiki/Windows_XP#Service_Pack_1">SP1</a> uitermate geschikt om in te oefenen.</p>
+<p>Er bestaan onder Windows twee varianten van DEP, namelijk de softwarematige DEP en de hardwarematige DEP. De softwarematige DEP beschermd niet tegen het uitvoeren van code in het geheugen maar juist wel tegen een SEH overflow.</p>
+<p>Hardwarematige DEP is pas geïntroduceerd in windows Vista. Bij hardwarematige DEP word er een expliciet stukje geheugen aangemerkt als niet uitvoerbaar en dit zal door de processor worden afgedwongen. Voor een verdere uitleg hierover zie het kopje NX-Bit.</p>
 <h3 id="relro">RELRO</h3>
 <h3 id="canary">Canary</h3>
 <h3 id="ssp">SSP</h3>
