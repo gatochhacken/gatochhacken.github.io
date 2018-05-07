@@ -307,6 +307,8 @@ Als je dan op de webserver de file shell.php opvraagt met als querystring c=ls d
 
 ### NoSQL ###
 
+### CSP Bypass ###
+
 ### XPath ###
 
 ### LDAP ###
@@ -343,8 +345,8 @@ Als je dit in een php pagina zet, en deze PHP pagina bezoekt met als [querystrin
 Stored of persistent XSS is een techniek waarbij een fout in de input sanitization het opslaan van je aanval mogelijk maakt. Dit soort aanvallen maken meer slachtoffers omdat iedereen die de specifieke pagina bezoekt er mee besmet zal worden.
 
 **DVWS voorbeeld**
-![](images/xss_stored_alert(xss).png)
-![](images/xss_stored_alert(xss)_result.png)
+![](images/xss_stored_alertxss.png)
+![](images/xss_stored_alertxss_result.png)
 
 
 #### DOM XSS ####
@@ -559,6 +561,14 @@ De heap is niet expliciet voor een proces gereserveerd, maar is een poel geheuge
 ### No-Execute ###
 
 ### DEP ###
+
+### RELRO ###
+
+### Canary ###
+
+### SSP ###
+
+### PIE ###
 
 # Dankwoord #
 Github bedankt voor het hosten :)
