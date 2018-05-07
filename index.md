@@ -573,7 +573,7 @@ DEP, voluit Data Execution Prevention, ([Windows](https://msdn.microsoft.com/en-
 
 Er bestaan onder Windows twee varianten van DEP, namelijk de softwarematige DEP en de hardwarematige DEP. De softwarematige DEP beschermd niet tegen het uitvoeren van code in het geheugen maar juist wel tegen een SEH overflow.
 
-Hardwarematige DEP is pas geïntroduceerd in windows Vista. Bij hardwarematige DEP word er een expliciet stukje geheugen aangemerkt als niet uitvoerbaar en dit zal door de processor worden afgedwongen. Voor een verdere uitleg hierover zie het kopje NX-Bit.
+Hardwarematige DEP is, in Windows, pas geïntroduceerd in [Windows Vista](https://nl.wikipedia.org/wiki/Windows_Vista). Bij hardwarematige DEP word er een expliciet stukje geheugen aangemerkt als niet uitvoerbaar en dit zal door de processor worden afgedwongen. Voor een verdere uitleg hierover zie het kopje NX-Bit.
 
 ### RELRO ###
 
