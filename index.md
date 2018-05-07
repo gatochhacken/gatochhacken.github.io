@@ -560,7 +560,7 @@ De stack is een voor een proces gereserveerd stukje geheugen waarin een proces a
 De stack groeit naar beneden, het begint bij hoge geheugenadressen en werkt naar de lage adressen toe. Overigens, voor array's geld dat het geheugenbereik aan elkaar vast moet zitten. De stack groeit bij een array dus precies de andere kant op.  
 
 ### Heap ###
-De heap is niet expliciet voor een proces gereserveerd, maar is een poel geheugen waarbinnen een applicatie een geheugen reservering kan doen. Bij de heap zal je dus ook zelf het beheer van het geheugengebruik moeten doen. Het grote voordeel van de heap is dat je variabelen overal overal in je applicatie, mits de pointer natuurlijk bekend is, gebruikt kunnen worden. 
+De heap is per proces gereserveerd, en is een poel geheugen waarbinnen een applicatie een geheugen reservering kan doen. Bij de heap zal je dus ook zelf het beheer van het geheugengebruik moeten doen. Het grote voordeel van de heap is dat je variabelen overal overal in je applicatie, mits de pointer natuurlijk bekend is, gebruikt kunnen worden. 
 
 ## Beveiligingsmechanismen ##
 
@@ -575,7 +575,6 @@ Er bestaan onder Windows twee varianten van DEP, namelijk de softwarematige DEP 
 
 Hardwarematige DEP is pas geïntroduceerd in windows Vista. Bij hardwarematige DEP word er een expliciet stukje geheugen aangemerkt als niet uitvoerbaar en dit zal door de processor worden afgedwongen. Voor een verdere uitleg hierover zie het kopje NX-Bit.
 
-
 ### RELRO ###
 
 ### Canary ###
@@ -585,7 +584,9 @@ Hardwarematige DEP is pas geïntroduceerd in windows Vista. Bij hardwarematige D
 ### PIE ###
 
 # Dankwoord #
-Github bedankt voor het hosten :)
+
+Proofreaders, zonder jullie trouwe leeshulp stonden hier nog meer fouten :-) 
+Github, bedankt voor het hosten :)
 
 Wil jij ook opgenomen worden in dit dankwoord? Begin dan met bijdragen op de [github](https://github.com/gatochhacken/gatochhacken.github.io). Dit kan je doen door actief contributes te doen, of door issues aan te maken met fouten/requests die je graag wilt zien.
 

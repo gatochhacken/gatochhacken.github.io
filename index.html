@@ -800,7 +800,7 @@ p.waitFor()
 <p>De stack is een voor een proces gereserveerd stukje geheugen waarin een proces al zijn tijdelijke variabelen opgeslagen worden. Het is een LIFO lijst (Last In First Out). Als een aangeroepen functie, met de daarbij behorende argumenten, beëindigd is popt het systeem deze waarden van de stack af. </p>
 <p>De stack groeit naar beneden, het begint bij hoge geheugenadressen en werkt naar de lage adressen toe. Overigens, voor array&#39;s geld dat het geheugenbereik aan elkaar vast moet zitten. De stack groeit bij een array dus precies de andere kant op.  </p>
 <h3 id="heap">Heap</h3>
-<p>De heap is niet expliciet voor een proces gereserveerd, maar is een poel geheugen waarbinnen een applicatie een geheugen reservering kan doen. Bij de heap zal je dus ook zelf het beheer van het geheugengebruik moeten doen. Het grote voordeel van de heap is dat je variabelen overal overal in je applicatie, mits de pointer natuurlijk bekend is, gebruikt kunnen worden. </p>
+<p>De heap is per proces gereserveerd, en is een poel geheugen waarbinnen een applicatie een geheugen reservering kan doen. Bij de heap zal je dus ook zelf het beheer van het geheugengebruik moeten doen. Het grote voordeel van de heap is dat je variabelen overal overal in je applicatie, mits de pointer natuurlijk bekend is, gebruikt kunnen worden. </p>
 <h2 id="beveiligingsmechanismen">Beveiligingsmechanismen</h2>
 <h3 id="aslr">ASLR</h3>
 <h3 id="nx-bit">NX-Bit</h3>
@@ -813,7 +813,7 @@ p.waitFor()
 <h3 id="ssp">SSP</h3>
 <h3 id="pie">PIE</h3>
 <h1 id="dankwoord">Dankwoord</h1>
-<p>Github bedankt voor het hosten :)</p>
+<p>Proofreaders, zonder jullie trouwe leeshulp stonden hier nog meer fouten :-)<br>Github, bedankt voor het hosten :)</p>
 <p>Wil jij ook opgenomen worden in dit dankwoord? Begin dan met bijdragen op de <a href="https://github.com/gatochhacken/gatochhacken.github.io">github</a>. Dit kan je doen door actief contributes te doen, of door issues aan te maken met fouten/requests die je graag wilt zien.</p>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118698551-1"></script>
