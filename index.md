@@ -588,6 +588,12 @@ Om dit te voorkomen gaan we de computer ook nog toestemming geven om pakketten d
 
     iptables -A FORWARD -p tcp -d < EinddoelIP > --dport < EinddoelPort > -j ACCEPT
 
+**Let op: ** Controleer even of de netwerkadapter waar we over praten port forwarding toe staat:
+
+    cat /proc/sys/net/ipv4/conf/< netwerkadapter >/forwarding
+
+Zo niet, zet dan de waarde op 1. 
+
 Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://< ServerIP >:< ServerPoort > surfen en dan zal je de pagina zien die op http://< EinddoelIP >:< EinddoelPort > draait.
 
 # Binary exploitation #

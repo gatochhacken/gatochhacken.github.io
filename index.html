@@ -818,7 +818,10 @@ p.waitFor()
 </code></pre><p>Nu zal het je opvallen dat alhoewel jij wel pakketten naar de andere kant kan sturen, jij nooit pakketten terug zal krijgen. Dit komt omdat de computer nu wel pakketten ontvangt die voor jou bedoeld zijn, maar er niets mee kan. Denk aan het OSI model, het adres klopt niet dus hij dropt de gegevens zonder ze te behandelen!</p>
 <p>Om dit te voorkomen gaan we de computer ook nog toestemming geven om pakketten die vanaf &lt; EinddoelIP &gt; met &lt; EinddoelPort &gt; komen door te sturen naar het doel wat opgegeven is, in dit geval meestal jij dus.  </p>
 <pre><code>iptables -A FORWARD -p tcp -d &lt; EinddoelIP &gt; --dport &lt; EinddoelPort &gt; -j ACCEPT
-</code></pre><p>Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://&lt; ServerIP &gt;:&lt; ServerPoort &gt; surfen en dan zal je de pagina zien die op http://&lt; EinddoelIP &gt;:&lt; EinddoelPort &gt; draait.</p>
+</code></pre><p><strong>Let op: </strong> Controleer even of de netwerkadapter waar we over praten port forwarding toe staat:</p>
+<pre><code>cat /proc/sys/net/ipv4/conf/&lt; netwerkadapter &gt;/forwarding
+</code></pre><p>Zo niet, zet dan de waarde op 1. </p>
+<p>Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://&lt; ServerIP &gt;:&lt; ServerPoort &gt; surfen en dan zal je de pagina zien die op http://&lt; EinddoelIP &gt;:&lt; EinddoelPort &gt; draait.</p>
 <h1 id="binary-exploitation">Binary exploitation</h1>
 <h2 id="geheugenbeheer">Geheugenbeheer</h2>
 <h3 id="stack">Stack</h3>
