@@ -9,6 +9,8 @@ Als je aan deze pagina wilt bijdragen, bekijk dan even het dankwoord onderaan.
 
 **LET OP** alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel [138ab](http://wetten.overheid.nl/jci1.3:c:BWBR0001854&boek=Tweede&titeldeel=V&artikel=138ab) wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van [https://www.certifiedsecure.com](https://www.certifiedsecure.com "Certified Secure")
 
+# Inhoudsopgave #
+
 # Bestandstypen #
 
 ## Portable Executable ##
@@ -194,6 +196,26 @@ Je kan hier bijvoorbeeld zien dat je de gebruikersnaam goed hebt, immers er is e
 Aan dit veld kun je geen conclussies meer verbinden.
 
 ## Server-side controle functionaliteiten ##
+### SSRF ###
+Bij SSRF maak je gebruik van een functionaliteit die de server normaal gesproken gebruikt om een actie uit te laten voeren waar jij normaal gesproken geen toegang toe hebt. Denk hierbij aan dual-homed servers of servers die door firewall rules een bredere toegang hebben tot het achterliggende netwerk. Meestal zal het hier dan gaan om dynamische webapplicaties. Dit kan soms ontstaan omdat de server gebruik maakt van command line applicaties zoals curl, of door middel van functies waarmee path's geopend kunnen worden. 
+
+Als voorbeeld kan je naar het volgende script kijken:
+    <?PHP
+    	if (isset($_GET['file']))
+    	{
+    		$file = $_GET['file'];
+    	}
+    
+    	$content = fopen($file,'rb');
+    	passthru($content);
+    ?>
+
+In dit voorbeeld is het eigenlijk de bedoeling dat de gebruiker met de file parameter een lokaal bestand kan uitlezen om die weer te geven. Op sommige servers kan je hiermee URL's uitlezen. Dit kan je doen omdat de [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) variabele op true staat. Als je deze methodiek gebruikt om http://intranet/geheim_document.txt te openen, dan zal je deze keurig geserveerd krijgen terwijl jij hier officieel niet bij kan.  
+
+Mocht je wachtwoorden kennen van een gebruiker op het systeem en je wilt een tunnel opbouwen dan kan je potentieel in het bovenstaande voorbeeld gebruik maken van de [ssh2](http://php.net/manual/en/wrappers.ssh2.php) wrapper van PHP. 
+
+Als de request nu met [cURL](https://en.wikipedia.org/wiki/CURL) uitgevoerd was, dan was het mogelijk om van de dict:// wrapper gebruik te maken. Met deze wrapper kan je van bijvoorbeeld een op localhost draaiende memchached de [stats](https://docs.oracle.com/cd/E17952_01/mysql-5.6-en/ha-memcached-stats.html) pagina opvragen.
+
 ### SQL ###
 Voor sommige websites is het niet erg lastig om een SQL injectie uit te voeren. Er word een login formulier ingevuld en de credentials worden rechtstreeks naar een database gestuurd. Een voorbeeld hiervan in PHP kan bijvoorbeeld zo eruit zien:
 
@@ -566,14 +588,14 @@ De heap is per proces gereserveerd, en is een poel geheugen waarbinnen een appli
 
 ### ASLR ###
 
-### NX-Bit ###
-
 ### DEP ###
 DEP, voluit Data Execution Prevention, ([Windows](https://msdn.microsoft.com/en-us/library/windows/desktop/aa366553(v=vs.85).aspx) is een methode waarmee Microsoft tracht te voorkomen dat een kwaadwillende code kan uitvoeren in een geheugenbereik die als non-executable gemarkeerd is. Aangezien DEP pas geïntroduceerd is in [Windows XP](https://en.wikipedia.org/wiki/Windows_XP) [SP2](https://en.wikipedia.org/wiki/Windows_XP#Service_Pack_2), is dit OS met [SP1](https://en.wikipedia.org/wiki/Windows_XP#Service_Pack_1) uitermate geschikt om in te oefenen.
 
 Er bestaan onder Windows twee varianten van DEP, namelijk de softwarematige DEP en de hardwarematige DEP. De softwarematige DEP beschermd niet tegen het uitvoeren van code in het geheugen maar juist wel tegen een SEH overflow.
 
 Hardwarematige DEP is, in Windows, pas geïntroduceerd in [Windows Vista](https://nl.wikipedia.org/wiki/Windows_Vista). Bij hardwarematige DEP word er een expliciet stukje geheugen aangemerkt als niet uitvoerbaar en dit zal door de processor worden afgedwongen. Voor een verdere uitleg hierover zie het kopje NX-Bit.
+
+### NX-Bit ###
 
 ### RELRO ###
 

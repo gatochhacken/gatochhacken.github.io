@@ -474,6 +474,7 @@ vertical-align:1px;
 <p>Daarnaast verwacht ik van iemand die wil leren hacken dat er een zekere mate van intrinsieke nieuwsgierigheid aanwezig is en dat je jezelf wilt gaan inlezen. Om te voorkomen dat je afhaakt zal er wel wat text zijn om de linkjes aan elkaar te plakken. Deze pagina is overigens permanent under construction. Spot je een foutje, of heb je een verzoekje voor inhoud, maak dan een <a href="https://github.com/gatochhacken/gatochhacken.github.io/issues">issue</a> aan op <a href="https://www.github.com">github</a>.</p>
 <p>Als je aan deze pagina wilt bijdragen, bekijk dan even het dankwoord onderaan.</p>
 <p><strong>LET OP</strong> alle technieken, code voorbeelden en andere informatie zijn technieken waarmee je kan hacken. Deze toepassen op een systeem waar jij geen toestemming hebt om dit te doen is een strafbaar feit! (artikel <a href="http://wetten.overheid.nl/jci1.3:c:BWBR0001854&amp;boek=Tweede&amp;titeldeel=V&amp;artikel=138ab">138ab</a> wetboek van strafrecht) Bega geen fout, wil je oefenen en dingen proberen, kijk dan op de website van <a href="https://www.certifiedsecure.com" title="Certified Secure">https://www.certifiedsecure.com</a></p>
+<h1 id="inhoudsopgave">Inhoudsopgave</h1>
 <h1 id="bestandstypen">Bestandstypen</h1>
 <h2 id="portable-executable">Portable Executable</h2>
 <p>Portable Executables zijn de executables van Windows. Hierbij kan je voornamelijk denken aan bestanden met de extensie EXE, DLL en SYS. In het PE formaat is alle informatie die bewaard is om een executable in het geheugen te laden en op een juiste manier uit te voeren. Een portable executable bestaat uit verschillende onderdelen, waaronder de Signature (<a href="https://en.wikipedia.org/wiki/Magic_number_(programming">magic number</a>)) (MZ). Om een goed begrip te krijgen van de latere teksten over het backdooren van executables is het handig om eerst de inhoud en de werking van het PE formaat te kennen. Hiervoor raad ik je aan, op zijn minst, het volgende te <a href="https://en.wikipedia.org/wiki/Portable_Executable#Technical_details">lezen</a>.</p>
@@ -574,6 +575,15 @@ p.waitFor()
 <p><img src="http://gatochhacken.nl/images/web_user_enumerate_geenconclussie.png" alt=""></p>
 <p>Aan dit veld kun je geen conclussies meer verbinden.</p>
 <h2 id="server-side-controle-functionaliteiten">Server-side controle functionaliteiten</h2>
+<h3 id="ssrf">SSRF</h3>
+<p>Bij SSRF maak je gebruik van een functionaliteit die de server normaal gesproken gebruikt om een actie uit te laten voeren waar jij normaal gesproken geen toegang toe hebt. Denk hierbij aan dual-homed servers of servers die door firewall rules een bredere toegang hebben tot het achterliggende netwerk. Meestal zal het hier dan gaan om dynamische webapplicaties. Dit kan soms ontstaan omdat de server gebruik maakt van command line applicaties zoals curl, of door middel van functies waarmee path&#39;s geopend kunnen worden. </p>
+<p>Als voorbeeld kan je naar het volgende script kijken:<br>    &lt;?PHP<br>        if (isset($_GET[&#39;file&#39;]))<br>        {<br>            $file = $_GET[&#39;file&#39;];<br>        }</p>
+<pre><code>    $content = fopen($file,&#39;rb&#39;);
+    passthru($content);
+?&gt;
+</code></pre><p>In dit voorbeeld is het eigenlijk de bedoeling dat de gebruiker met de file parameter een lokaal bestand kan uitlezen om die weer te geven. Op sommige servers kan je hiermee URL&#39;s uitlezen. Dit kan je doen omdat de <a href="http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen">allow_url_fopen</a> variabele op true staat. Als je deze methodiek gebruikt om <a href="http://intranet/geheim_document.txt">http://intranet/geheim_document.txt</a> te openen, dan zal je deze keurig geserveerd krijgen terwijl jij hier officieel niet bij kan.  </p>
+<p>Mocht je wachtwoorden kennen van een gebruiker op het systeem en je wilt een tunnel opbouwen dan kan je potentieel in het bovenstaande voorbeeld gebruik maken van de <a href="http://php.net/manual/en/wrappers.ssh2.php">ssh2</a> wrapper van PHP. </p>
+<p>Als de request nu met <a href="https://en.wikipedia.org/wiki/CURL">cURL</a> uitgevoerd was, dan was het mogelijk om van de dict:// wrapper gebruik te maken. Met deze wrapper kan je van bijvoorbeeld een op localhost draaiende memchached de <a href="https://docs.oracle.com/cd/E17952_01/mysql-5.6-en/ha-memcached-stats.html">stats</a> pagina opvragen.</p>
 <h3 id="sql">SQL</h3>
 <p>Voor sommige websites is het niet erg lastig om een SQL injectie uit te voeren. Er word een login formulier ingevuld en de credentials worden rechtstreeks naar een database gestuurd. Een voorbeeld hiervan in PHP kan bijvoorbeeld zo eruit zien:</p>
 <pre><code>&lt;?PHP
@@ -803,11 +813,11 @@ p.waitFor()
 <p>De heap is per proces gereserveerd, en is een poel geheugen waarbinnen een applicatie een geheugen reservering kan doen. Bij de heap zal je dus ook zelf het beheer van het geheugengebruik moeten doen. Het grote voordeel van de heap is dat je variabelen overal overal in je applicatie, mits de pointer natuurlijk bekend is, gebruikt kunnen worden. </p>
 <h2 id="beveiligingsmechanismen">Beveiligingsmechanismen</h2>
 <h3 id="aslr">ASLR</h3>
-<h3 id="nx-bit">NX-Bit</h3>
 <h3 id="dep">DEP</h3>
 <p>DEP, voluit Data Execution Prevention, (<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa366553(v=vs.85">Windows</a>.aspx) is een methode waarmee Microsoft tracht te voorkomen dat een kwaadwillende code kan uitvoeren in een geheugenbereik die als non-executable gemarkeerd is. Aangezien DEP pas geïntroduceerd is in <a href="https://en.wikipedia.org/wiki/Windows_XP">Windows XP</a> <a href="https://en.wikipedia.org/wiki/Windows_XP#Service_Pack_2">SP2</a>, is dit OS met <a href="https://en.wikipedia.org/wiki/Windows_XP#Service_Pack_1">SP1</a> uitermate geschikt om in te oefenen.</p>
 <p>Er bestaan onder Windows twee varianten van DEP, namelijk de softwarematige DEP en de hardwarematige DEP. De softwarematige DEP beschermd niet tegen het uitvoeren van code in het geheugen maar juist wel tegen een SEH overflow.</p>
 <p>Hardwarematige DEP is, in Windows, pas geïntroduceerd in <a href="https://nl.wikipedia.org/wiki/Windows_Vista">Windows Vista</a>. Bij hardwarematige DEP word er een expliciet stukje geheugen aangemerkt als niet uitvoerbaar en dit zal door de processor worden afgedwongen. Voor een verdere uitleg hierover zie het kopje NX-Bit.</p>
+<h3 id="nx-bit">NX-Bit</h3>
 <h3 id="relro">RELRO</h3>
 <h3 id="canary">Canary</h3>
 <h3 id="ssp">SSP</h3>
