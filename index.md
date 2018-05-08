@@ -200,7 +200,8 @@ Aan dit veld kun je geen conclussies meer verbinden.
 Bij SSRF maak je gebruik van een functionaliteit die de server normaal gesproken gebruikt om een actie uit te laten voeren waar jij normaal gesproken geen toegang toe hebt. Denk hierbij aan dual-homed servers of servers die door firewall rules een bredere toegang hebben tot het achterliggende netwerk. Meestal zal het hier dan gaan om dynamische webapplicaties. Dit kan soms ontstaan omdat de server gebruik maakt van command line applicaties zoals curl, of door middel van functies waarmee path's geopend kunnen worden. 
 
 Als voorbeeld kan je naar het volgende script kijken:
-    <?PHP
+    
+	<?PHP
     	if (isset($_GET['file']))
     	{
     		$file = $_GET['file'];

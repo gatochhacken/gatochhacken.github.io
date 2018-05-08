@@ -577,8 +577,14 @@ p.waitFor()
 <h2 id="server-side-controle-functionaliteiten">Server-side controle functionaliteiten</h2>
 <h3 id="ssrf">SSRF</h3>
 <p>Bij SSRF maak je gebruik van een functionaliteit die de server normaal gesproken gebruikt om een actie uit te laten voeren waar jij normaal gesproken geen toegang toe hebt. Denk hierbij aan dual-homed servers of servers die door firewall rules een bredere toegang hebben tot het achterliggende netwerk. Meestal zal het hier dan gaan om dynamische webapplicaties. Dit kan soms ontstaan omdat de server gebruik maakt van command line applicaties zoals curl, of door middel van functies waarmee path&#39;s geopend kunnen worden. </p>
-<p>Als voorbeeld kan je naar het volgende script kijken:<br>    &lt;?PHP<br>        if (isset($_GET[&#39;file&#39;]))<br>        {<br>            $file = $_GET[&#39;file&#39;];<br>        }</p>
-<pre><code>    $content = fopen($file,&#39;rb&#39;);
+<p>Als voorbeeld kan je naar het volgende script kijken:</p>
+<pre><code>&lt;?PHP
+    if (isset($_GET[&#39;file&#39;]))
+    {
+        $file = $_GET[&#39;file&#39;];
+    }
+
+    $content = fopen($file,&#39;rb&#39;);
     passthru($content);
 ?&gt;
 </code></pre><p>In dit voorbeeld is het eigenlijk de bedoeling dat de gebruiker met de file parameter een lokaal bestand kan uitlezen om die weer te geven. Op sommige servers kan je hiermee URL&#39;s uitlezen. Dit kan je doen omdat de <a href="http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen">allow_url_fopen</a> variabele op true staat. Als je deze methodiek gebruikt om <a href="http://intranet/geheim_document.txt">http://intranet/geheim_document.txt</a> te openen, dan zal je deze keurig geserveerd krijgen terwijl jij hier officieel niet bij kan.  </p>
