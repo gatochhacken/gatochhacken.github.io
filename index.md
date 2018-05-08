@@ -609,7 +609,7 @@ Allereerst zul je op de webserver de sshd_config moeten aanpassen. In deze file 
 
 Nu kan je het volgende doen: 
 
-    ssh -R 10.8.0.1:3306&#x3A;192.168.1.2:3306 192.168.1.1
+ssh -R 10.8.0.1:3306&#58;192.168.1.2:3306 192.168.1.1
 
 In dit scenario zal elke verbinding afkomstig van 10.8.0.1 naar poort 3306 op 192.168.1.1 toegestaan worden, en geforward naar 192.168.1.2 poort 3306. **Let op,** doordat je in het begin je eigen IP adres hebt neergezet ben jij de enige die met deze poort kan connecten.
 

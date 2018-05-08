@@ -830,8 +830,8 @@ Webserver: 192.168.1.1
 Database:  192.168.1.2
 </code></pre><p>Allereerst zul je op de webserver de sshd_config moeten aanpassen. In deze file moet je de optie GatewayPorts op yes zetten. en hierna zul je SSH moeten herstarten.</p>
 <p>Nu kan je het volgende doen: </p>
-<pre><code>ssh -R 10.8.0.1:3306&amp;#x3A;192.168.1.2:3306 192.168.1.1
-</code></pre><p>In dit scenario zal elke verbinding afkomstig van 10.8.0.1 naar poort 3306 op 192.168.1.1 toegestaan worden, en geforward naar 192.168.1.2 poort 3306. <strong>Let op,</strong> doordat je in het begin je eigen IP adres hebt neergezet ben jij de enige die met deze poort kan connecten.</p>
+<p>ssh -R 10.8.0.1:3306&#58;192.168.1.2:3306 192.168.1.1</p>
+<p>In dit scenario zal elke verbinding afkomstig van 10.8.0.1 naar poort 3306 op 192.168.1.1 toegestaan worden, en geforward naar 192.168.1.2 poort 3306. <strong>Let op,</strong> doordat je in het begin je eigen IP adres hebt neergezet ben jij de enige die met deze poort kan connecten.</p>
 <h3 id="local-ssh-port-forwarding">Local SSH port forwarding</h3>
 <p>Een lokale port forward kan je gebruiken om services die alleen op localhost luisteren (memcached, mysql etc.) te ontsluiten naar het internet. Dit kan handig zijn omdat je je tooling mogelijk niet op een externe server wilt plaatsen maar op deze manier je tooling wel kan gebruiken. <strong>Let op:</strong> je zet de service dan wel voor iedereen open, tenzij je hem expliciet bind aan een lokaal ip adres. </p>
 <p>Als je op &lt; remoteHost &gt; de MySQL service wil laten luisteren op de TCP port 2000 kan je de volgende syntax gebruiken: </p>
