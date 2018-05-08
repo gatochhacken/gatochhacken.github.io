@@ -813,11 +813,11 @@ p.waitFor()
 <h2 id="pivoting">Pivoting</h2>
 <h2 id="port-forwarding">Port forwarding</h2>
 <p>Alhoewel mensen vaak denken dat de <a href="https://en.wikipedia.org/wiki/Iptables">iptables</a> alleen gebruikt kunnen worden om als firewall te dienen, kun je met iptables ook <a href="https://nl.wikipedia.org/wiki/Port_forwarding">port forwarding</a> toepassen. Dit doe je doormiddel van, onder andere, de prerouting chain. Hiermee kun je de packets die aan de rule voldoen aan laten passen, voordat ze verwerkt worden door het besturingssysteem. Dit doe je overigens wel door de iptables van de host waar je overheen wilt pivotten aan te passen.</p>
-<pre><code>iptables -t nat -A prerouting -p tcp -d &lt;ServerIP&gt; -dport &lt;ServerPoort&gt; -j DNAT --to-destination &lt;EinddoelIP&gt;:&lt;EinddoelPort&gt;
+<pre><code>iptables -t nat -A prerouting -p tcp -d &lt; ServerIP &gt; -dport &lt; ServerPoort &gt; -j DNAT --to-destination &lt; EinddoelIP &gt;:&lt; EinddoelPort &gt;
 </code></pre><p>Nu zal het je opvallen dat alhoewel jij wel pakketten naar de andere kant kan sturen, jij nooit pakketten terug zal krijgen. Dit komt omdat de computer nu wel pakketten ontvangt die voor jou bedoeld zijn, maar er niets mee kan. Denk aan het OSI model, het adres klopt niet dus hij dropt de gegevens zonder ze te behandelen!</p>
-<p>Om dit te voorkomen gaan we de computer ook nog toestemming geven om pakketten die vanaf <EinddoelIP> met <EinddoelPort> komen door te sturen naar het doel wat opgegeven is, in dit geval meestal jij dus.  </p>
-<pre><code>iptables -A FORWARD -p tcp -d &lt;EinddoelIP&gt; --dport &lt;EinddoelPort&gt; -j ACCEPT
-</code></pre><p>Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://<ServerIP>:<ServerPoort> surfen en dan zal je de pagina zien die op http://<EinddoelIP>:<EinddoelPort> draait.</p>
+<p>Om dit te voorkomen gaan we de computer ook nog toestemming geven om pakketten die vanaf &lt; EinddoelIP &gt; met &lt; EinddoelPort &gt; komen door te sturen naar het doel wat opgegeven is, in dit geval meestal jij dus.  </p>
+<pre><code>iptables -A FORWARD -p tcp -d &lt; EinddoelIP &gt; --dport &lt; EinddoelPort &gt; -j ACCEPT
+</code></pre><p>Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://&lt; ServerIP &gt;:&lt; ServerPoort &gt; surfen en dan zal je de pagina zien die op http://&lt; EinddoelIP &gt;:&lt; EinddoelPort &gt; draait.</p>
 <h1 id="binary-exploitation">Binary exploitation</h1>
 <h2 id="geheugenbeheer">Geheugenbeheer</h2>
 <h3 id="stack">Stack</h3>
