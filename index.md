@@ -596,6 +596,22 @@ Zo niet, zet dan de waarde op 1.
 
 Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://< ServerIP >:< ServerPoort > surfen en dan zal je de pagina zien die op http://< EinddoelIP >:< EinddoelPort > draait.
 
+## SSH ##
+
+### Remote SSH port forwarding ###
+
+### Local SSH port forwarding ###
+Een lokale port forward kan je gebruiken om services die alleen op localhost luisteren (memcached, mysql etc.) te ontsluiten naar het internet. Dit kan handig zijn omdat je je tooling mogelijk niet op een externe server wilt plaatsen maar op deze manier je tooling wel kan gebruiken. **Let op:** je zet de service dan wel voor iedereen open, tenzij je hem expliciet bind aan een lokaal ip adres. 
+
+Als je op < remoteHost > de MySQL service wil laten luisteren op de TCP port 2000 kan je de volgende syntax gebruiken: 
+
+    ssh -L 2000:127.0.0.1:3306 < remoteHost >
+
+Als je wil dat hij de packets enkel doorstuurt als je connect naar het IP adres 192.168.1.1, dan moet je er een bind socket van maken.
+
+    ssh -L 192.168.1.1:2000:127.0.0.1:3306 < remoteHost >
+
+
 # Binary exploitation #
 
 ## Geheugenbeheer ##
