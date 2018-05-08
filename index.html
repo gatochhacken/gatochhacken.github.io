@@ -824,6 +824,11 @@ p.waitFor()
 <p>Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://&lt; ServerIP &gt;:&lt; ServerPoort &gt; surfen en dan zal je de pagina zien die op http://&lt; EinddoelIP &gt;:&lt; EinddoelPort &gt; draait.</p>
 <h2 id="ssh">SSH</h2>
 <h3 id="remote-ssh-port-forwarding">Remote SSH port forwarding</h3>
+<p>Een remote port forward kan je gebruiken als de server, die je onder controle hebt gekregen, dienst moet doen als pivot punt tussen jou en een andere server. Op deze manier kan je tussen twee netwerken hoppen waar je normaal geen toegang toe zou mogen hebben. Hierbij valt te denken aan een webserver met een aparte database server. Deze database server is door zijn iptables enkel toegestaan om met de webserver te communiceren. </p>
+<p>Jij:        10.8.0.1<br>Webserver: 192.168.1.1<br>Database:  192.168.1.2</p>
+<p>Allereerst zul je op de webserver de sshd_config moeten aanpassen. In deze file moet je de optie GatewayPorts op yes zetten. en hierna zul je SSH moeten herstarten.</p>
+<p>Nu kan je het volgende doen:<br>    ssh -R 10.8.0.1<img src="https://assets-cdn.github.com/images/icons/emoji/3306.png" alt=":3306:" title=":3306:" class="emoji" align="absmiddle" height="20" width="20">192.168.1.2:3306 192.168.1.1</p>
+<p>In dit scenario zal elke verbinding afkomstig van 10.8.0.1 naar poort 3306 op 192.168.1.1 toegestaan worden, en geforward naar 192.168.1.2 poort 3306. <strong>Let op,</strong> doordat je in het begin je eigen IP adres hebt neergezet ben jij de enige die met deze poort kan connecten.</p>
 <h3 id="local-ssh-port-forwarding">Local SSH port forwarding</h3>
 <p>Een lokale port forward kan je gebruiken om services die alleen op localhost luisteren (memcached, mysql etc.) te ontsluiten naar het internet. Dit kan handig zijn omdat je je tooling mogelijk niet op een externe server wilt plaatsen maar op deze manier je tooling wel kan gebruiken. <strong>Let op:</strong> je zet de service dan wel voor iedereen open, tenzij je hem expliciet bind aan een lokaal ip adres. </p>
 <p>Als je op &lt; remoteHost &gt; de MySQL service wil laten luisteren op de TCP port 2000 kan je de volgende syntax gebruiken: </p>
