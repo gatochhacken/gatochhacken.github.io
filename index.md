@@ -601,14 +601,15 @@ Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://< Serve
 ### Remote SSH port forwarding ###
 Een remote port forward kan je gebruiken als de server, die je onder controle hebt gekregen, dienst moet doen als pivot punt tussen jou en een andere server. Op deze manier kan je tussen twee netwerken hoppen waar je normaal geen toegang toe zou mogen hebben. Hierbij valt te denken aan een webserver met een aparte database server. Deze database server is door zijn iptables enkel toegestaan om met de webserver te communiceren. 
 
-Jij:	    10.8.0.1
-Webserver: 192.168.1.1
-Database:  192.168.1.2
+    Jij:	10.8.0.1
+    Webserver: 192.168.1.1
+    Database:  192.168.1.2
 
 Allereerst zul je op de webserver de sshd_config moeten aanpassen. In deze file moet je de optie GatewayPorts op yes zetten. en hierna zul je SSH moeten herstarten.
 
 Nu kan je het volgende doen: 
-    ssh -R 10.8.0.1:3306:192.168.1.2:3306 192.168.1.1
+
+    ssh -R 10.8.0.1:3306&#x3A;192.168.1.2:3306 192.168.1.1
 
 In dit scenario zal elke verbinding afkomstig van 10.8.0.1 naar poort 3306 op 192.168.1.1 toegestaan worden, en geforward naar 192.168.1.2 poort 3306. **Let op,** doordat je in het begin je eigen IP adres hebt neergezet ben jij de enige die met deze poort kan connecten.
 
