@@ -588,7 +588,7 @@ p.waitFor()
     passthru($content);
 ?&gt;
 </code></pre><p>In dit voorbeeld is het eigenlijk de bedoeling dat de gebruiker met de file parameter een lokaal bestand kan uitlezen om die weer te geven. Op sommige servers kan je hiermee URL&#39;s uitlezen. Dit kan je doen omdat de <a href="http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen">allow_url_fopen</a> variabele op true staat. Als je deze methodiek gebruikt om <a href="http://intranet/geheim_document.txt">http://intranet/geheim_document.txt</a> te openen, dan zal je deze keurig geserveerd krijgen terwijl jij hier officieel niet bij kan.  </p>
-<p>Mocht je wachtwoorden kennen van een gebruiker op het systeem en je wilt een tunnel opbouwen dan kan je potentieel in het bovenstaande voorbeeld gebruik maken van de <a href="http://php.net/manual/en/wrappers.ssh2.php">ssh2</a> wrapper van PHP. </p>
+<p>Mocht je wachtwoorden kennen van een gebruiker op het systeem en je wilt een tunnel opbouwen dan kan je potentieel in het bovenstaande voorbeeld gebruik maken van de <a href="http://php.net/manual/en/wrappers.ssh2.php">ssh2</a> wrapper (uit by default) van PHP. </p>
 <p>Als de request nu met <a href="https://en.wikipedia.org/wiki/CURL">cURL</a> uitgevoerd was, dan was het mogelijk om van de dict:// wrapper gebruik te maken. Met deze wrapper kan je van bijvoorbeeld een op localhost draaiende memchached de <a href="https://docs.oracle.com/cd/E17952_01/mysql-5.6-en/ha-memcached-stats.html">stats</a> pagina opvragen.</p>
 <h3 id="sql">SQL</h3>
 <p>Voor sommige websites is het niet erg lastig om een SQL injectie uit te voeren. Er word een login formulier ingevuld en de credentials worden rechtstreeks naar een database gestuurd. Een voorbeeld hiervan in PHP kan bijvoorbeeld zo eruit zien:</p>
@@ -806,10 +806,17 @@ p.waitFor()
 </blockquote>
 <p>naar het MAC adres van computer A. Op onze eigen computer zorgen wij ervoor dat wij de binnengekomen pakketten ook opnieuw verzenden naar de goede computer zodat het netwerk blijft draaien, en je hebt een Man in the Middle positie bemachtigd.</p>
 <p>Tooling: Arpspoof, ettercap, bettercap </p>
-<h2 id="pash-the-hash">Pash the hash</h2>
+<h2 id="pass-the-hash">Pass the hash</h2>
 <p>In Windows domeinen kan er gebruikt worden van NTLM (NT Lan Manager) authenticatie. Dit is een authenticatiemethode die gebruikt maakt van het HTTP protocol om een single sign-on mogelijkheid te maken.</p>
 <p>Bij pass the hash maak je gebruik van dit protocol om jezelf te authenticeren als een ander. Alhoewel wachtwoorden nooit ongehashed over het netwerk zullen gaan, en je dus niet zomaar als een ander kan inloggen als je naar zijn computer loopt, worden hashes wel over het netwerk verzonden. Aangezien een gebruiker zichzelf bij diensten (shares etc.) aanmeld met deze hash kan je die hergebruiken.</p>
 <p>Geavanceerde hacktools om pash the hash mee te doen? PSExec <a href="https://docs.microsoft.com/en-us/sysinternals/">Windows Sysinternals</a> of de vergelijkbare variant van Metasploit. Let wel op, de ene variant laat eerder een virusscanner af gaan dan de ander.</p>
+<h2 id="pivoting">Pivoting</h2>
+<h2 id="port-forwarding">Port forwarding</h2>
+<p>Alhoewel mensen vaak denken dat de <a href="https://en.wikipedia.org/wiki/Iptables">iptables</a> alleen gebruikt kunnen worden om als firewall te dienen, kun je met iptables ook <a href="https://nl.wikipedia.org/wiki/Port_forwarding">port forwarding</a> toepassen. Dit doe je doormiddel van, onder andere, de prerouting chain. Hiermee kun je de packets die aan de rule voldoen aan laten passen, voordat ze verwerkt worden door het besturingssysteem. Dit doe je overigens wel door de iptables van de host waar je overheen wilt pivotten aan te passen.</p>
+<p>iptables -t nat -A prerouting -p tcp -d <ServerIP> -dport <ServerPoort> -j DNAT --to-destination <EinddoelIP>:<EinddoelPort></p>
+<p>Nu zal het je opvallen dat alhoewel jij wel pakketten naar de andere kant kan sturen, jij nooit pakketten terug zal krijgen. Dit komt omdat de computer nu wel pakketten ontvangt die voor jou bedoeld zijn, maar er niets mee kan. Denk aan het OSI model, het adres klopt niet dus hij dropt de gegevens zonder ze te behandelen!</p>
+<p>Om dit te voorkomen gaan we de computer ook nog toestemming geven om pakketten die vanaf <EinddoelIP> met <EinddoelPort> komen door te sturen naar het doel wat opgegeven is, in dit geval meestal jij dus.<br>iptables -A FORWARD -p tcp -d <EinddoelIP> --dport <EinddoelPort> -j ACCEPT</p>
+<p>Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://<ServerIP>:<ServerPoort> surfen en dan zal je de pagina zien die op http://<EinddoelIP>:<EinddoelPort> draait.</p>
 <h1 id="binary-exploitation">Binary exploitation</h1>
 <h2 id="geheugenbeheer">Geheugenbeheer</h2>
 <h3 id="stack">Stack</h3>

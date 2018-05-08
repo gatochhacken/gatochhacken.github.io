@@ -213,7 +213,7 @@ Als voorbeeld kan je naar het volgende script kijken:
 
 In dit voorbeeld is het eigenlijk de bedoeling dat de gebruiker met de file parameter een lokaal bestand kan uitlezen om die weer te geven. Op sommige servers kan je hiermee URL's uitlezen. Dit kan je doen omdat de [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) variabele op true staat. Als je deze methodiek gebruikt om http://intranet/geheim_document.txt te openen, dan zal je deze keurig geserveerd krijgen terwijl jij hier officieel niet bij kan.  
 
-Mocht je wachtwoorden kennen van een gebruiker op het systeem en je wilt een tunnel opbouwen dan kan je potentieel in het bovenstaande voorbeeld gebruik maken van de [ssh2](http://php.net/manual/en/wrappers.ssh2.php) wrapper van PHP. 
+Mocht je wachtwoorden kennen van een gebruiker op het systeem en je wilt een tunnel opbouwen dan kan je potentieel in het bovenstaande voorbeeld gebruik maken van de [ssh2](http://php.net/manual/en/wrappers.ssh2.php) wrapper (uit by default) van PHP. 
 
 Als de request nu met [cURL](https://en.wikipedia.org/wiki/CURL) uitgevoerd was, dan was het mogelijk om van de dict:// wrapper gebruik te maken. Met deze wrapper kan je van bijvoorbeeld een op localhost draaiende memchached de [stats](https://docs.oracle.com/cd/E17952_01/mysql-5.6-en/ha-memcached-stats.html) pagina opvragen.
 
@@ -565,13 +565,27 @@ naar het MAC adres van computer A. Op onze eigen computer zorgen wij ervoor dat 
 
 Tooling: Arpspoof, ettercap, bettercap 
 
-## Pash the hash ##
+## Pass the hash ##
 
 In Windows domeinen kan er gebruikt worden van NTLM (NT Lan Manager) authenticatie. Dit is een authenticatiemethode die gebruikt maakt van het HTTP protocol om een single sign-on mogelijkheid te maken.
 
 Bij pass the hash maak je gebruik van dit protocol om jezelf te authenticeren als een ander. Alhoewel wachtwoorden nooit ongehashed over het netwerk zullen gaan, en je dus niet zomaar als een ander kan inloggen als je naar zijn computer loopt, worden hashes wel over het netwerk verzonden. Aangezien een gebruiker zichzelf bij diensten (shares etc.) aanmeld met deze hash kan je die hergebruiken.
 
 Geavanceerde hacktools om pash the hash mee te doen? PSExec [Windows Sysinternals](https://docs.microsoft.com/en-us/sysinternals/) of de vergelijkbare variant van Metasploit. Let wel op, de ene variant laat eerder een virusscanner af gaan dan de ander.
+
+## Pivoting ##
+
+## Port forwarding ##
+Alhoewel mensen vaak denken dat de [iptables](https://en.wikipedia.org/wiki/Iptables) alleen gebruikt kunnen worden om als firewall te dienen, kun je met iptables ook [port forwarding](https://nl.wikipedia.org/wiki/Port_forwarding) toepassen. Dit doe je doormiddel van, onder andere, de prerouting chain. Hiermee kun je de packets die aan de rule voldoen aan laten passen, voordat ze verwerkt worden door het besturingssysteem. Dit doe je overigens wel door de iptables van de host waar je overheen wilt pivotten aan te passen.
+
+iptables -t nat -A prerouting -p tcp -d <ServerIP> -dport <ServerPoort> -j DNAT --to-destination <EinddoelIP>:<EinddoelPort>
+
+Nu zal het je opvallen dat alhoewel jij wel pakketten naar de andere kant kan sturen, jij nooit pakketten terug zal krijgen. Dit komt omdat de computer nu wel pakketten ontvangt die voor jou bedoeld zijn, maar er niets mee kan. Denk aan het OSI model, het adres klopt niet dus hij dropt de gegevens zonder ze te behandelen!
+
+Om dit te voorkomen gaan we de computer ook nog toestemming geven om pakketten die vanaf <EinddoelIP> met <EinddoelPort> komen door te sturen naar het doel wat opgegeven is, in dit geval meestal jij dus.  
+iptables -A FORWARD -p tcp -d <EinddoelIP> --dport <EinddoelPort> -j ACCEPT
+
+Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://<ServerIP>:<ServerPoort> surfen en dan zal je de pagina zien die op http://<EinddoelIP>:<EinddoelPort> draait.
 
 # Binary exploitation #
 
