@@ -196,7 +196,7 @@ Je kan hier bijvoorbeeld zien dat je de gebruikersnaam goed hebt, immers er is e
 Aan dit veld kun je geen conclussies meer verbinden.
 
 ## Server-side controle functionaliteiten ##
-### SSRF ###
+### [SSRF](https://www.owasp.org/index.php/Server_Side_Request_Forgery) ###
 Bij SSRF maak je gebruik van een functionaliteit die de server normaal gesproken gebruikt om een actie uit te laten voeren waar jij normaal gesproken geen toegang toe hebt. Denk hierbij aan dual-homed servers of servers die door firewall rules een bredere toegang hebben tot het achterliggende netwerk. Meestal zal het hier dan gaan om dynamische webapplicaties. Dit kan soms ontstaan omdat de server gebruik maakt van command line applicaties zoals curl, of door middel van functies waarmee path's geopend kunnen worden. 
 
 Als voorbeeld kan je naar het volgende script kijken:
@@ -216,6 +216,8 @@ In dit voorbeeld is het eigenlijk de bedoeling dat de gebruiker met de file para
 Mocht je wachtwoorden kennen van een gebruiker op het systeem en je wilt een tunnel opbouwen dan kan je potentieel in het bovenstaande voorbeeld gebruik maken van de [ssh2](http://php.net/manual/en/wrappers.ssh2.php) wrapper (uit by default) van PHP. 
 
 Als de request nu met [cURL](https://en.wikipedia.org/wiki/CURL) uitgevoerd was, dan was het mogelijk om van de dict:// wrapper gebruik te maken. Met deze wrapper kan je van bijvoorbeeld een op localhost draaiende memchached de [stats](https://docs.oracle.com/cd/E17952_01/mysql-5.6-en/ha-memcached-stats.html) pagina opvragen.
+
+Klik [hier](https://docs.google.com/document/d/1v1TkWZtrhzRLy0bYXBcdLUedXGb9njTNIJXa3u9akHM/edit#) voor een zeer uitgebreide cheatsheat.
 
 ### SQL ###
 Voor sommige websites is het niet erg lastig om een SQL injectie uit te voeren. Er word een login formulier ingevuld en de credentials worden rechtstreeks naar een database gestuurd. Een voorbeeld hiervan in PHP kan bijvoorbeeld zo eruit zien:
