@@ -640,6 +640,9 @@ De heap is per proces gereserveerd, en is een poel geheugen waarbinnen een appli
 ## Beveiligingsmechanismen ##
 
 ### ASLR ###
+Address Space Layout Randomization is een techniek waarmee het uitbuiten van zwakheden in het geheugen lastiger gemaakt is. Dit bereikt men door de beginpunten van onder andere de applicatie, de heap, de stack en imports te randomiseren. Doordat deze geheugenpunten verschillen is het voor een aanvaller lastiger om een (betrouwbare) exploit te ontwikkelen.
+
+Omdat je als aanvaller het geheugenpunt meestal zal moeten raden, is de kans aanzienlijk dat je fout gokt. Als je fout gokt zal een applicatie meestal zijn uitvoering staken.   
 
 ### DEP ###
 DEP, voluit Data Execution Prevention, ([Windows](https://msdn.microsoft.com/en-us/library/windows/desktop/aa366553(v=vs.85).aspx) is een methode waarmee Microsoft tracht te voorkomen dat een kwaadwillende code kan uitvoeren in een geheugenbereik die als non-executable gemarkeerd is. Aangezien DEP pas geïntroduceerd is in [Windows XP](https://en.wikipedia.org/wiki/Windows_XP) [SP2](https://en.wikipedia.org/wiki/Windows_XP#Service_Pack_2), is dit OS met [SP1](https://en.wikipedia.org/wiki/Windows_XP#Service_Pack_1) uitermate geschikt om in te oefenen.
