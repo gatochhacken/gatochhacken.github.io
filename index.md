@@ -426,7 +426,7 @@ In PHP gebruikt men vaak HTTP headers om redirections te doen.
 		echo "Geheimen";
 	?>
 
-Alhoewel in dit voorbeeld de header voor de HTTP redirect al wel verzonden is, gaat de script uitvoer wel door. Je kan dan, als je de redirect voorkomt, alsnog alles onder de redirect lezen.
+Alhoewel in dit voorbeeld de header voor de HTTP redirect al wel verzonden is, gaat de script uitvoer wel door. Je kan dan, als je de redirect voorkomt, alsnog alles onder de redirect lezen. Er zijn plugins voor browsers die je hiervoor kan gebruiken, zoals de [https://addons.mozilla.org/nl/firefox/addon/noredirect/](https://addons.mozilla.org/nl/firefox/addon/noredirect/ "Firefox addon noredirect.")
 
 ### Cross site scripting ###
 Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. 
