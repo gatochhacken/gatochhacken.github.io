@@ -414,6 +414,20 @@ Als je dit script bekijkt zul je zo snel geen kwetsbaarheden zien, dat komt omda
 
 ### Fouten in de logica ###
 
+#### PHP Redirects ####
+
+In PHP gebruikt men vaak HTTP headers om redirections te doen.
+
+    <?PHP
+		if ($loggedin == 0)
+		{
+			header("Location: /");
+		}
+		echo "Geheimen";
+	?>
+
+Alhoewel in dit voorbeeld de header voor de HTTP redirect al wel verzonden is, gaat de script uitvoer wel door. Je kan dan, als je de redirect voorkomt, alsnog alles onder de redirect lezen.
+
 ### Cross site scripting ###
 Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. 
 

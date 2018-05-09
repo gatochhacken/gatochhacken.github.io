@@ -727,6 +727,16 @@ p.waitFor()
 </code></pre><p>Als je dit script bekijkt zul je zo snel geen kwetsbaarheden zien, dat komt omdat er in het script zelf geen kwetsbaarheden zitten. Alhoewel het voor de eindgebruiker niet zichtbaar is stuurt de browser het MIME type mee met een file upload. Dit script is dus eigenlijk gebaseerd op client input. Als je je request door een proxy server als burp suite haalt, hem intercept en vervolgens het MIME type aanpast, dan zal je zien dat je upload gaat werken.</p>
 <p><strong>Insert hier uitleg met curl en firefox :D</strong></p>
 <h3 id="fouten-in-de-logica">Fouten in de logica</h3>
+<h4 id="php-redirects">PHP Redirects</h4>
+<p>In PHP gebruikt men vaak HTTP headers om redirections te doen.</p>
+<pre><code>&lt;?PHP
+    if ($loggedin == 0)
+    {
+        header(&quot;Location: /&quot;);
+    }
+    echo &quot;Geheimen&quot;;
+?&gt;
+</code></pre><p>Alhoewel in dit voorbeeld de header voor de HTTP redirect al wel verzonden is, gaat de script uitvoer wel door. Je kan dan, als je de redirect voorkomt, alsnog alles onder de redirect lezen.</p>
 <h3 id="cross-site-scripting">Cross site scripting</h3>
 <p>Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. </p>
 <p>Sommige browsers zoals Chrome en Internet Explorer &gt;8.0 geven een foutmelding op het moment dat je XSS wilt uitvoeren. </p>
