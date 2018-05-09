@@ -360,7 +360,32 @@ of
 
     <input type="file" accept="image/*" />
 
-Een kwaadwillende bezoeker kan dit formulier kopiëren en naar zijn eigen hand zetten door de accept attribute te verwijderen. Als er geen vorm van filetype verificatie plaats vind, dan upload je zonder enige problemen je bestand. 
+Een kwaadwillende bezoeker kan dit formulier kopiëren en naar zijn eigen hand zetten door de accept attribute te verwijderen. Als er geen vorm van filetype verificatie plaats vind, dan upload je zonder enige problemen je bestand. Op deze manier kan je bijna elke client-side upload beveiliging omzeilen. Javascript is immers ook uit te schakelen, danwel met een eigen implementatie alsnog te misbruiken.
+
+Als er wel gebruik is gemaakt van een server-side script om de file verificatie te doen, dan is strpos bijna de slechtste. Soms zie je dat een developer de volgende code gebruikt om te verifiëren of een filetype op de whitelist staat.
+    
+    <?PHP
+    	$extensions = array('.gif','.jpg','.png','.jpeg');
+    	$filename = $_FILES['upload']['name'];
+    
+    	$valid = 0;
+    	foreach ($extensions AS $extension)
+    	{
+    		if (strpos($filename,$extension) !== false)
+    		{
+    			$valid = 1;
+    		}
+    	}
+    
+    	if ($valid !== 1)
+    	{
+    		die("Please upload an image!");
+    	} 
+    ?>
+    
+Alhoewel dit script het bestand plaatje.png keurig door zal laten en het bestand 3v1l_sh3ll.php keurig zal weigeren, zit er toch een klein foutje in. Dit foutje is ontstaan doordat gebruik is gemaakt van de functie [strpos](http://php.net/strpos). De functie strpos zoekt de eerste positie van een needle ($extension) in de gehele haystack ($filename). Mocht je nu een bestand uploaden met de naam 3v1l_1mag3.jpg.php dan zal het script bovenin beginnen met uitvoeren en na eerst op de string .gif gecontroleerd te hebben zal hij al snel door springen naar de .jpg string. Deze zit in onze bestandsnaam en dus geeft hij de aanvangspositie (10) terug.
+
+Omdat er een aanvangspositie is, geeft strpos geen false terug en is valid voorzien van de waarde 1. Uw shell kan nu ge-upload worden. Wat altijd van belang is, is dat de extensie er een is die door de webserver ook daadwerkelijk met de juiste taal geparsed zal worden.  
 
 ### Fouten in de logica ###
 
