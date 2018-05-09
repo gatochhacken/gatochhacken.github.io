@@ -346,6 +346,22 @@ Als je dan op de webserver de file shell.php opvraagt met als querystring c=ls d
 
 ### File uploads ###
 
+File uploads zijn een prachtige gelegenheid om je eigen (al dan niet uitvoerbare) code op een webserver te krijgen. Soms is er gebruik gemaakt van een perfecte implementatie waarbij je alleen afbeeldingen kan uploaden, in andere gevallen is er ergens een foutje gemaakt in de logica. De verificatie van bestanden die iemand wil uploaden kan client-side of server-side plaatsvinden. Een van de voorbeelden van client-side verificatie is de HTML accept attribute.
+
+Bij een input tag met als type attribute file kan een developer ook een accept attribute opgeven. In deze accept attribute kan hij de [MIME types](https://en.wikipedia.org/wiki/Media_type#mime.types) of de file extensies opgeven. 
+
+    <input type="file" accept=".png,.jpg,.jpeg,.gif" />
+
+of 
+
+    <input type="file" accept="image/jpeg" />
+
+of 
+
+    <input type="file" accept="image/*" />
+
+Een kwaadwillende bezoeker kan dit formulier kopiëren en naar zijn eigen hand zetten door de accept attribute te verwijderen. Als er geen vorm van filetype verificatie plaats vind, dan upload je zonder enige problemen je bestand. 
+
 ### Fouten in de logica ###
 
 ### Cross site scripting ###

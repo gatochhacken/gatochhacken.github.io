@@ -676,6 +676,14 @@ p.waitFor()
 <h3 id="xpath">XPath</h3>
 <h3 id="ldap">LDAP</h3>
 <h3 id="file-uploads">File uploads</h3>
+<p>File uploads zijn een prachtige gelegenheid om je eigen (al dan niet uitvoerbare) code op een webserver te krijgen. Soms is er gebruik gemaakt van een perfecte implementatie waarbij je alleen afbeeldingen kan uploaden, in andere gevallen is er ergens een foutje gemaakt in de logica. De verificatie van bestanden die iemand wil uploaden kan client-side of server-side plaatsvinden. Een van de voorbeelden van client-side verificatie is de HTML accept attribute.</p>
+<p>Bij een input tag met als type attribute file kan een developer ook een accept attribute opgeven. In deze accept attribute kan hij de <a href="https://en.wikipedia.org/wiki/Media_type#mime.types">MIME types</a> of de file extensies opgeven. </p>
+<pre><code>&lt;input type=&quot;file&quot; accept=&quot;.png,.jpg,.jpeg,.gif&quot; /&gt;
+</code></pre><p>of </p>
+<pre><code>&lt;input type=&quot;file&quot; accept=&quot;image/jpeg&quot; /&gt;
+</code></pre><p>of </p>
+<pre><code>&lt;input type=&quot;file&quot; accept=&quot;image/*&quot; /&gt;
+</code></pre><p>Een kwaadwillende bezoeker kan dit formulier kopiëren en naar zijn eigen hand zetten door de accept attribute te verwijderen. Als er geen vorm van filetype verificatie plaats vind, dan upload je zonder enige problemen je bestand. </p>
 <h3 id="fouten-in-de-logica">Fouten in de logica</h3>
 <h3 id="cross-site-scripting">Cross site scripting</h3>
 <p>Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. </p>
