@@ -346,6 +346,7 @@ Als je dan op de webserver de file shell.php opvraagt met als querystring c=ls d
 
 ### File uploads ###
 
+#### HTML verificatie ####
 File uploads zijn een prachtige gelegenheid om je eigen (al dan niet uitvoerbare) code op een webserver te krijgen. Soms is er gebruik gemaakt van een perfecte implementatie waarbij je alleen afbeeldingen kan uploaden, in andere gevallen is er ergens een foutje gemaakt in de logica. De verificatie van bestanden die iemand wil uploaden kan client-side of server-side plaatsvinden. Een van de voorbeelden van client-side verificatie is de HTML accept attribute.
 
 Bij een input tag met als type attribute file kan een developer ook een accept attribute opgeven. In deze accept attribute kan hij de [MIME types](https://en.wikipedia.org/wiki/Media_type#mime.types) of de file extensies opgeven. 
@@ -362,6 +363,7 @@ of
 
 Een kwaadwillende bezoeker kan dit formulier kopiëren en naar zijn eigen hand zetten door de accept attribute te verwijderen. Als er geen vorm van filetype verificatie plaats vind, dan upload je zonder enige problemen je bestand. Op deze manier kan je bijna elke client-side upload beveiliging omzeilen. Javascript is immers ook uit te schakelen, danwel met een eigen implementatie alsnog te misbruiken.
 
+#### strpos ####
 Als er wel gebruik is gemaakt van een server-side script om de file verificatie te doen, dan is strpos bijna de slechtste. Soms zie je dat een developer de volgende code gebruikt om te verifiëren of een filetype op de whitelist staat.
     
     <?PHP
@@ -386,6 +388,29 @@ Als er wel gebruik is gemaakt van een server-side script om de file verificatie 
 Alhoewel dit script het bestand plaatje.png keurig door zal laten en het bestand 3v1l_sh3ll.php keurig zal weigeren, zit er toch een klein foutje in. Dit foutje is ontstaan doordat gebruik is gemaakt van de functie [strpos](http://php.net/strpos). De functie strpos zoekt de eerste positie van een needle ($extension) in de gehele haystack ($filename). Mocht je nu een bestand uploaden met de naam 3v1l_1mag3.jpg.php dan zal het script bovenin beginnen met uitvoeren en na eerst op de string .gif gecontroleerd te hebben zal hij al snel door springen naar de .jpg string. Deze zit in onze bestandsnaam en dus geeft hij de aanvangspositie (10) terug.
 
 Omdat er een aanvangspositie is, geeft strpos geen false terug en is valid voorzien van de waarde 1. Uw shell kan nu ge-upload worden. Wat altijd van belang is, is dat de extensie er een is die door de webserver ook daadwerkelijk met de juiste taal geparsed zal worden.  
+
+#### Meegezonden MIME type ####
+Browsers sturen bij een file upload vaak de mime type van het geuploade bestand mee. In het volgende demoscript is dit het geval:
+    
+    <?PHP
+    	$mimetypes = array('image/gif','image/jpg','image/png','image/jpeg');
+    	$mimetype = $_FILES['upload']['mime'];
+
+		$valid = 0;
+		if (in_array($mimetype,$mimetypes) !== false)
+		{
+			$valid = 1;
+		}
+    
+    	if ($valid !== 1)
+    	{
+    		die("Please upload an image!");
+    	} 
+    ?>
+    
+Als je dit script bekijkt zul je zo snel geen kwetsbaarheden zien, dat komt omdat er in het script zelf geen kwetsbaarheden zitten. Alhoewel het voor de eindgebruiker niet zichtbaar is stuurt de browser het MIME type mee met een file upload. Dit script is dus eigenlijk gebaseerd op client input. Als je je request door een proxy server als burp suite haalt, hem intercept en vervolgens het MIME type aanpast, dan zal je zien dat je upload gaat werken.
+
+**Insert hier uitleg met curl en firefox :D**
 
 ### Fouten in de logica ###
 

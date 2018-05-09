@@ -676,6 +676,7 @@ p.waitFor()
 <h3 id="xpath">XPath</h3>
 <h3 id="ldap">LDAP</h3>
 <h3 id="file-uploads">File uploads</h3>
+<h4 id="html-verificatie">HTML verificatie</h4>
 <p>File uploads zijn een prachtige gelegenheid om je eigen (al dan niet uitvoerbare) code op een webserver te krijgen. Soms is er gebruik gemaakt van een perfecte implementatie waarbij je alleen afbeeldingen kan uploaden, in andere gevallen is er ergens een foutje gemaakt in de logica. De verificatie van bestanden die iemand wil uploaden kan client-side of server-side plaatsvinden. Een van de voorbeelden van client-side verificatie is de HTML accept attribute.</p>
 <p>Bij een input tag met als type attribute file kan een developer ook een accept attribute opgeven. In deze accept attribute kan hij de <a href="https://en.wikipedia.org/wiki/Media_type#mime.types">MIME types</a> of de file extensies opgeven. </p>
 <pre><code>&lt;input type=&quot;file&quot; accept=&quot;.png,.jpg,.jpeg,.gif&quot; /&gt;
@@ -684,6 +685,7 @@ p.waitFor()
 </code></pre><p>of </p>
 <pre><code>&lt;input type=&quot;file&quot; accept=&quot;image/*&quot; /&gt;
 </code></pre><p>Een kwaadwillende bezoeker kan dit formulier kopiëren en naar zijn eigen hand zetten door de accept attribute te verwijderen. Als er geen vorm van filetype verificatie plaats vind, dan upload je zonder enige problemen je bestand. Op deze manier kan je bijna elke client-side upload beveiliging omzeilen. Javascript is immers ook uit te schakelen, danwel met een eigen implementatie alsnog te misbruiken.</p>
+<h4 id="strpos">strpos</h4>
 <p>Als er wel gebruik is gemaakt van een server-side script om de file verificatie te doen, dan is strpos bijna de slechtste. Soms zie je dat een developer de volgende code gebruikt om te verifiëren of een filetype op de whitelist staat.</p>
 <pre><code>&lt;?PHP
     $extensions = array(&#39;.gif&#39;,&#39;.jpg&#39;,&#39;.png&#39;,&#39;.jpeg&#39;);
@@ -705,6 +707,25 @@ p.waitFor()
 ?&gt;
 </code></pre><p>Alhoewel dit script het bestand plaatje.png keurig door zal laten en het bestand 3v1l_sh3ll.php keurig zal weigeren, zit er toch een klein foutje in. Dit foutje is ontstaan doordat gebruik is gemaakt van de functie <a href="http://php.net/strpos">strpos</a>. De functie strpos zoekt de eerste positie van een needle ($extension) in de gehele haystack ($filename). Mocht je nu een bestand uploaden met de naam 3v1l_1mag3.jpg.php dan zal het script bovenin beginnen met uitvoeren en na eerst op de string .gif gecontroleerd te hebben zal hij al snel door springen naar de .jpg string. Deze zit in onze bestandsnaam en dus geeft hij de aanvangspositie (10) terug.</p>
 <p>Omdat er een aanvangspositie is, geeft strpos geen false terug en is valid voorzien van de waarde 1. Uw shell kan nu ge-upload worden. Wat altijd van belang is, is dat de extensie er een is die door de webserver ook daadwerkelijk met de juiste taal geparsed zal worden.  </p>
+<h4 id="meegezonden-mime-type">Meegezonden MIME type</h4>
+<p>Browsers sturen bij een file upload vaak de mime type van het geuploade bestand mee. In het volgende demoscript is dit het geval:</p>
+<pre><code>&lt;?PHP
+    $mimetypes = array(&#39;image/gif&#39;,&#39;image/jpg&#39;,&#39;image/png&#39;,&#39;image/jpeg&#39;);
+    $mimetype = $_FILES[&#39;upload&#39;][&#39;mime&#39;];
+
+    $valid = 0;
+    if (in_array($mimetype,$mimetypes) !== false)
+    {
+        $valid = 1;
+    }
+
+    if ($valid !== 1)
+    {
+        die(&quot;Please upload an image!&quot;);
+    } 
+?&gt;
+</code></pre><p>Als je dit script bekijkt zul je zo snel geen kwetsbaarheden zien, dat komt omdat er in het script zelf geen kwetsbaarheden zitten. Alhoewel het voor de eindgebruiker niet zichtbaar is stuurt de browser het MIME type mee met een file upload. Dit script is dus eigenlijk gebaseerd op client input. Als je je request door een proxy server als burp suite haalt, hem intercept en vervolgens het MIME type aanpast, dan zal je zien dat je upload gaat werken.</p>
+<p><strong>Insert hier uitleg met curl en firefox :D</strong></p>
 <h3 id="fouten-in-de-logica">Fouten in de logica</h3>
 <h3 id="cross-site-scripting">Cross site scripting</h3>
 <p>Cross site scripting (XSS) is een techniek waarbij je “slechte” gebruikersinvoer kunt plaatsen op een website. Deze invoer kan je vervolgens gebruiken om mensen te besmetten of om hun cookies / credentials te stelen. </p>
