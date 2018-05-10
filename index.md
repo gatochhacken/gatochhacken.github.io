@@ -707,6 +707,61 @@ Als je wil dat hij de packets enkel doorstuurt als je connect naar het IP adres 
 
 # Binary exploitation #
 
+## Backdooren van een executable ##
+
+Om een executable te backdooren heb je een aantal tools nodig. De eerste is [OllyDbg](http://www.ollydbg.de/), dit is een debugger voor Windows applicaties die gewoon onder Windows draait. De tweede is [LordPE](https://www.aldeid.com/wiki/LordPE), met deze applicatie kan je allerlei beheerstaken verrichten op executables.
+
+In het voorbeeld wat hier gebruikt zal worden maak ik gebruik van Windows 10. Dit om te laten zien dat je met deze relatief oude tooling toch nog een goed resultaat kunt bereiken. Let wel op, in Windows 10 heeft een applicatie bij elke keer dat je het opnieuw opstart een nieuwe ASLR locatie. Je zult deze zelf even moeten bijhouden en bijwerken.
+
+** [Code cave](https://en.wikipedia.org/wiki/Code_cave) maken **
+Allereerst laden we de gekozen applicatie in in LordPE. Hierna klik je op sections, in de verschenen tabel klik je met de rechter muisknop en klik je op "Add section header". Er verschijnt een nieuwe sectie, .NewSec. Klik deze sectie opnieuw aan met de rechter muisknop en verander de VSize en de RSize in de gewenste grote. **Let op,** dit zijn hexadecimale getallen. 0x500 is groot genoeg.
+
+Waarschijnlijk doet de executable het op dit moment niet meer, dit komt omdat de code cave die wij zojuist aangemaakt hebben nog niet bestaat. Open het bestand in je favoriete hex editor en voeg aan het einde 500 null bytes toe. 
+
+Open vervolgens de applicatie in OllyDbg, en druk in de menubalk op de blauwe M. Zoek hier in de nieuwe sectie op en noteer het adres.
+
+**Execution flow**
+Vervolgens is het de bedoeling dat we de controle krijgen over de execution flow van het proces. Gebruik de F8 toets om verder te gaan in de executable, totdat je op het punt bent aangekomen dat je de eerste call ziet in het de executable. Selecteer deze instructie en de vijf instructies hierna, kopieer deze en plak ze in een kladblok. 
+
+Dubbelklik vervolgens op deze call en vervang die voor een JMP instructie naar de cave:
+
+	JMP < code cave adres >
+
+Selecteer vervolgens de aanpassing, en druk op rechter muisknop->copy to executable->Selected, sluit het verschenen venster en kies een bestandsnaam of doe rechtermuisknop, save -> to file en selecteer een bestandsnaam. Maak van deze instructie een software breakpoint met F2. Herstart het programma met ctrl+F2.
+
+Als het programma opnieuw gestart is druk je op F9 om direct door te springen naar de eerste breakpoint. Hierna druk je 1 keer op F7. Je ziet dat je nu in de geheugenrange van je code cave aanbeland bent. Als hier nu nog informatie staat, dan selecteer je alles vanaf het begin van je code cave en klik je op je rechter muisknop. Onder het kopje binairy klik je vervolgens op "Fill with 00's". Je vult het geselecteerde stuk dan met null bytes. Sla wederom je aanpassingen op.
+
+**De payload genereren**
+Voor deze oefening maken we een payload aan met MSFvenom. Deze payload is een windows messagebox die op popt met een melding. Ik neem niet de moeite om andere inhoud in deze messagebox te zetten, maar ik weerhoud je nergens van. Om de payload te genereren gebruik je het volgende commando:
+
+	msfvenom -p windows/messagebox -f hex
+
+De hexcode die je terug krijgt plak je even in je notitieblokje.
+
+**De shellcode plaatsen**
+Om de shellcode te plaatsen, en na het uitvoeren de applicatie ook weer correct te kunnen draaien, zullen wij eerst de registers en de flags moeten opslaan. Om de registers op te slaan maken wij gebruik van de assembly instructie PUSHAD. PUSHAD staat ons toe om in 1 instructie alle registers op de stack te pushen, (EAX, ECX, EDX, EBX, ESP, EBP, ESI en EDI) en PUSHFD doet hetzelfde, maar dan voor alle flags.
+
+Hierna selecteer je de met MSFVenom gegenereerde shellcode, deze plak je met een binairy paste direct achter de PUSHFD. Je zult nu zien dat je shellcode verschijnt. Sla de aanpassingen wederom op en herstart de applicatie. Druk op F9, F7 en zet een breakpoint op de eerste regel van je shellcode. Druk nogmaals op F9. Je zult zien dat je programma nu tot aan de eerste regel van de assembly uitgevoerd is. Kijk naar de registerwaarde van ESP. Noteer deze, die gaan we later gebruiken om de stack weer te alignen.
+
+Scroll nu naar het einde van je shellcode, zet direct na de shellcode een breakpoint. Druk nu op F9, en kijk weer naar de waarde van ESP. Je zult zien dat deze waarde kleiner is dan de waarde die je eerst had. Dit is het aantal bytes die je op de stack opgeschoven bent. Aangezien wij willen dat het programma weer normaal uit kan voeren is het noodzakelijk dat wij de registers terug gaan zetten. Om de registers terug te zetten moeten wij alleen wel de stackpointer zo hebben staan dat wij de juiste waarden terug POP'en.
+
+Om de offset te berekenen openen wij in windows de calculator en zetten wij hem in de hexadecimale modus:
+	< Eerste ESP > - < Tweede ESP > = offset
+
+Wij gaan dit getal nu automatisch in assembly bij de ESP op laten tellen, direct na de shellcode dubbelklikken wij dus en tikken wij:
+    ADD ESP,0< offset >
+
+Als ESP weer goed gaat, gaan we in omgekeerde volgorde de flags en registers weer terug zetten:
+    POPFD
+	POPAD
+
+**Execution flow herstellen**
+Om te zorgen dat het programma waar wij onze backdoor in plaatsen, zonder foutmeldingen, blijft functioneren moeten wij de overschreven instructie weer aanroepen. Je moet een CALL doen op de eerste functie die je helemaal aan het begin in een notepad had geplakt (denk aan ASLR). We plaatsen dus het volgende:
+    CALL < adres >
+
+en om te zorgen dat het programma hierna de rest van de flow oppakt jumpen wij naar de tweede instructie (denk aan ASLR) toe:
+	JMP < adres tweede instructie >
+
 ## Geheugenbeheer ##
 
 ### Stack ###
