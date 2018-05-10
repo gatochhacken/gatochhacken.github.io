@@ -660,7 +660,7 @@ Geavanceerde hacktools om pash the hash mee te doen? PSExec [Windows Sysinternal
 ## Port forwarding ##
 Alhoewel mensen vaak denken dat de [iptables](https://en.wikipedia.org/wiki/Iptables) alleen gebruikt kunnen worden om als firewall te dienen, kun je met iptables ook [port forwarding](https://nl.wikipedia.org/wiki/Port_forwarding) toepassen. Dit doe je doormiddel van, onder andere, de prerouting chain. Hiermee kun je de packets die aan de rule voldoen aan laten passen, voordat ze verwerkt worden door het besturingssysteem. Dit doe je overigens wel door de iptables van de host waar je overheen wilt pivotten aan te passen.
 
-    iptables -t nat -A prerouting -p tcp -d < ServerIP > -dport < ServerPoort > -j DNAT --to-destination < EinddoelIP >:< EinddoelPort >
+    iptables -t nat -A prerouting -p tcp -d < ServerIP > --dport < ServerPoort > -j DNAT --to-destination < EinddoelIP >:< EinddoelPort >
 
 Nu zal het je opvallen dat alhoewel jij wel pakketten naar de andere kant kan sturen, jij nooit pakketten terug zal krijgen. Dit komt omdat de computer nu wel pakketten ontvangt die voor jou bedoeld zijn, maar er niets mee kan. Denk aan het OSI model, het adres klopt niet dus hij dropt de gegevens zonder ze te behandelen!
 
