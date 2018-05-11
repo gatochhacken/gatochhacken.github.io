@@ -202,9 +202,12 @@ Aan dit veld kun je geen conclussies meer verbinden.
 ### Source code analyse ###
 Alhoewel niemand van je verwacht dat je elke programmeertaal kunt schrijven die er bestaat, is het wel van waarde dat je in een taal leert programmeren. Als je in bijvoorbeeld Python kan programmeren zul je heel veel logica uit andere talen ook snappen. Je zal dan bijvoorbeeld ook de fouten van anderen in de logica snappen. 
 
-Er zijn meer mensen die websites beheren en bezitten dan die ze zelf kunnen schrijven, je moet dus niet raar opkijken als je vaker dezelfde software voorbij ziet komen. Als je een challenge of een website wilt hacken is het aan te raden om op zoek te gaan naar de sourcecode van die website. Nu verwacht ik niet dat je in [wordpress](https://wordpress.com/) een zwakheid gaat treffen, maar in een an haar vele (verlaten) plugins kan dit zomaar het geval zijn.
+Er zijn meer mensen die websites beheren en bezitten dan die ze zelf kunnen schrijven, je moet dus niet raar opkijken als je vaker dezelfde software voorbij ziet komen. Als je een challenge of een website wilt hacken is het aan te raden om op zoek te gaan naar de source code van die website. Nu verwacht ik niet dat je in [wordpress](https://wordpress.com/) een zwakheid gaat treffen, maar in een an haar vele (verlaten) plugins kan dit zomaar het geval zijn.
 
 Source code van applicaties kan je vaak op websites als [github](http://github.com/) of [sourceforge](https://sourceforge.net) (etc.) vinden. Ga in deze source op zoek naar foutjes, kijk naar installatie bestanden en de hiervoor vereiste rechten (en of deze ook weer beperkter ingesteld worden). Vind je eigen zwakheid en meld hem na gebruik om het internet weer een veiligere plek te maken.
+
+### Javascript ###
+De javascript onderdelen van websites verklappen vaak meer dan de eigenaar van de website wil. Ga je deze javascript code in de source opzoeken vind je vaak één hele lange regel met code. Om deze alsnog leesbaar te maken kun je gebruik maken van een JS Beautifier. Een JS Beautifier zorgt dat de code weer overzichtelijk neergezet is en je het kan analyseren. **Let op: ** gebruik voor dit soort zaken nooit online tools, je weet maar nooit wat ze op slaan!
 
 ## Server-side controle functionaliteiten ##
 ### [SSRF](https://www.owasp.org/index.php/Server_Side_Request_Forgery) ###
@@ -807,6 +810,8 @@ Om te zorgen dat het programma waar wij onze backdoor in plaatsen, zonder foutme
 en om te zorgen dat het programma hierna de rest van de flow oppakt jumpen wij naar de tweede instructie (denk aan ASLR) toe:
 
 	JMP < adres tweede instructie >
+
+**Let op: ** Als je je executable tegen verschillende virusscanners wilt testen, maak dan **nooit** gebruik van [VirusTotal](https://www.virustotal.com). VirusTotal is een samenwerkingsverband van verschillende anti-virus bedrijven. De samples die je opvraagt worden naar hen, en andere veiligheidsonderzoekers, verspreid. De door jou zo zorgvuldig gemaakte sample zal dan snel genoeg niet meer werken.
 
 ## Geheugenbeheer ##
 
