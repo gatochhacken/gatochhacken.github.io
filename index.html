@@ -888,7 +888,9 @@ p.waitFor()
 <pre><code>cat /proc/sys/net/ipv4/conf/&lt; netwerkadapter &gt;/forwarding
 </code></pre><p>Zo niet, zet dan de waarde op 1. </p>
 <p>Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://&lt; ServerIP &gt;:&lt; ServerPoort &gt; surfen en dan zal je de pagina zien die op http://&lt; EinddoelIP &gt;:&lt; EinddoelPort &gt; draait.</p>
-<h2 id="meterpreter-port-forwarding">Meterpreter port forwarding</h2>
+<p>Mocht dit niet werken kan je ook de volgende variant proberen, <strong>let op,</strong> deze verzorgt lokale forwarding.</p>
+<pre><code>iptables -t nat -A PREROUTING -p tcp --destination-port &lt; oorspronkelijke port &gt; -j REDIRECT --to-ports &lt; nieuwe Port &gt;
+</code></pre><h2 id="meterpreter-port-forwarding">Meterpreter port forwarding</h2>
 <p>Als je gebruik maakt van meterpreter als shell dan zijn er standaard mogelijkheden om portforwarding toe te passen. Hiervoor kan je het commando portfwd. Deze methode gebruik je als volgt:</p>
 <pre><code>portfwd add -L &lt; lokale IP &gt; -l &lt; lokale poort &gt; -r &lt; remote IP &gt; -p &lt; remote poort &gt; 
 </code></pre><p>Bij het lokale IP, gaat het om het IP adres van de machine waar je metasploit op hebt draaien. Je hoeft deze niet persé op te geven.</p>

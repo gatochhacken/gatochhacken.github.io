@@ -687,6 +687,10 @@ Zo niet, zet dan de waarde op 1.
 
 Als je dit voor een webserver doet, kan je vervolgens gewoon naar http://< ServerIP >:< ServerPoort > surfen en dan zal je de pagina zien die op http://< EinddoelIP >:< EinddoelPort > draait.
 
+Mocht dit niet werken kan je ook de volgende variant proberen, **let op,** deze verzorgt lokale forwarding.
+
+	iptables -t nat -A PREROUTING -p tcp --destination-port < oorspronkelijke port > -j REDIRECT --to-ports < nieuwe Port >
+
 ## Meterpreter port forwarding ##
 Als je gebruik maakt van meterpreter als shell dan zijn er standaard mogelijkheden om portforwarding toe te passen. Hiervoor kan je het commando portfwd. Deze methode gebruik je als volgt:
 
