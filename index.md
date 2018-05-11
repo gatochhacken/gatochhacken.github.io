@@ -199,6 +199,13 @@ Je kan hier bijvoorbeeld zien dat je de gebruikersnaam goed hebt, immers er is e
 
 Aan dit veld kun je geen conclussies meer verbinden.
 
+### Source code analyse ###
+Alhoewel niemand van je verwacht dat je elke programmeertaal kunt schrijven die er bestaat, is het wel van waarde dat je in een taal leert programmeren. Als je in bijvoorbeeld Python kan programmeren zul je heel veel logica uit andere talen ook snappen. Je zal dan bijvoorbeeld ook de fouten van anderen in de logica snappen. 
+
+Er zijn meer mensen die websites beheren en bezitten dan die ze zelf kunnen schrijven, je moet dus niet raar opkijken als je vaker dezelfde software voorbij ziet komen. Als je een challenge of een website wilt hacken is het aan te raden om op zoek te gaan naar de sourcecode van die website. Nu verwacht ik niet dat je in [wordpress](https://wordpress.com/) een zwakheid gaat treffen, maar in een an haar vele (verlaten) plugins kan dit zomaar het geval zijn.
+
+Source code van applicaties kan je vaak op websites als [github](http://github.com/) of [sourceforge](https://sourceforge.net) (etc.) vinden. Ga in deze source op zoek naar foutjes, kijk naar installatie bestanden en de hiervoor vereiste rechten (en of deze ook weer beperkter ingesteld worden). Vind je eigen zwakheid en meld hem na gebruik om het internet weer een veiligere plek te maken.
+
 ## Server-side controle functionaliteiten ##
 ### [SSRF](https://www.owasp.org/index.php/Server_Side_Request_Forgery) ###
 Bij SSRF maak je gebruik van een functionaliteit die de server normaal gesproken gebruikt om een actie uit te laten voeren waar jij normaal gesproken geen toegang toe hebt. Denk hierbij aan dual-homed servers of servers die door firewall rules een bredere toegang hebben tot het achterliggende netwerk. Meestal zal het hier dan gaan om dynamische webapplicaties. Dit kan soms ontstaan omdat de server gebruik maakt van command line applicaties zoals curl, of door middel van functies waarmee path's geopend kunnen worden. 
