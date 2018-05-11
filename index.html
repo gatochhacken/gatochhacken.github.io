@@ -681,6 +681,9 @@ p.waitFor()
 <h3 id="csp-bypass">CSP Bypass</h3>
 <h3 id="xpath">XPath</h3>
 <h3 id="ldap">LDAP</h3>
+<h3 id="verborgen-formuliervelden">Verborgen formuliervelden</h3>
+<p>Sommige developers gaan er van uit dat verborgen velden in formulieren ook echt verborgen zijn voor een eindgebruiker, maar elke eindgebruiker kan natuurlijk de page source opvragen. Je kan een verborgen veld in een formulier zelf eenvoudig aanpasbaar maken met de inspector/debugging functionaliteiten van je browser of door zelf een nieuw formulier te maken.</p>
+<p>Als de developer de denkfout gemaakt heeft dat een verborgen formulier nooit gezien zal worden door een eindgebruiker, is het niet ondenkbaar dat er ook geen filtering en beveiliging plaats vind op de invoer uit deze velden.</p>
 <h3 id="file-uploads">File uploads</h3>
 <h4 id="html-verificatie">HTML verificatie</h4>
 <p>File uploads zijn een prachtige gelegenheid om je eigen (al dan niet uitvoerbare) code op een webserver te krijgen. Soms is er gebruik gemaakt van een perfecte implementatie waarbij je alleen afbeeldingen kan uploaden, in andere gevallen is er ergens een foutje gemaakt in de logica. De verificatie van bestanden die iemand wil uploaden kan client-side of server-side plaatsvinden. Een van de voorbeelden van client-side verificatie is de HTML accept attribute.</p>

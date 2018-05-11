@@ -355,6 +355,11 @@ Als je door middel van, bijvoorbeeld, XSS de session id's kan stelen is het in s
 
 ### LDAP ###
 
+### Verborgen formuliervelden ###
+Sommige developers gaan er van uit dat verborgen velden in formulieren ook echt verborgen zijn voor een eindgebruiker, maar elke eindgebruiker kan natuurlijk de page source opvragen. Je kan een verborgen veld in een formulier zelf eenvoudig aanpasbaar maken met de inspector/debugging functionaliteiten van je browser of door zelf een nieuw formulier te maken.
+
+Als de developer de denkfout gemaakt heeft dat een verborgen formulier nooit gezien zal worden door een eindgebruiker, is het niet ondenkbaar dat er ook geen filtering en beveiliging plaats vind op de invoer uit deze velden.
+
 ### File uploads ###
 
 #### HTML verificatie ####
