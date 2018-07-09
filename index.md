@@ -210,14 +210,61 @@ Source code van applicaties kan je vaak op websites als [github](http://github.c
 De javascript onderdelen van websites verklappen vaak meer dan de eigenaar van de website wil. Ga je deze javascript code in de source opzoeken vind je vaak één hele lange regel met code. Om deze alsnog leesbaar te maken kun je gebruik maken van een JS Beautifier. Een JS Beautifier zorgt dat de code weer overzichtelijk neergezet is en je het kan analyseren. **Let op: ** gebruik voor dit soort zaken nooit online tools, je weet maar nooit wat ze op slaan!
 
 ## Server-side controle functionaliteiten ##
-### Object insertion ###
-In veel talen is het mogelijk om objecten te serializeren. Dit maakt het mogelijk om de status van je object te bewaren en op een later moment weer met dezelfde status verder te gaan. Het voordeel hiervan is dat je, bijvoorbeeld, de status van een user sessie op kan slaan en deze later weer in kan lezen om je gebruiker een meer soepele ervaring aan te bieden. In een taal als PHP doe je dit met de [serialize](http://www.php.net/serialize) en de [unserialize](http://www.php.net/unserialize) functies. Dit soort functies (en de bijbehorende problemen) bestaan overigens in meer talen waaronder python en java.
+### Object injecttion ###
+In veel talen is het mogelijk om objecten te serialiseren. Dit maakt het mogelijk om de status van je object te bewaren en op een later moment weer met dezelfde status verder te gaan. Het voordeel hiervan is dat je, bijvoorbeeld, de status van een user sessie op kan slaan en deze later weer in kan lezen om je gebruiker een meer soepele ervaring aan te bieden. In een taal als PHP doe je dit met de [serialize](http://www.php.net/serialize) en de [unserialize](http://www.php.net/unserialize) functies. Dit soort functies (en de bijbehorende problemen) bestaan overigens in meer talen waaronder python en java.
 
 Als voorbeeld wil ik de volgende PHP code opgeven:
 
-In dit voorbeeld heeft PHP de class userClass welke de voorkeursinstellingen op zal halen uit een file, en de juiste taal zal gebruiken om een terugkerende gebruiker aan te spreken. De informatie is in een cookie opgeslagen. Aangezien cookies door een eindgebruiker aangepast kunnen worden is het (normaal gesproken) noodzakelijk om hier input validatie op toe te passen. Mocht je dit niet doen dan kan een eindgebruiker hier mee gaan spelen. Voor strings die je nog moet deserializen is het sowieso niet praktisch om dergelijke user input te hanteren.
+	<?PHP
+	class userClass
+	{
+		public $username = '';
+		public $id = '';
+		
+		function __contruct($id)
+		{
+			$this->username = file_get_contents('usercontent/'.$id);
+			$this->id = $id;
+		}
 
-Als de gebruiker zichzelf weer  
+		function __sleep()
+		{
+			file_put_contents('usercontent/'.$this->id,$this->username);
+			return array('id');
+		}
+
+		function __wakeup()
+		{
+			$this->username = file_get_contents('usercontent/'.$this->id);
+		}
+	}
+
+	if (isset($_COOKIE['userId']))
+	{
+		unserialize($_cookie['userId']);
+		echo "Hallo ".$userClass->username;
+	}
+	?>
+
+In dit voorbeeld bestaat er een class "userClass". Deze class heeft een wakeup en sleep [magic method](http://php.net/manual/en/language.oop5.magic.php). Deze magic method's zijn functies die in bepaalde situaties aangeroepen worden als dit verwacht mag worden. In het geval van de wakeup is dit als een object wil deserializen, en bij sleep als deze geserializeerd gaat worden. Deze magic methods worden dan altijd, automatisch, aangeroepen.
+
+Aangezien de username in dit voorbeeld in een bestand weggeschreven word als het sleep commando aangeroepen is, kun je aannemen dat dit user input is die op de webserver weggeschreven is. Hier kan je op zich niet heel veel aan misbruiken. Bij het wake up commando daarentegen zal er een bestand uitgelezen worden met de naam gelijk aan het user id in de cookie.
+
+Als er een legale user is opgegeven, in onderstaande geval een user met userid 1 en de gebruikersnaam "meh", dan zal er een object in de cookie staan die er als volgt uit ziet:
+
+
+    O:9:"userClass":1:{s:2:"id";i:1;}
+
+Als we nu de bovenstaande class zelf in een PHP script zeztten, en hier zelf een andere ID in invoeren, zoals bijvoorbeeld 
+
+
+    ../../../../../../etc/passwd
+
+en deze inhoud in de cookie zetten, dan krijgen we een cookie als deze:
+
+    O:9:"userClass":1:{s:2:"id";s:28:"../../../../../../etc/passwd";}
+
+Bij het deserialiseren van deze cookie zal er geen bestand ingelezen worden met gebruikersgegevens, maar zal de inhoud van de /etc/passwd file in de variabele username gezet worden. Bij het inladen van de website heb je op deze manier information disclosure verkregen. De mogelijkheden die je hebt met object injection zijn altijd afhankelijk van de logica die reeds in de class aanwezig is.
 
 ### [SSRF](https://www.owasp.org/index.php/Server_Side_Request_Forgery) ###
 Bij SSRF maak je gebruik van een functionaliteit die de server normaal gesproken gebruikt om een actie uit te laten voeren waar jij normaal gesproken geen toegang toe hebt. Denk hierbij aan dual-homed servers of servers die door firewall rules een bredere toegang hebben tot het achterliggende netwerk. Meestal zal het hier dan gaan om dynamische webapplicaties. Dit kan soms ontstaan omdat de server gebruik maakt van command line applicaties zoals curl, of door middel van functies waarmee path's geopend kunnen worden. 
