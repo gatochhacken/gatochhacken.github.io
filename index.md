@@ -807,6 +807,23 @@ Als je wil dat hij de packets enkel doorstuurt als je connect naar het IP adres 
 
 # Binary exploitation #
 
+## Format strings ##
+
+Format strings zijn ooit bedacht om de weergave van uitvoer in bepaalde functies te verzorgen. De lagere programmeertalen hebben hier vaker last van dan de hogere talen. Een van de vele voorbeelden van dergelijke kwetsbare functies zijn de print functies waar een f in voor komt. Je hebt bij dergelijke functies, bij goed gebruik, al een bepaald format opgegeven hoe de (bijvoorbeeld) string weergegeven moet worden. 
+
+Een goed voorbeeld: 
+	
+	printf("%s",string);
+
+Een fout voorbeeld:
+
+    printf(string);
+
+In het foute voorbeeld zijn er nog geen format strings opgegeven, deze kan je dan dus zelf opgeven. Op het internet zijn er op diverse plaatsen overzichten te vinden van de [format strings](https://en.wikipedia.org/wiki/Printf_format_string#Type_field). Als een voorbeeld omgeving kan je de format string exploits in [protostar](https://exploit-exercises.com/protostar/) van exploit-exercises gebruiken. Door bepaalde invoer te geven, probeer bijvoorbeeld 4 keer een A op te geven en hierna een aantal maal %x, is het mogelijk om het geheugen wederom uit te lezen. Bij protostar zal AAAA%x%x%x%x%x%x op een gegeven moment in plaats van de %x de waarde "41414141" weergeven. Dit is de hexadecimale waarde van de 4 hoofdletter A's in het geheugen. 
+
+Nu weten wij hoe de stack er in dit geval uit ziet, allereerst is er een integer gezet (4 bytes) en daarna een buffer van 64 byte. Wij moeten de sprintf dus overtuigen om 64 bytes te vullen, en hierna een overflow te plaatsen om onze waarde weer te geven. Dit kan het eenvoudigst met een verkorte zoals %64d en dan de waarde die je wilt overschrijven. Dit is de eenvoudigste wijze van een buffer overflow. Op deze wijze voldoe je eveneens aan de wens om het onder de 10 bytes te doen. **Let op:** een hexadecimale waarde zoals een geheugenadres kan je niet zomaar achter een string aan typen, deze zul je nog moeten encoden.
+
+
 ## Backdooren van een executable ##
 
 Om een executable te backdooren heb je een aantal tools nodig. De eerste is [OllyDbg](http://www.ollydbg.de/), dit is een debugger voor Windows applicaties die gewoon onder Windows draait. De tweede is [LordPE](https://www.aldeid.com/wiki/LordPE), met deze applicatie kan je allerlei beheerstaken verrichten op executables.
