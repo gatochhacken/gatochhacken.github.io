@@ -210,6 +210,15 @@ Source code van applicaties kan je vaak op websites als [github](http://github.c
 De javascript onderdelen van websites verklappen vaak meer dan de eigenaar van de website wil. Ga je deze javascript code in de source opzoeken vind je vaak één hele lange regel met code. Om deze alsnog leesbaar te maken kun je gebruik maken van een JS Beautifier. Een JS Beautifier zorgt dat de code weer overzichtelijk neergezet is en je het kan analyseren. **Let op: ** gebruik voor dit soort zaken nooit online tools, je weet maar nooit wat ze op slaan!
 
 ## Server-side controle functionaliteiten ##
+### Object insertion ###
+In veel talen is het mogelijk om objecten te serializeren. Dit maakt het mogelijk om de status van je object te bewaren en op een later moment weer met dezelfde status verder te gaan. Het voordeel hiervan is dat je, bijvoorbeeld, de status van een user sessie op kan slaan en deze later weer in kan lezen om je gebruiker een meer soepele ervaring aan te bieden. In een taal als PHP doe je dit met de [serialize](http://www.php.net/serialize) en de [unserialize](http://www.php.net/unserialize) functies. Dit soort functies (en de bijbehorende problemen) bestaan overigens in meer talen waaronder python en java.
+
+Als voorbeeld wil ik de volgende PHP code opgeven:
+
+In dit voorbeeld heeft PHP de class userClass welke de voorkeursinstellingen op zal halen uit een file, en de juiste taal zal gebruiken om een terugkerende gebruiker aan te spreken. De informatie is in een cookie opgeslagen. Aangezien cookies door een eindgebruiker aangepast kunnen worden is het (normaal gesproken) noodzakelijk om hier input validatie op toe te passen. Mocht je dit niet doen dan kan een eindgebruiker hier mee gaan spelen. Voor strings die je nog moet deserializen is het sowieso niet praktisch om dergelijke user input te hanteren.
+
+Als de gebruiker zichzelf weer  
+
 ### [SSRF](https://www.owasp.org/index.php/Server_Side_Request_Forgery) ###
 Bij SSRF maak je gebruik van een functionaliteit die de server normaal gesproken gebruikt om een actie uit te laten voeren waar jij normaal gesproken geen toegang toe hebt. Denk hierbij aan dual-homed servers of servers die door firewall rules een bredere toegang hebben tot het achterliggende netwerk. Meestal zal het hier dan gaan om dynamische webapplicaties. Dit kan soms ontstaan omdat de server gebruik maakt van command line applicaties zoals curl, of door middel van functies waarmee path's geopend kunnen worden. 
 
