@@ -623,7 +623,7 @@ Wil je een bestand uitlezen en deze base64 gecodeerd weergeven dan kun je het vo
     php://filter/convert.base64-encode/resource=../../../etc/passwd
 
 ### Zelf bestanden introduceren ###
-Je kan zelf bestanden introduceren door middel van bijvoorbeeld upload formulieren. Op foto deel websites kan je een foto uploaden maar geen PHP bestanden. Je kan PHP code opnemen in de meta data van een afbeelding en deze via LFI kwetsbaarheid laten uitvoeren.
+Je kan zelf bestanden introduceren door middel van bijvoorbeeld upload formulieren. Op foto deel websites kan je een foto uploaden maar geen PHP bestanden. Je kan PHP code opnemen in de metadata, de zogenaamde [EXIF informatie](https://nl.wikipedia.org/wiki/Exchangeable_image_file_format), van een afbeelding en deze via LFI kwetsbaarheid laten uitvoeren.
 
 
 ### Handige systeembestanden ###
