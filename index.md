@@ -819,9 +819,29 @@ Een fout voorbeeld:
 
     printf(string);
 
-In het foute voorbeeld zijn er nog geen format strings opgegeven, deze kan je dan dus zelf opgeven. Op het internet zijn er op diverse plaatsen overzichten te vinden van de [format strings](https://en.wikipedia.org/wiki/Printf_format_string#Type_field). Als een voorbeeld omgeving kan je de format string exploits in [protostar](https://exploit-exercises.com/protostar/) van exploit-exercises gebruiken. Door bepaalde invoer te geven, probeer bijvoorbeeld 4 keer een A op te geven en hierna een aantal maal %x, is het mogelijk om het geheugen wederom uit te lezen. Bij protostar zal AAAA%x%x%x%x%x%x op een gegeven moment in plaats van de %x de waarde "41414141" weergeven. Dit is de hexadecimale waarde van de 4 hoofdletter A's in het geheugen. 
+In het foute voorbeeld zijn er nog geen format strings opgegeven, deze kan je dan dus zelf opgeven. Op het internet zijn er op diverse plaatsen overzichten te vinden van de [format strings](https://en.wikipedia.org/wiki/Printf_format_string#Type_field). Als een voorbeeld omgeving kan je de format string exploits in [protostar](https://exploit-exercises.com/protostar/) van exploit-exercises gebruiken. In level 0 is de opdracht bijvoorbeeld het uitvoeren van format string attack waarbij je de target variabele met een bepaalde waarde vult. Als je C code kunt lezen zie je dat de buffer 64 bytes is en je target 4 bytes. Door de manier hoe alles op de stack gepushed zal worden (LIFO) zul je eerst 64 bytes moeten vullen voordat je bij de target variabele kan. 
 
-Nu weten wij hoe de stack er in dit geval uit ziet, allereerst is er een integer gezet (4 bytes) en daarna een buffer van 64 byte. Wij moeten de sprintf dus overtuigen om 64 bytes te vullen, en hierna een overflow te plaatsen om onze waarde weer te geven. Dit kan het eenvoudigst met een verkorte zoals %64d en dan de waarde die je wilt overschrijven. Dit is de eenvoudigste wijze van een buffer overflow. Op deze wijze voldoe je eveneens aan de wens om het onder de 10 bytes te doen. **Let op:** een hexadecimale waarde zoals een geheugenadres kan je niet zomaar achter een string aan typen, deze zul je nog moeten encoden.
+Wij moeten de sprintf dus overtuigen om 64 bytes te vullen, en hierna een overflow te plaatsen om onze waarde weer te geven. Dit kan het eenvoudigst met een verkorte zoals %64d en dan de waarde die je wilt overschrijven. Dit is de eenvoudigste wijze van een buffer overflow. Op deze wijze voldoe je eveneens aan de wens om het onder de 10 bytes te doen. **Let op:** een hexadecimale waarde zoals een geheugenadres kan je niet zomaar achter een string aan typen, deze zul je nog moeten encoden. 
+
+In level 1 gaat het om iets geavanceerdere aanvallen, hierbij is het niet heel erg evident op welke positie de waarde van je invoer op de stack terecht komt. Deze waarde zal je moeten bepalen, dit kan je of doen door een script te schrijven die gebruik maakt van Direct Parameter Access (%<positie>\$x) en deze te vergelijken met de waarde 41414141 of je kan dit doen door het te bruteforcen. De bruteforce methode ziet er als volgt uit:
+
+![](images/protostar_level1_format_burteforce.png)
+
+Je ziet aan het einde de reeks van 41 41 41 41 staan. Als je deze enkel door direct parameter access wilt laten zien kan je dit doen door bijvoorbeeld het commando:
+
+    ./format1 AAAA`python -c 'print ".%127\$x"'`
+
+Als het goed is zie je nu slechts 3 keer de 41 staan, dit komt omdat je nog niet genoeg informatie al naar de server geschreven had, danwel omdat je niet genoeg informatie al had uitgelezen. Dit voorkom je door het juiste uitleesformaat mee te geven aan je format string. Dit doe je tussen de $ en de x. Dit zal meestal 8 zijn.
+
+    ./format1 AAAA`python -c 'print ".%127\$8x"'`
+
+Als wij nu terug kijkne naar de opdracht dan is onze opdracht om een bepaald geheugenpunt te overschrijven in memory. Het geheugenpunt wat wij hiervoor moeten pakken is, als we op de logica letten in format1.c, het adres van target. Aangezien target nu veel hoger op de stack zal staan moeten wij eerst achterhalen welk geheugenadres we gaan overschrijven. De hint objdump -t is hier een erg goede hint. Gebruik objdump -t, en filter deze output op de tekst "target".
+
+	objdump -t ./format1 | grep target
+
+![](images/protostar_level1_format_find_target.png)
+
+Het geheugenadres is 0x08049638, plaats deze nu in je format string in plaats van de A'tjes en zie je geheugenadres terug komen in je uitvoer. Bedenk jezelf nu welke format string placeholder je moet gebruiken om het geheugenadres daadwerkelijk te overschrijven en gebruik deze.
 
 
 ## Backdooren van een executable ##
